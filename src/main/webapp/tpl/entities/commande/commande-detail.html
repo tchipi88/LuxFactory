@@ -1,0 +1,76 @@
+
+<div>
+    <h2><span >Commande</span> {{vm.commande.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        
+       <dt><span >Date Emission</span></dt>
+        <dd>
+            <span>{{vm.commande.dateEmission}}</span>
+        </dd> 
+<dt><span >Date Livraison</span></dt>
+        <dd>
+            <span>{{vm.commande.dateLivraison}}</span>
+        </dd> 
+<dt><span >Date Echeance</span></dt>
+        <dd>
+            <span>{{vm.commande.dateEcheance}}</span>
+        </dd> 
+<dt><span >Delai</span></dt>
+        <dd>
+            <span>{{vm.commande.delai}}</span>
+        </dd> 
+<dt><span >Superviseur</span></dt>
+        <dd>
+            <span>{{vm.commande.superviseur}}</span>
+        </dd> 
+<dt><span >Prix HT</span></dt>
+        <dd>
+            <span>{{vm.commande.prixHT}}</span>
+        </dd> 
+<dt><span >Prix TTC</span></dt>
+        <dd>
+            <span>{{vm.commande.prixTTC}}</span>
+        </dd> 
+<dt><span >Etat</span></dt>
+        <dd>
+            <span>{{vm.commande.etat}}</span>
+        </dd> 
+<dt><span >Commentaires</span></dt>
+        <dd>
+            <span>{{vm.commande.commentaires}}</span>
+        </dd> 
+<dt><span >Commande Lignes</span></dt>
+        <dd>
+            <span>{{vm.commande.commandeLignes}}</span>
+        </dd> 
+<dt><span >Reglements</span></dt>
+        <dd>
+            <span>{{vm.commande.reglements}}</span>
+        </dd> 
+<dt><span >Client</span></dt>
+        <dd>
+            <span>{{vm.commande.client}}</span>
+        </dd> 
+<dt><span >Type</span></dt>
+        <dd>
+            <span>{{vm.commande.type}}</span>
+        </dd> 
+<dt><span >Fournisseur</span></dt>
+        <dd>
+            <span>{{vm.commande.fournisseur}}</span>
+        </dd> 
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Retour</span>
+    </button>
+
+    <button type="button" ui-sref="commande-detail.edit({id:vm.commande.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" > Modifier</span>
+    </button>
+</div>

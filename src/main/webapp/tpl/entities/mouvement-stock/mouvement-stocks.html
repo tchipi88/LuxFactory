@@ -1,0 +1,104 @@
+<div class="bg-light lter b-b wrapper-md" >
+    <h1 class="m-n font-thin h3">MouvementStocks</h1>
+    <small class="text-muted"></small>
+</div>
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-5">
+                    <h4 >Filter by date</h4>
+                    <p class="input-group">
+                        <span class="input-group-addon" >from</span>
+                        <input type="date" class="input-sm form-control" name="start" ng-model="vm.fromDate" ng-change="vm.onChangeDate()" required/>
+                        <span class="input-group-addon" >to</span>
+                        <input type="date" class="input-sm form-control" name="end" ng-model="vm.toDate" ng-change="vm.onChangeDate()" required/>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                        <th ><span >ID</span> </th>
+                        <th ><span >Produit</span> </th>
+                        <th ><span >Quantite</span> </th>
+                        <th ><span >Date Transaction</span> </th>
+
+                        <th   colspan="3"><span >Entrepot Depart</span> </th>
+                      
+
+                        <th  colspan="3"><span >Entrepot Destination</span> </th>
+                       
+
+                        <th >
+                            <button class="btn btn-primary" ui-sref="mouvement-stock.new"   tooltip="Créer MouvementStock">
+                                <i class="fa fa-plus">
+                                </i>
+                            </button>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th  colspan="5"></th>
+                        <th>Stock Initial</th>
+                        <th>Stock Final</th>
+                        <th></th>
+                        <th>Stock Initial</th>
+                        <th>Stock Final</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="mouvementStock in vm.mouvementStocks track by mouvementStock.id">
+                        <td><a ui-sref="mouvementStock-detail({id:mouvement-stock.id})">{{mouvementStock.id}}</a></td>
+                        <td>{{mouvementStock.produit.denomination}}</td>
+                        <td>{{mouvementStock.quantite}}</td>
+                        <td>{{mouvementStock.dateTransaction| date:'mediumDate'}}</td>
+                        
+                        <td >{{mouvementStock.entrepotDepart.libelle}}</td>
+                        <td> {{mouvementStock.stockEntrepotDepart}} </td>
+                        <td>
+                            {{mouvementStock.stockFinalEntrepotDepart}}
+                        </td>
+                      
+                        <td  >{{mouvementStock.entrepotDestination.libelle}} </td>
+                        <td> {{mouvementStock.stockEntrepotDestination}}</td>
+                        <td> {{mouvementStock.stockFinalEntrepotDestination}}
+                        </td>
+                      
+
+                        <td >
+
+                           
+                            <button type="submit"   ui-sref="mouvement-stock.edit({id:mouvementStock.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="submit"  ui-sref="mouvement-stock.delete({id:mouvementStock.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6">
+                    <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+                </div>
+                <div class="col-sm-6 text-right text-center-xs">
+                    <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

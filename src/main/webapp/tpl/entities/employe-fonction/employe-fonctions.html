@@ -1,0 +1,62 @@
+<div class="bg-light lter b-b wrapper-md" >
+    <h1 class="m-n font-thin h3">EmployeFonctions</h1>
+    <small class="text-muted"></small>
+</div>
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        
+        <div class="panel-body table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                        <th jh-sort-by="id"><span >ID</span> <span class="fa fa-sort"></span></th>
+                         <th jh-sort-by="libelle"><span >Libelle</span> <span class="fa fa-sort"></span></th>
+
+                        <th >
+                            <button class="btn btn-primary" ui-sref="employe-fonction.new"   tooltip="Créer EmployeFonction">
+                                <i class="fa fa-plus">
+                                </i>
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="employeFonction in vm.employeFonctions track by employeFonction.id">
+                        <td>{{employeFonction.id}}</td>
+                         <td>{{employeFonction.libelle}}</td>
+
+                        <td >
+
+                           
+                            <button type="submit"   ui-sref="employe-fonction.edit({id:employeFonction.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="submit"  ui-sref="employe-fonction.delete({id:employeFonction.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6">
+                    <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+                </div>
+                <div class="col-sm-6 text-right text-center-xs">
+                    <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

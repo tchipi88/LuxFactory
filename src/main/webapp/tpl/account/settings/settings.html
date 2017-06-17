@@ -1,0 +1,60 @@
+<div class="bg-light lter b-b wrapper-md" >
+    <h1 class="m-n font-thin h3">User settings for [<b>{{vm.settingsAccount.login}}</b>]</h1>
+    <small class="text-muted"></small>
+</div>
+<div class="wrapper-md">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label"  for="field_id">Id</label>
+                <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.settingsAccount.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label"  for="field_login">Login</label>
+                <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.settingsAccount.login"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label"  for="field_nom">Nom</label>
+                <input  class="form-control"   type="text"  autocomplete="off"   id="field_nom" ng-model="vm.settingsAccount.nom"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label"  for="field_prenom">Prenom</label>
+                <input  class="form-control"   type="text"  autocomplete="off"   id="field_prenom" ng-model="vm.settingsAccount.prenom"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+            </div>
+        </div>
+        
+       
+        
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label"  for="field_telephone">Telephone</label>
+                <div class="input-group"> <input  class="form-control"   type="text"  autocomplete="off"  id="field_telephone"  ng-model="vm.settingsAccount.telephone"                     ng-readonly="false"  ng-required="false"                     /><span class="input-group-addon" >  <span >
+                            <i class="fa fa-phone"></i>
+                        </span> </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label"  for="field_email">Email</label>
+                <div class="input-group"> <input  class="form-control"   type="email"  autocomplete="off"  id="field_email"  ng-model="vm.settingsAccount.email"                     ng-readonly="false"  ng-required="false"                     /><span class="input-group-addon" >  <span >
+                            <i class="fa fa-envelope"></i>
+                        </span> </span>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+      
+    </div>
+
+
+</div>

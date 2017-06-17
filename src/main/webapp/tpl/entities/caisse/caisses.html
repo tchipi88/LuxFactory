@@ -1,0 +1,72 @@
+<div class="bg-light lter b-b wrapper-md" >
+    <h1 class="m-n font-thin h3">Caisses</h1>
+    <small class="text-muted"></small>
+</div>
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        
+        <div class="panel-body table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                        <th jh-sort-by="id"><span >ID</span> <span class="fa fa-sort"></span></th>
+                         <th jh-sort-by="gerant"><span >Gerant</span> <span class="fa fa-sort"></span></th>
+ <th jh-sort-by="etat"><span >Etat</span> <span class="fa fa-sort"></span></th>
+ <th jh-sort-by="soldeReel"><span >Solde Reel</span> <span class="fa fa-sort"></span></th>
+ <th jh-sort-by="sortie"><span >Sortie</span> <span class="fa fa-sort"></span></th>
+ <th jh-sort-by="entree"><span >Entree</span> <span class="fa fa-sort"></span></th>
+ <th jh-sort-by="soldeTheorique"><span >Solde Theorique</span> <span class="fa fa-sort"></span></th>
+
+                        <th >
+                            <button class="btn btn-primary" ui-sref="caisse.new"   tooltip="Créer Caisse">
+                                <i class="fa fa-plus">
+                                </i>
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="caisse in vm.caisses track by caisse.id">
+                        <td><a ui-sref="caisse-detail({id:caisse.id})">{{caisse.id}}</a></td>
+                         <td>{{caisse.gerant.nom}}</td>
+ <td>{{caisse.etat}}</td>
+ <td>{{caisse.soldeReel | number }}</td>
+ <td>{{caisse.sortie | number }}</td>
+ <td>{{caisse.entree | number }}</td>
+ <td>{{caisse.soldeTheorique | number }}</td>
+
+                        <td >
+
+                           
+                            <button type="submit"   ui-sref="caisse.edit({id:caisse.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="submit"  ui-sref="caisse.delete({id:caisse.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6">
+                    <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+                </div>
+                <div class="col-sm-6 text-right text-center-xs">
+                    <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+
+<div>
+    <h2><span >Employe</span> {{vm.employe.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        
+       <dt><span >Nom</span></dt>
+        <dd>
+            <span>{{vm.employe.nom}}</span>
+        </dd> 
+<dt><span >Prenom</span></dt>
+        <dd>
+            <span>{{vm.employe.prenom}}</span>
+        </dd> 
+<dt><span >Date Naissance</span></dt>
+        <dd>
+            <span>{{vm.employe.dateNaissance}}</span>
+        </dd> 
+<dt><span >Lieu Naissance</span></dt>
+        <dd>
+            <span>{{vm.employe.lieuNaissance}}</span>
+        </dd> 
+<dt><span >Numero Cni</span></dt>
+        <dd>
+            <span>{{vm.employe.numeroCni}}</span>
+        </dd> 
+<dt><span >Telephone</span></dt>
+        <dd>
+            <span>{{vm.employe.telephone}}</span>
+        </dd> 
+<dt><span >Email</span></dt>
+        <dd>
+            <span>{{vm.employe.email}}</span>
+        </dd> 
+<dt><span >Adresse</span></dt>
+        <dd>
+            <span>{{vm.employe.adresse}}</span>
+        </dd> 
+<dt><span >Date Entree</span></dt>
+        <dd>
+            <span>{{vm.employe.dateEntree}}</span>
+        </dd> 
+<dt><span >Salaire</span></dt>
+        <dd>
+            <span>{{vm.employe.salaire}}</span>
+        </dd> 
+<dt><span >Fonction</span></dt>
+        <dd>
+            <span>{{vm.employe.fonction}}</span>
+        </dd> 
+<dt><span >Departement</span></dt>
+        <dd>
+            <span>{{vm.employe.departement}}</span>
+        </dd> 
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Retour</span>
+    </button>
+
+    <button type="button" ui-sref="employe-detail.edit({id:vm.employe.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" > Modifier</span>
+    </button>
+</div>

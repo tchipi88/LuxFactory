@@ -1,0 +1,40 @@
+
+<div>
+    <h2><span >Produit</span> {{vm.produit.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        
+       <dt><span >Denomination</span></dt>
+        <dd>
+            <span>{{vm.produit.denomination}}</span>
+        </dd> 
+<dt><span >Type</span></dt>
+        <dd>
+            <span>{{vm.produit.type}}</span>
+        </dd> 
+<dt><span >Categorie</span></dt>
+        <dd>
+            <span>{{vm.produit.categorie}}</span>
+        </dd> 
+<dt><span >Prix</span></dt>
+        <dd>
+            <span>{{vm.produit.prix}}</span>
+        </dd> 
+<dt><span >Unite</span></dt>
+        <dd>
+            <span>{{vm.produit.unite}}</span>
+        </dd> 
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Retour</span>
+    </button>
+
+    <button type="button" ui-sref="produit-detail.edit({id:vm.produit.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" > Modifier</span>
+    </button>
+</div>

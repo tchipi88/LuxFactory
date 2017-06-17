@@ -1,0 +1,68 @@
+<div class="bg-light lter b-b wrapper-md" >
+    <h1 class="m-n font-thin h3">ReleveEngins</h1>
+    <small class="text-muted"></small>
+</div>
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        
+        <div class="panel-body table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                        <th jh-sort-by="id"><span >ID</span> <span class="fa fa-sort"></span></th>
+                         <th jh-sort-by="engin"><span >Engin</span> <span class="fa fa-sort"></span></th>
+ <th jh-sort-by="dateReleve"><span >Date Releve</span> <span class="fa fa-sort"></span></th>
+ <th jh-sort-by="compteurHoraire"><span >Compteur Horaire</span> <span class="fa fa-sort"></span></th>
+ <th jh-sort-by="consoCarburant"><span >Conso Carburant</span> <span class="fa fa-sort"></span></th>
+
+                        <th >
+                            <button class="btn btn-primary" ui-sref="releve-engin.new"   tooltip="Créer ReleveEngin">
+                                <i class="fa fa-plus">
+                                </i>
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="releveEngin in vm.releveEngins track by releveEngin.id">
+                        <td>{{releveEngin.id}}</td>
+                         <td>{{releveEngin.engin.numeroChassis}}</td>
+ <td>{{releveEngin.dateReleve | date:'mediumDate'}}</td>
+ <td>{{releveEngin.compteurHoraire}}</td>
+ <td>{{releveEngin.consoCarburant}}</td>
+
+                        <td >
+
+                           
+                            <button type="submit"   ui-sref="releve-engin.edit({id:releveEngin.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="submit"  ui-sref="releve-engin.delete({id:releveEngin.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6">
+                    <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+                </div>
+                <div class="col-sm-6 text-right text-center-xs">
+                    <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

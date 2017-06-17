@@ -1,0 +1,103 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()"   class="form-validation">
+
+    <div class="modal-header">
+        <button type="button" class="btn btn-link pull-right" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()"><i class="fa fa-remove"></i>  </button>
+        <h3 class="modal-title" id="myDecaissementLabel" >Créer ou modifier  Decaissement</h3>
+        <small class="text-muted" >Les champs * sont obligatoires</small>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_id">Id</label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.decaissement.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_caisse">Caisse <span style="color:red" >*</span></label>
+                    <div class="input-group">
+                        <ui-select ng-model="vm.decaissement.caisse"    ng-required="true">
+                            <ui-select-match placeholder="Select Caisse">{{$select.selected.id}}</ui-select-match>
+                            <ui-select-choices repeat="caisse in vm.caisses | filter: $select.search">
+                                <div ng-bind-html="caisse.id | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Caisse', 'caisse', 'caisse', vm.decaissement.caisse)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.decaissement.caisse">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Caisse', 'caisse', 'caisse', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.decaissement.caisse">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_dateVersement">Date Versement <span style="color:red" >*</span></label>
+                    <div class="input-group">
+                        <input  id="field_dateVersement" type="text" class="form-control" name="dateVersement"    ng-required="true"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.decaissement.dateVersement"  is-open="vm.datePickerOpenStatus.dateVersement"
+                                />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateVersement')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_montant">Montant <span style="color:red" >*</span></label>
+                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_montant" ng-model="vm.decaissement.montant"                     ng-readonly="false"  ng-required="true"                     />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_modePaiement">Mode Paiement <span style="color:red" >*</span></label>
+                    <select class="form-control" name="modePaiement"  ng-model="vm.decaissement.modePaiement"  id="field_modePaiement" required>
+                        <option value="ESPECES">ESPECES</option>
+                        <option value="CARTE_BANCAIRE">CARTE_BANCAIRE</option>
+                        <option value="VIREMENT">VIREMENT</option>
+                        <option value="CHEQUE">CHEQUE</option>
+                        <option value="AUTRES">AUTRES</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_motif">Motif <span style="color:red" >*</span></label>
+                    <select class="form-control" name="motif"  ng-model="vm.decaissement.motif"  id="field_motif" required>
+                        <option value="IMPOTS">IMPOTS</option>
+                        <option value="CARBURANT">CARBURANT</option>
+                        <option value="ENTRETIEN_VEHICULE">ENTRETIEN_VEHICULE</option>
+                        <option value="ACHAT_CREDIT">ACHAT_CREDIT</option>
+                        <option value="DIVERS">DIVERS</option>
+                        <option value="AUTRES">AUTRES</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label"  for="field_commentaires">Commentaires</label>
+                    <textarea class="form-control" rows="3"  cols="30"   id="field_commentaires" ng-model="vm.decaissement.commentaires"                     ng-readonly="false"  ng-required="false"                     > </textarea>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Annuler</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Enregister</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,141 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()"   class="form-validation">
+
+    <div class="modal-header">
+        <button type="button" class="btn btn-link pull-right" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()"><i class="fa fa-remove"></i>  </button>
+        <h3 class="modal-title" id="myClientLabel" >Créer ou modifier  Client</h3>
+        <small class="text-muted" >Les champs * sont obligatoires</small>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+			
+			 <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label"  for="field_logo">Logo</label>
+                    <div ngf-drop ngf-change="vm.setMimage($file, 'logo')" ngf-pattern="'image/*'"    ngf-capture="'camera'">
+                        <img data-ng-src="{{'data:' + vm.client.logoContentType  + ';base64,' + vm.client.logo}}" style="max-height: 100px;" ng-if="vm.client.logo"/>
+                        <div ng-if="vm.client.logo" class="help-block clearfix">
+                            <span class="pull-left">{{vm.client.logoContentType}}, {{byteSize(vm.client.logo)}}</span>
+                            <button ng-click="vm.client.logo = null;vm.client.logoContentType = null;"
+                                    class="btn btn-default btn-xs pull-right">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                        <button type="file" ngf-select class="btn btn-default btn-block"
+                                ngf-change="vm.setMimage($file,  'logo')" accept="image/*" >
+                            Add Logo
+                        </button>
+                    </div>
+                    <input type="hidden" class="form-control" id="field_logo"  name="logo"
+                           ng-model="vm.client.logo"      minbytes="5" />
+                    <input type="hidden" class="form-control" name="logoContentType" id="logoContentType"
+                           ng-model="vm.client.logoContentType" />
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_id">Id</label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.client.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_nom">Nom <span style="color:red" >*</span></label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_nom" ng-model="vm.client.nom"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
+                </div>
+            </div>
+           
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_telephonePortable">Telephone Portable <span style="color:red" >*</span></label>
+                    <div class="input-group"> <input  class="form-control"   type="text"  autocomplete="off"  id="field_telephonePortable"  ng-model="vm.client.telephonePortable"                     ng-readonly="false"  ng-required="true"                     /><span class="input-group-addon" >  <span >
+                                <i class="fa fa-phone"></i>
+                            </span> </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_telephoneFixe">Telephone Fixe</label>
+                    <div class="input-group"> <input  class="form-control"   type="text"  autocomplete="off"  id="field_telephoneFixe"  ng-model="vm.client.telephoneFixe"                     ng-readonly="false"  ng-required="false"                     /><span class="input-group-addon" >  <span >
+                                <i class="fa fa-phone"></i>
+                            </span> </span>
+                    </div>
+                </div>
+            </div>
+             <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_adresse">Adresse <span style="color:red" >*</span></label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_adresse" ng-model="vm.client.adresse"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
+                </div>
+            </div>
+             <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_boitePostale">Boite Postale</label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_boitePostale" ng-model="vm.client.boitePostale"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+                </div>
+            </div>
+           
+             <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_email">Email</label>
+                    <div class="input-group"> <input  class="form-control"   type="email"  autocomplete="off"  id="field_email"  ng-model="vm.client.email"                     ng-readonly="false"  ng-required="false"                     /><span class="input-group-addon" >  <span >
+                                <i class="fa fa-envelope"></i>
+                            </span> </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_siteWeb">Site Web</label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_siteWeb" ng-model="vm.client.siteWeb"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+                </div>
+            </div>
+           
+           
+          
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_responsable">Responsable</label>
+                    <div class="input-group">
+                        <ui-select ng-model="vm.client.responsable"    ng-required="false">
+                            <ui-select-match placeholder="Select Employe">{{$select.selected.nom}}</ui-select-match>
+                            <ui-select-choices repeat="responsable in vm.responsables | filter: $select.search">
+                                <div ng-bind-html="responsable.nom | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Employe', 'employe', 'responsable', vm.client.responsable)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.client.responsable">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Employe', 'employe', 'responsable', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.client.responsable">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_numeroCommerce">Numero Commerce</label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_numeroCommerce" ng-model="vm.client.numeroCommerce"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Annuler</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Enregister</span>
+        </button>
+    </div>
+</form>

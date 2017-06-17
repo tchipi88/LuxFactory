@@ -1,0 +1,44 @@
+
+<div>
+    <h2><span >Caisse</span> {{vm.caisse.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        
+       <dt><span >Gerant</span></dt>
+        <dd>
+            <span>{{vm.caisse.gerant}}</span>
+        </dd> 
+<dt><span >Etat</span></dt>
+        <dd>
+            <span>{{vm.caisse.etat}}</span>
+        </dd> 
+<dt><span >Solde Reel</span></dt>
+        <dd>
+            <span>{{vm.caisse.soldeReel}}</span>
+        </dd> 
+<dt><span >Sortie</span></dt>
+        <dd>
+            <span>{{vm.caisse.sortie}}</span>
+        </dd> 
+<dt><span >Entree</span></dt>
+        <dd>
+            <span>{{vm.caisse.entree}}</span>
+        </dd> 
+<dt><span >Solde Theorique</span></dt>
+        <dd>
+            <span>{{vm.caisse.soldeTheorique}}</span>
+        </dd> 
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Retour</span>
+    </button>
+
+    <button type="button" ui-sref="caisse-detail.edit({id:vm.caisse.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" > Modifier</span>
+    </button>
+</div>

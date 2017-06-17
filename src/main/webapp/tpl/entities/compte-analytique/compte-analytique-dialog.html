@@ -1,0 +1,89 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()"   class="form-validation">
+
+    <div class="modal-header">
+        <button type="button" class="btn btn-link pull-right" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()"><i class="fa fa-remove"></i>  </button>
+        <h3 class="modal-title" id="myCompteAnalytiqueLabel" >Créer ou modifier  CompteAnalytique</h3>
+         <small class="text-muted" >Les champs * sont obligatoires</small>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+              <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_id">Id</label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.compteAnalytique.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_intitule">Intitule <span style="color:red" >*</span></label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_intitule" ng-model="vm.compteAnalytique.intitule"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_debit">Debit</label>
+  <input  class="form-control"   type="number"  autocomplete="off"  id="field_debit" ng-model="vm.compteAnalytique.debit"                     ng-readonly="true"  ng-required="false"                     />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_credit">Credit</label>
+  <input  class="form-control"   type="number"  autocomplete="off"  id="field_credit" ng-model="vm.compteAnalytique.credit"                     ng-readonly="true"  ng-required="false"                     />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_solde">Solde</label>
+  <input  class="form-control"   type="number"  autocomplete="off"  id="field_solde" ng-model="vm.compteAnalytique.solde"                     ng-readonly="true"  ng-required="false"                     />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_type">Type <span style="color:red" >*</span></label>
+ <select class="form-control" name="type"  ng-model="vm.compteAnalytique.type"  id="field_type" required>
+<option value="FOURNISSEUR">FOURNISSEUR</option>
+<option value="LOCATION">LOCATION</option>
+<option value="CLIENT">CLIENT</option>
+<option value="TERRAIN">TERRAIN</option>
+            </select>
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_tiers">Tiers <span style="color:red" >*</span></label>
+ <div class="input-group">
+                        <ui-select ng-model="vm.compteAnalytique.tiers"    ng-required="true">
+                            <ui-select-match placeholder="Select Tiers">{{$select.selected.nom}}</ui-select-match>
+                            <ui-select-choices repeat="tiers in vm.tierss | filter: $select.search">
+                                <div ng-bind-html="tiers.nom | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Tiers','tiers','tiers', vm.compteAnalytique.tiers)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.compteAnalytique.tiers">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Tiers', 'tiers','tiers', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.compteAnalytique.tiers">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> </div>
+ </div>
+
+        </div>
+       
+    </div>
+    <div class="modal-footer">
+        
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Annuler</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Enregister</span>
+        </button>
+    </div>
+</form>

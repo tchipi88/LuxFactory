@@ -1,0 +1,90 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()"   class="form-validation">
+
+    <div class="modal-header">
+        <button type="button" class="btn btn-link pull-right" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()"><i class="fa fa-remove"></i>  </button>
+        <h3 class="modal-title" id="myActivitesLabel" >Créer ou modifier  Activites</h3>
+         <small class="text-muted" >Les champs * sont obligatoires</small>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+              <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_id">Id</label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.activites.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_libelle">Libelle <span style="color:red" >*</span></label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_libelle" ng-model="vm.activites.libelle"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_dateDebut">Date Debut <span style="color:red" >*</span></label>
+  <div class="input-group">
+                    <input  id="field_dateDebut" type="text" class="form-control" name="dateDebut"    ng-required="true"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.activites.dateDebut"  is-open="vm.datePickerOpenStatus.dateDebut"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateDebut')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_dateFin">Date Fin <span style="color:red" >*</span></label>
+  <div class="input-group">
+                    <input  id="field_dateFin" type="text" class="form-control" name="dateFin"    ng-required="true"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.activites.dateFin"  is-open="vm.datePickerOpenStatus.dateFin"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateFin')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_responsable">Responsable <span style="color:red" >*</span></label>
+ <div class="input-group">
+                        <ui-select ng-model="vm.activites.responsable"    ng-required="true">
+                            <ui-select-match placeholder="Select Employe">{{$select.selected.nom}}</ui-select-match>
+                            <ui-select-choices repeat="responsable in vm.responsables | filter: $select.search">
+                                <div ng-bind-html="responsable.nom | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Employe','employe','responsable', vm.activites.responsable)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.activites.responsable">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Employe', 'employe','responsable', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.activites.responsable">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_description">Description</label>
+   <textarea class="form-control" rows="3"  cols="30"   id="field_description" ng-model="vm.activites.description"                     ng-readonly="false"  ng-required="false"                     > </textarea>
+ </div>
+ </div>
+
+        </div>
+       
+    </div>
+    <div class="modal-footer">
+        
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Annuler</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Enregister</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,47 @@
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+
+        <div class="panel-body table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr >
+                        <th ><span >ID</span> </th>
+                         <th><span >Produit</span> </th>
+                        <th ><span >Prix Vente</span></th> 
+                        <th ><span >Delai Fourniture</span> </th> 
+                       
+                        <th >
+                            <button class="btn btn-primary" type="button"  ng-click="vm.addProduitFournisseur()"   tooltip="Créer ProduitFournisseur">
+                                <i class="fa fa-plus">
+                                </i>
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="produitFournisseur in vm.produitFournisseurs track by produitFournisseur.id">
+                        <td>{{produitFournisseur.id}}</td>
+                        <td>{{produitFournisseur.produit.denomination}}</td>
+                        <td>{{produitFournisseur.prixVente| number }}</td>
+                        <td>{{produitFournisseur.delaiFourniture}}</td>
+                        <td >
+                            <button type="button"  ng-click="vm.editProduitFournisseur(produitFournisseur,$index)"  class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="button"  ng-click="vm.delProduitFournisseur(produitFournisseur,$index)" class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+       
+    </div>
+</div>
