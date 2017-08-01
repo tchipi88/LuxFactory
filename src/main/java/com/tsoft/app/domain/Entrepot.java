@@ -1,4 +1,4 @@
-package com.tsoft.app.domain;
+ package com.tsoft.app.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -39,6 +39,9 @@ public class Entrepot extends AbstractAuditingEntity{
    
     @ManyToOne
     private Employe responsable;
+    
+    @ManyToOne
+    private Activites activite;
 
     public Long getId() {
         return id;
@@ -104,4 +107,14 @@ public class Entrepot extends AbstractAuditingEntity{
             ", capactite='" + capactite + "'" +
             '}';
     }
+
+    public Activites getActivite() {
+        return activite;
+    }
+
+    public void setActivite(Activites activite) {
+        this.activite = activite;
+    }
+    
+    
 }

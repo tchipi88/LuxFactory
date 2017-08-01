@@ -1,0 +1,62 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()"   class="form-validation">
+
+    <div class="modal-header">
+        <button type="button" class="btn btn-link pull-right" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()"><i class="fa fa-remove"></i>  </button>
+        <h3 class="modal-title" id="myMouvementStockInLabel" >Créer ou modifier  MouvementStockIn</h3>
+         <small class="text-muted" >Les champs * sont obligatoires</small>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+              <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_id">Id</label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.mouvementStockIn.id"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_entrepotId">Entrepot Id</label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_entrepotId" ng-model="vm.mouvementStockIn.entrepotId"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_produit">Produit</label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_produit" ng-model="vm.mouvementStockIn.produit"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_dateTransaction">Date Transaction</label>
+  <div class="input-group">
+                    <input  id="field_dateTransaction" type="text" class="form-control" name="dateTransaction"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.mouvementStockIn.dateTransaction"  is-open="vm.datePickerOpenStatus.dateTransaction"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateTransaction')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_quantite">Quantite</label>
+  <input  class="form-control"   type="number"  autocomplete="off"  id="field_quantite" ng-model="vm.mouvementStockIn.quantite"                     ng-readonly="false"  ng-required="false"                     />
+ </div>
+ </div>
+
+        </div>
+       
+    </div>
+    <div class="modal-footer">
+        
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Annuler</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Enregister</span>
+        </button>
+    </div>
+</form>
