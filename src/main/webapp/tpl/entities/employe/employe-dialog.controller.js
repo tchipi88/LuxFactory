@@ -5,9 +5,9 @@
             .module('app')
             .controller('EmployeDialogController', EmployeDialogController);
 
-    EmployeDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal', 'DataUtils', 'entity', 'Employe', 'EmployeFonction', 'EmployeDepartement'];
+    EmployeDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal', 'DataUtils', 'entity', 'Employe', 'EmployeFonction'];
 
-    function EmployeDialogController($timeout, $scope, $stateParams, $uibModalInstance, $uibModal, DataUtils, entity, Employe, EmployeFonction, EmployeDepartement) {
+    function EmployeDialogController($timeout, $scope, $stateParams, $uibModalInstance, $uibModal, DataUtils, entity, Employe, EmployeFonction) {
         var vm = this;
 
         vm.employe = entity;
@@ -18,7 +18,7 @@
         vm.openFile = DataUtils.openFile;
         vm.save = save;
         vm.fonctions = EmployeFonction.query();
-        vm.departements = EmployeDepartement.query();
+       
 
 
 

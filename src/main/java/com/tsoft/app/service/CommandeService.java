@@ -10,8 +10,10 @@ import com.tsoft.app.domain.Client;
 import com.tsoft.app.domain.Commande;
 import com.tsoft.app.domain.CommandeLigne;
 import com.tsoft.app.domain.Compte;
+import com.tsoft.app.domain.Facture;
 import com.tsoft.app.domain.Fournisseur;
 import com.tsoft.app.domain.MouvementStock;
+import com.tsoft.app.domain.Procesverbal;
 import com.tsoft.app.domain.ProduitFournisseur;
 import com.tsoft.app.domain.enumeration.CompteAnalytiqueType;
 import com.tsoft.app.domain.enumeration.EtatCommande;
@@ -24,7 +26,9 @@ import com.tsoft.app.repository.ClientRepository;
 import com.tsoft.app.repository.CommandeLigneRepository;
 import com.tsoft.app.repository.CommandeRepository;
 import com.tsoft.app.repository.CompteRepository;
+import com.tsoft.app.repository.FactureRepository;
 import com.tsoft.app.repository.FournisseurRepository;
+import com.tsoft.app.repository.ProcesverbalRepository;
 import com.tsoft.app.repository.ProduitFournisseurRepository;
 import java.io.File;
 import java.time.LocalDateTime;
@@ -72,7 +76,10 @@ public class CommandeService {
 
     @Autowired
     CommandeLigneRepository commandeLigneRepository;
-
+    @Autowired
+    FactureRepository factureRepository;
+    @Autowired
+    ProcesverbalRepository procesverbalRepository;
     @Autowired
     CompteRepository compteRepository;
     @Autowired
@@ -143,6 +150,11 @@ public class CommandeService {
                                 ms.setEntrepotDestination(entrepotService.findByLibelle(commande.getClient().getNom()));
 
                                 mouvementStockService.save(ms, false);
+
+                                //creation ProcesVerbal
+                                Procesverbal procesverbal = new Procesverbal();
+                                procesverbal.setCommande(commande);
+                                procesverbalRepository.save(procesverbal);
                             }
                         }
                         break;
@@ -162,6 +174,11 @@ public class CommandeService {
                             compteRepository.save(compteAchat);
                             compteRepository.save(compteFournisseurs);
                             compteRepository.save(compteTVADeductible);
+
+                            //creation d'une facture 
+                            Facture facture = new Facture();
+                            facture.setCommande(commande);
+                            factureRepository.save(facture);
                         }
                         break;
                     }
@@ -252,11 +269,11 @@ public class CommandeService {
         if (!uploadedfile.exists()) {
             uploadedfile.mkdirs();
         }
-        
-        String type=(EtatCommande.BON_LIVRAISON.equals(typePrint)?"BonLivraison":"Facture");
-        String destfile = uploadedfile.getAbsolutePath() + File.separator+type+ "_Commande_" + commande.getId() + ".pdf";
 
-        String reportfile = "classpath:com/itsolution/tkbr/reports/"+type+".jasper";
+        String type = (EtatCommande.BON_LIVRAISON.equals(typePrint) ? "BonLivraison" : "Facture");
+        String destfile = uploadedfile.getAbsolutePath() + File.separator + type + "_Commande_" + commande.getId() + ".pdf";
+
+        String reportfile = "classpath:com/itsolution/tkbr/reports/" + type + ".jasper";
         //remplissage des parametres du report
         Map params = new HashMap();
 

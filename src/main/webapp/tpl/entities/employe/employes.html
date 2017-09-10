@@ -34,7 +34,7 @@
                 <thead>
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                         <th jh-sort-by="id"><span >ID</span> <span class="fa fa-sort"></span></th>
-                         <th jh-sort-by="nom"><span >Nom</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="prenom"><span >Prenom</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="dateNaissance"><span >Date Naissance</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="lieuNaissance"><span >Lieu Naissance</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="numeroCni"><span >Numero Cni</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="telephone"><span >Telephone</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="email"><span >Email</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="adresse"><span >Adresse</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="dateEntree"><span >Date Entree</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="salaire"><span >Salaire</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="fonction"><span >Fonction</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="departement"><span >Departement</span> <span class="fa fa-sort"></span></th>
+                         <th jh-sort-by="nom"><span >Nom</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="prenom"><span >Prenom</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="dateNaissance"><span >Date Naissance</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="lieuNaissance"><span >Lieu Naissance</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="numeroCni"><span >Numero Cni</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="telephone"><span >Telephone</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="email"><span >Email</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="adresse"><span >Adresse</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="dateEntree"><span >Date Entree</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="salaire"><span >Salaire</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="fonction"><span >Fonction</span> <span class="fa fa-sort"></span></th> 
                         <th >
                             <button class="btn btn-primary" ui-sref="employe.new"   tooltip="Créer Employe">
                                 <i class="fa fa-plus">
@@ -57,7 +57,7 @@
  <td>{{employe.dateEntree | date:'mediumDate'}}</td>
  <td>{{employe.salaire | number }}</td>
  <td>{{employe.fonction.libelle}}</td>
- <td>{{employe.departement.libelle}}</td>
+
 
                         <td >
 

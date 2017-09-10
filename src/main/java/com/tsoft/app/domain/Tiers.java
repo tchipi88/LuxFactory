@@ -68,36 +68,33 @@ public class Tiers extends AbstractAuditingEntity {
 
     @Column(name = "logo_content_type")
     private String logoContentType;
-    
-    
+
     @ManyToOne
     private Employe responsable;
-    
+
     @Column
     private String numeroCommerce;
-    
-    @NotNull
-    @Column(nullable = false)
-    private boolean locataire = false;
 
-    public boolean isLocataire() {
-        return locataire;
+    private String referencesBancaires;
+
+    public String getReferencesBancaires() {
+        return referencesBancaires;
     }
 
-    public void setLocataire(boolean locataire) {
-        this.locataire = locataire;
+    public void setReferencesBancaires(String referencesBancaires) {
+        this.referencesBancaires = referencesBancaires;
     }
     
     
     
-     public Long getId() {
+
+    public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getNumeroCommerce() {
         return numeroCommerce;
@@ -106,8 +103,6 @@ public class Tiers extends AbstractAuditingEntity {
     public void setNumeroCommerce(String numeroCommerce) {
         this.numeroCommerce = numeroCommerce;
     }
-    
-    
 
     public Employe getResponsable() {
         return responsable;
@@ -116,8 +111,6 @@ public class Tiers extends AbstractAuditingEntity {
     public void setResponsable(Employe responsable) {
         this.responsable = responsable;
     }
-    
-    
 
     public String getNom() {
         return nom;
@@ -211,7 +204,7 @@ public class Tiers extends AbstractAuditingEntity {
         return true;
     }
 
-     @Override
+    @Override
     public String toString() {
         return "Personne Commerciale{"
                 + "id=" + id

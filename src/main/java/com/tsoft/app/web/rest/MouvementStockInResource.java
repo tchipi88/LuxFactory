@@ -16,12 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -131,7 +128,17 @@ public class MouvementStockInResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-   
+    @GetMapping(path = "/mouvement-stock-ins", params = {"fromDate", "toDate"})
+    @Timed
+    public ResponseEntity<List<MouvementStockIn>> searchMouvementStockOut(
+            @RequestParam(value = "fromDate") LocalDate fromDate,
+            @RequestParam(value = "toDate") LocalDate toDate,
+            @ApiParam Pageable pageable, @ApiParam Long  produit,@ApiParam Long  entrepotId) {
+        log.debug("REST request to search for a page of MouvementStockOut for  {}  to {}", fromDate, toDate);
+        Page<MouvementStockIn> page = mouvementStockInRepository.findAllByEntrepotIdAndProduitAndDateTransactionBetween(entrepotId,produit,fromDate, toDate, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/mouvement-stock-ins");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
 
 
 }

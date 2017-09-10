@@ -6,6 +6,9 @@
 package com.tsoft.app.repository;
 
 import com.tsoft.app.domain.MouvementStockOut;
+import java.time.LocalDate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -16,6 +19,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Spring Data JPA repository for the MouvementStockOut entity.
  */
 public interface MouvementStockOutRepository extends JpaRepository<MouvementStockOut, Long> {
+
+    public Page<MouvementStockOut> findAllByEntrepotIdAndProduitAndDateTransactionBetween(Long entrepotId, Long produit, LocalDate fromDate, LocalDate toDate, Pageable pageable);
 
     
 
