@@ -1,13 +1,13 @@
-(function() {
+(function () {
     'use strict';
 
     angular
-        .module('app')
-        .controller('MouvementStockInController', MouvementStockInController);
+            .module('app')
+            .controller('MouvementStockInController', MouvementStockInController);
 
-    MouvementStockInController.$inject = ['$state', 'DataUtils', 'MouvementStockIn',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    MouvementStockInController.$inject = ['$state', '$stateParams', 'MouvementStockIn', 'ParseLinks', 'AlertService', '$filter', 'pagingParams', 'Entrepot', 'Produit'];
 
-    function MouvementStockInController($state, DataUtils, MouvementStockIn,  ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function MouvementStockInController($state, $stateParams, MouvementStockIn, ParseLinks, AlertService, $filter, pagingParams, Entrepot, Produit) {
 
         var vm = this;
 
@@ -15,20 +15,33 @@
         vm.predicate = pagingParams.predicate;
         vm.reverse = pagingParams.ascending;
         vm.transition = transition;
-        vm.itemsPerPage = paginationConstants.itemsPerPage;
-        vm.clear = clear;
-        vm.loadAll = loadAll;
-        vm.openFile = DataUtils.openFile;
-        vm.byteSize = DataUtils.byteSize;
 
-        loadAll();
+        vm.entrepots = Entrepot.query();
+        vm.produits = Produit.query();
 
-        function loadAll () {
-                MouvementStockIn.query({
-                    page: pagingParams.page - 1,
-                    size: vm.itemsPerPage,
-                    sort: sort()
-                }, onSuccess, onError);
+        vm.itemsPerPage = 20;
+        vm.page = 1;
+        vm.fromDate = new Date();
+        vm.toDate = new Date();
+
+
+
+        vm.search = search;
+
+
+        function search() {
+            var dateFormat = 'yyyy-MM-dd';
+            var fromDate = $filter('date')(vm.fromDate, dateFormat);
+            var toDate = $filter('date')(vm.toDate, dateFormat);
+
+            MouvementStockIn.query({
+                page: pagingParams.page - 1,
+                size: vm.itemsPerPage,
+                sort: sort(),
+                produit: vm.produit.id,
+                entrepot: vm.entrepot.id,
+                fromDate: fromDate, toDate: toDate
+            }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
                 if (vm.predicate !== 'id') {
@@ -40,7 +53,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.mouvementStockIns = data;
+                vm.commandes = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {
@@ -50,24 +63,24 @@
 
         function loadPage(page) {
             vm.page = page;
-            vm.transition();
+            vm.onChangeDate();
         }
 
         function transition() {
+            var dateFormat = 'yyyy-MM-dd';
+            var fromDate = $filter('date')(vm.fromDate, dateFormat);
+            var toDate = $filter('date')(vm.toDate, dateFormat);
             $state.transitionTo($state.$current, {
                 page: vm.page,
+                produit: vm.produit.id,
+                entrepot: vm.entrepot.id,
                 sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
+                fromDate: fromDate, toDate: toDate
             });
         }
 
-       
 
-        function clear() {
-            vm.links = null;
-            vm.page = 1;
-            vm.predicate = 'id';
-            vm.reverse = true;
-            vm.transition();
-        }
+
+
     }
 })();

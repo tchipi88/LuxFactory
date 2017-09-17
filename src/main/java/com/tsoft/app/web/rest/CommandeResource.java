@@ -3,28 +3,25 @@ package com.tsoft.app.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.tsoft.app.domain.Commande;
 import com.tsoft.app.domain.enumeration.TypeCommande;
-
 import com.tsoft.app.repository.CommandeRepository;
 import com.tsoft.app.service.CommandeService;
 import com.tsoft.app.web.rest.util.HeaderUtil;
 import com.tsoft.app.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * REST controller for managing Commande.
@@ -56,7 +53,7 @@ public class CommandeResource {
      */
     @PostMapping("/commandes")
     @Timed
-    public ResponseEntity<Commande> createCommande(@Valid @RequestBody Commande commande) throws Exception {
+    public ResponseEntity<Commande> createCommande(@RequestBody Commande commande) throws Exception {
         log.debug("REST request to save Commande : {}", commande);
         if (commande.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new commande cannot already have an ID")).body(null);
@@ -79,7 +76,7 @@ public class CommandeResource {
      */
     @PutMapping("/commandes")
     @Timed
-    public ResponseEntity<Commande> updateCommande(@Valid @RequestBody Commande commande) throws Exception {
+    public ResponseEntity<Commande> updateCommande(@RequestBody Commande commande) throws Exception {
         log.debug("REST request to update Commande : {}", commande);
         if (commande.getId() == null) {
             return createCommande(commande);
@@ -133,15 +130,16 @@ public class CommandeResource {
         commandeRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-    
+
     /**
-     * GET /commandess : get a page of Commandes between the fromDate and toDate.
+     * GET /commandess : get a page of Commandes between the fromDate and
+     * toDate.
      *
      * @param fromDate the start of the time period of Commande to get
      * @param toDate the end of the time period of Commande to get
      * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of
-     * Commandes in body
+     * @return the ResponseEntity with status 200 (OK) and the list of Commandes
+     * in body
      */
     @GetMapping(path = "/commandes", params = {"fromDate", "toDate"})
     @Timed
@@ -150,7 +148,7 @@ public class CommandeResource {
             @RequestParam(value = "toDate") LocalDate toDate,
             @ApiParam Pageable pageable, @ApiParam TypeCommande type) {
         log.debug("REST request to search for a page of Commandes for  {}  to {}", fromDate, toDate);
-        Page<Commande> page = commandeRepository.findAllByTypeAndDateEmissionBetween(type,fromDate, toDate, pageable);
+        Page<Commande> page = commandeRepository.findAllByTypeAndDateEmissionBetween(type, fromDate, toDate, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/commandes");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

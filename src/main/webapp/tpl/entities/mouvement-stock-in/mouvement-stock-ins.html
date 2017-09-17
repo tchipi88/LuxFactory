@@ -8,19 +8,45 @@
 
 <div class="wrapper-md">
     <div class="panel panel-default">
-        
+        <div class="panel-heading">
+            <div class="row">
+                <form class="form-inline" name="searchForm" role="form" novalidate ng-submit="vm.search()"   class="form-validation">
+                    <input type="date" class="input-sm form-control" name="start" ng-model="vm.fromDate"  required/> 
+                    <input type="date" class="input-sm form-control" name="end" ng-model="vm.toDate"  required/>
+                    <label class="control-label"  for="field_produit">Produit <span style="color:red" >*</span></label>
+                    
+                    
+                    <select name="entrepot" id="entrepot"
+                            ng-options="produit.denomination for produit  in vm.produits track by produit.id"
+                        ng-model="vm.produit">
+                                
+                    </select>
+
+
+                    <label class="control-label"  for="field_entrepot">Entrepot <span style="color:red" >*</span></label>
+                    <select name="entrepot" id="entrepot"
+                            ng-options="entrepot.libelle for entrepot  in vm.entrepots track by entrepot.id"
+                        ng-model="vm.entrepot">
+                                
+                    </select>
+
+                    <button type="submit" class="btn btn-primary"   ng-disabled="searchForm.$invalid" >Submit</button>
+                </form>
+
+            </div>
+        </div>
         <div class="panel-body table-responsive">
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                         <th jh-sort-by="id"><span >ID</span> <span class="fa fa-sort"></span></th>
-                         <th jh-sort-by="entrepotId"><span >Entrepot Id</span> <span class="fa fa-sort"></span></th>
- <th jh-sort-by="produit"><span >Produit</span> <span class="fa fa-sort"></span></th>
- <th jh-sort-by="dateTransaction"><span >Date Transaction</span> <span class="fa fa-sort"></span></th>
- <th jh-sort-by="quantite"><span >Quantite</span> <span class="fa fa-sort"></span></th>
+                        <th jh-sort-by="entrepotId"><span >Entrepot Id</span> <span class="fa fa-sort"></span></th>
+                        <th jh-sort-by="produit"><span >Produit</span> <span class="fa fa-sort"></span></th>
+                        <th jh-sort-by="dateTransaction"><span >Date Transaction</span> <span class="fa fa-sort"></span></th>
+                        <th jh-sort-by="quantite"><span >Quantite</span> <span class="fa fa-sort"></span></th>
 
                         <th >
-                            <button class="btn btn-primary" ui-sref="mouvement-stock-in.new"   tooltip="Créer MouvementStockIn">
+                            <button class="btn btn-primary" ui-sref="mouvement-stock-in.new"   tooltip="Crï¿½er MouvementStockIn">
                                 <i class="fa fa-plus">
                                 </i>
                             </button>
@@ -30,14 +56,14 @@
                 <tbody>
                     <tr ng-repeat="mouvementStockIn in vm.mouvementStockIns track by mouvementStockIn.id">
                         <td>{{mouvementStockIn.id}}</td>
-                         <td>{{mouvementStockIn.entrepotId}}</td>
- <td>{{mouvementStockIn.produit}}</td>
- <td>{{mouvementStockIn.dateTransaction | date:'mediumDate'}}</td>
- <td>{{mouvementStockIn.quantite}}</td>
+                        <td>{{mouvementStockIn.entrepotId}}</td>
+                        <td>{{mouvementStockIn.produit}}</td>
+                        <td>{{mouvementStockIn.dateTransaction| date:'mediumDate'}}</td>
+                        <td>{{mouvementStockIn.quantite}}</td>
 
                         <td >
 
-                           
+
                             <button type="submit"   ui-sref="mouvement-stock-in.edit({id:mouvementStockIn.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
                                 <i class="fa fa-edit">
                                 </i>
