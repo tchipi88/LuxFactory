@@ -1,0 +1,47 @@
+<div class="bg-light lter b-b wrapper-md" >
+    <!-- <h1 class="m-n font-thin h3"><i class="fa fa-cubes icon"></i> Articles</h1>
+    <small class="text-muted"></small> -->
+
+    <nav class="navbar navbar-default" role="navigation" style="font-size: 17px">
+            <div>
+                <ul class="nav navbar-nav">
+                    <li ng-class="{active: $state.includes('transactions.facture')}">
+                        <a ui-sref=".facture">
+                            <i class="fa fa-file-o"></i> 
+                            Factures
+                        </a>
+                    </li>
+                    <li ng-class="{active: $state.includes('transactions.procesverbal')}">
+                        <a ui-sref=".procesverbal">
+                            <i class="fa fa-newspaper-o"></i> 
+                            Proces verbal
+                        </a>
+                    </li>
+                    <li ng-class="{active: $state.includes('transactions.commande')}"> 
+                        <a ui-sref=".commande({type:'VENTE'})">
+                            <i class="fa fa-shopping-cart"></i> 
+                            Bon de commande
+                        </a>
+                    </li>
+                    <li ng-class="{active: $state.includes('transactions.devis')}"> 
+                        <a ui-sref=".devis">
+                            <i class="fa fa-credit-card"></i> 
+                            Devis
+                        </a>
+                    </li>
+                    <li ng-class="{active: $state.includes('transactions.comptes')}"> 
+                        <a ui-sref=".comptes">
+                            <i class="fa fa-credit-card"></i> 
+                            Comptes
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+</div>
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+            
+<div ui-view></div>

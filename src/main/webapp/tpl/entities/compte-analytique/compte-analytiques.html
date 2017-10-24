@@ -1,7 +1,3 @@
-<div class="bg-light lter b-b wrapper-md" >
-    <h1 class="m-n font-thin h3">Comptes Analytiques</h1>
-    <small class="text-muted">{{$stateParams.type}}</small>
-</div>
 <div>
     <jhi-alert></jhi-alert>
 </div>
@@ -30,13 +26,13 @@
             </div>
         </div>
         <div class="panel-body table-responsive">
-            <table class="table table-striped table-bordered table-hover">
+            <table id="dt_article" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                        <th jh-sort-by="id"><span >ID</span> <span class="fa fa-sort"></span></th>
-                        <th jh-sort-by="tiers"><span >Tiers</span> <span class="fa fa-sort"></span></th>
-                        <th jh-sort-by="intitule"><span >Intitule</span> <span class="fa fa-sort"></span></th>
-                        <th jh-sort-by="type"><span >Type</span> <span class="fa fa-sort"></span></th>
+                        <th><span >ID</span></th>
+                        <th><span >Tiers</span></th>
+                        <th><span >Intitule</span></th>
+                        <th><span >Type</span></th>
                         <th ><span >Debit</span> </th>
                         <th ><span >Credit</span> </th>
                         <th ><span >Solde</span></th>
@@ -56,16 +52,6 @@
                 </tbody>
             </table>
 
-        </div>
-        <div class="panel-footer">
-            <div class="row">
-                <div class="col-sm-6">
-                    <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
-                </div>
-                <div class="col-sm-6 text-right text-center-xs">
-                    <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
-                </div>
-            </div>
         </div>
     </div>
 </div>

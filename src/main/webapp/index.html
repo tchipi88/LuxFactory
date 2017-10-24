@@ -6,12 +6,18 @@
         <meta name="description" content="Angularjs, Html5, Music, Landing, 4 in 1 ui kits package" />
         <meta name="keywords" content="AngularJS, angular, bootstrap, admin, dashboard, panel, app, charts, components,flat, responsive, layout, kit, ui, route, web, app, widgets" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        <link rel="shortcut icon" type="image/ico" href="img/favicon.ico" />
+        <link rel="shortcut icon" type="image/ico" href="img/favicon.png" />
         <link rel="stylesheet" href="bower_components/animate.css/animate.css" type="text/css" />
         <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" type="text/css" />
         <link rel="stylesheet" href="bower_components/simple-line-icons/css/simple-line-icons.css" type="text/css" />
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" type="text/css" />
 
+         <!-- Datatables -->
+        <link href="vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+        <link href="vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+        <link href="vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+        <link href="vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+        <link href="vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet"> 
 
         <!-- build:css css/app.min.css -->
         <link rel="stylesheet" href="css/font.css" type="text/css" />
@@ -98,9 +104,31 @@
         <script src="js/directives/ui-shift.js"></script>
         <script src="js/directives/ui-toggleclass.js"></script>
 
+        <!-- Datatables -->
+        <script src="vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+        <!-- Angular Datatables -->
+        <script src="js/angular-datatables.min.js"></script>
 
         <!-- endbuild -->
         <script src="tpl/entities/entity.state.js"></script>
+
+        <script type="text/javascript" src="tpl/views/articles/articles.controller.js"></script>
+        <script type="text/javascript" src="tpl/views/articles/articles.state.js"></script>
+        <script type="text/javascript" src="tpl/views/acteurs/acteurs.controller.js"></script>
+        <script type="text/javascript" src="tpl/views/acteurs/acteurs.state.js"></script>
+        <script type="text/javascript" src="tpl/views/transactions/transactions.controller.js"></script>
+        <script type="text/javascript" src="tpl/views/transactions/transactions.state.js"></script>
 
         <script src="tpl/entities/mouvement-stock/mouvement-stock-dialog.controller.js"></script>
         <script src="tpl/entities/mouvement-stock/mouvement-stock-delete-dialog.controller.js"></script>
@@ -253,6 +281,20 @@
         <script src="tpl/entities/liste-articles/liste-articles.state.js"></script>
         <script src="tpl/entities/liste-articles/liste-articles.service.js"></script>
         <script src="tpl/entities/liste-articles/liste-articles.controller.js"></script>
+
+
+        <script src="tpl/entities/facture/facture-dialog.controller.js"></script>
+        <script src="tpl/entities/facture/facture-delete-dialog.controller.js"></script>
+        <script src="tpl/entities/facture/facture.state.js"></script>
+        <script src="tpl/entities/facture/facture.service.js"></script>
+        <script src="tpl/entities/facture/facture.controller.js"></script>
+
+
+        <script src="tpl/entities/procesverbal/procesverbal-dialog.controller.js"></script>
+        <script src="tpl/entities/procesverbal/procesverbal-delete-dialog.controller.js"></script>
+        <script src="tpl/entities/procesverbal/procesverbal.state.js"></script>
+        <script src="tpl/entities/procesverbal/procesverbal.service.js"></script>
+        <script src="tpl/entities/procesverbal/procesverbal.controller.js"></script>
 
 
 

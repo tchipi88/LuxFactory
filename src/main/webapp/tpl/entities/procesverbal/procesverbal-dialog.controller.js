@@ -19,8 +19,6 @@
         vm.save = save;
         vm.commandes = Commande.query();
 
-      
-
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });

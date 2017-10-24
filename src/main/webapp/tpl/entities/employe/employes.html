@@ -1,6 +1,19 @@
 <div class="bg-light lter b-b wrapper-md" >
-    <h1 class="m-n font-thin h3">Employes</h1>
-    <small class="text-muted"></small>
+
+<nav class="navbar navbar-default" role="navigation" style="font-size: 17px">
+            <div>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a ui-sref="#">
+                           <i class="fa fa-user"></i>  Employes
+                            <small class="text-muted"></small>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+    
 </div>
 <div>
     <jhi-alert></jhi-alert>
@@ -30,38 +43,39 @@
             </div>
         </div>
         <div class="panel-body table-responsive">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                        <th jh-sort-by="id"><span >ID</span> <span class="fa fa-sort"></span></th>
-                         <th jh-sort-by="nom"><span >Nom</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="prenom"><span >Prenom</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="dateNaissance"><span >Date Naissance</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="lieuNaissance"><span >Lieu Naissance</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="numeroCni"><span >Numero Cni</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="telephone"><span >Telephone</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="email"><span >Email</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="adresse"><span >Adresse</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="dateEntree"><span >Date Entree</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="salaire"><span >Salaire</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="fonction"><span >Fonction</span> <span class="fa fa-sort"></span></th> 
-                        <th >
-                            <button class="btn btn-primary" ui-sref="employe.new"   tooltip="Créer Employe">
+
+            <div class="form-group" style='float: right;'>
+                 <button class="btn btn-primary" ui-sref="employe.new"   tooltip="Nouveau Employe">
                                 <i class="fa fa-plus">
                                 </i>
                             </button>
+              </div>
+
+            <table id="dtEmploye" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                        <th jh-sort-by="id" ng-show="false"><span >ID</span> <span class="fa fa-sort"></span></th>
+                         <th><span >Nom</span><th><span >Date Naissance</span> </th> <th><span >Lieu Naissance</span></th> <th><span >Numero Cni</span></th> <th><span >Telephone</span></th> <th><span >Email</span></th> <th><span >Adresse</span> </th> <th><span >Date Entree</span> </span></th> <th><span >Salaire</span> </th> <th ><span >Fonction</span></th>
+                        <th>
+                           Actions
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="employe in vm.employes track by employe.id">
-                        <td><a ui-sref="employe-detail({id:employe.id})">{{employe.id}}</a></td>
-                         <td>{{employe.nom}}</td>
- <td>{{employe.prenom}}</td>
- <td>{{employe.dateNaissance | date:'mediumDate'}}</td>
- <td>{{employe.lieuNaissance}}</td>
- <td>{{employe.numeroCni}}</td>
- <td>{{employe.telephone}}</td>
- <td>{{employe.email}}</td>
- <td>{{employe.adresse}}</td>
- <td>{{employe.dateEntree | date:'mediumDate'}}</td>
- <td>{{employe.salaire | number }}</td>
- <td>{{employe.fonction.libelle}}</td>
-
-
+                        <td ng-show="false"><a ui-sref="employe-detail({id:employe.id})">{{employe.id}}</a></td>
+                         <td>{{employe.nom}} {{employe.prenom}}</td>
+                         <td>{{employe.dateNaissance | date:'mediumDate'}}</td>
+                         <td>{{employe.lieuNaissance}}</td>
+                         <td>{{employe.numeroCni}}</td>
+                         <td>{{employe.telephone}}</td>
+                         <td>{{employe.email}}</td>
+                         <td>{{employe.adresse}}</td>
+                         <td>{{employe.dateEntree | date:'mediumDate'}}</td>
+                         <td>{{employe.salaire | number }}</td>
+                         <td>{{employe.fonction.libelle}}</td>
                         <td >
 
-                           
                             <button type="submit"   ui-sref="employe.edit({id:employe.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
                                 <i class="fa fa-edit">
                                 </i>
@@ -78,15 +92,6 @@
             </table>
 
         </div>
-        <div class="panel-footer">
-            <div class="row">
-                <div class="col-sm-6">
-                    <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
-                </div>
-                <div class="col-sm-6 text-right text-center-xs">
-                    <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>

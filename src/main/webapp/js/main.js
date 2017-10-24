@@ -65,5 +65,34 @@ angular.module('app')
           // Checks for iOs, Android, Blackberry, Opera Mini, and Windows mobile devices
           return (/iPhone|iPod|iPad|Silk|Android|BlackBerry|Opera Mini|IEMobile/).test(ua);
       }
+
+      
+      $scope.dtOptions = {
+        paginationType : 'full_numbers',
+            displayLength: 15,
+            bFilter:false,
+            bLengthChange: false,
+            bInfo: false
+            ,
+            oLanguage:{
+              "sEmptyTable":     "Aucun enregistrement disponible",
+              "oPaginate": {
+                  "sFirst":      "<<",
+                  "sPrevious":   "<",
+                  "sNext":       ">",
+                  "sLast":       ">>"
+               }
+               // sUrl:'lang/dataTables_fr.txt'
+            }
+      };
+           
+        $scope.dtColumnDefs = {
+          aoColumnDefs: [
+            {
+                aTargets: 0,
+                bSortable: false
+            }
+        ]
+        };
       
   }]);

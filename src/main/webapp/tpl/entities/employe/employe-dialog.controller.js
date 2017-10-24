@@ -18,7 +18,6 @@
         vm.openFile = DataUtils.openFile;
         vm.save = save;
         vm.fonctions = EmployeFonction.query();
-       
 
 
 

@@ -7,10 +7,9 @@
         <i class="glyphicon glyphicon-align-justify"></i>
     </button>
     <!-- brand -->
-    <a href="#/" class="navbar-brand text-lt">
-        <i class="fa fa-btc"></i>
-        <img src="img/logo.png" alt="." class="hide">
-        <span class="hidden-folded m-l-xs">{{app.name}}</span>
+    <a href="#/" class="navbar-brand text-lt" style="padding: 0 10px;">
+        <img src="img/logo.png" alt="." style="max-height: 45px">
+        <span class="hidden-folded m-l-xs" style="margin-left: 0px">{{app.name}}</span>
     </a>
     <!-- / brand -->
 </div>
@@ -21,7 +20,7 @@
     <!-- buttons -->
     <div class="nav navbar-nav hidden-xs">
         <a href class="btn no-shadow navbar-btn" ng-click="app.settings.asideFolded = !app.settings.asideFolded">
-            <i class="fa {{app.settings.asideFolded ? 'fa-indent' : 'fa-dedent'}} fa-fw"></i>
+            <i class="fa {{app.settings.asideFolded ? 'fa-indent' : 'fa-dedent'}} fa-bars"></i>
         </a>
 
     </div>

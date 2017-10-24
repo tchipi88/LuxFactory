@@ -1,0 +1,29 @@
+<div class="bg-light lter b-b wrapper-md" >
+    <!-- <h1 class="m-n font-thin h3"><i class="fa fa-cubes icon"></i> Articles</h1>
+    <small class="text-muted"></small> -->
+
+    <nav class="navbar navbar-default" role="navigation" style="font-size: 17px">
+            <div>
+                <ul class="nav navbar-nav">
+                    <li ng-class="{active: $state.includes('acteurs.clients')}">
+                        <a ui-sref=".clients">
+                            <i class="fa fa-users"></i> 
+                            Clients
+                        </a>
+                    </li>
+                    <li ng-class="{active: $state.includes('acteurs.fournisseurs')}">
+                        <a ui-sref=".fournisseurs">
+                            <i class="fa fa-truck"></i> 
+                            Fournisseurs
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+</div>
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
+ <div ui-view></div>

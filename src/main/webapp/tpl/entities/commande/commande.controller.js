@@ -41,6 +41,7 @@
                 type: $stateParams.type,
                 fromDate: fromDate, toDate: toDate
             }, onSuccess, onError);
+            
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
                 if (vm.predicate !== 'id') {

@@ -5,9 +5,9 @@
         .module('app')
         .controller('ActivitesController', ActivitesController);
 
-    ActivitesController.$inject = ['$state', 'DataUtils', 'Activites',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    ActivitesController.$inject = ['$state', 'DataUtils', 'Activites',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','Employe'];
 
-    function ActivitesController($state, DataUtils, Activites,  ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function ActivitesController($state, DataUtils, Activites,  ParseLinks, AlertService, paginationConstants, pagingParams,Employe) {
 
         var vm = this;
 
@@ -20,8 +20,13 @@
         vm.loadAll = loadAll;
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
+        vm.searchActivite = {};
+        vm.responsables = Employe.query();
 
         loadAll();
+
 
         function loadAll () {
                 Activites.query({
@@ -61,7 +66,6 @@
         }
 
        
-
         function clear() {
             vm.links = null;
             vm.page = 1;
@@ -69,5 +73,15 @@
             vm.reverse = true;
             vm.transition();
         }
+
+        vm.datePickerOpenStatus.dateFin = false;
+        vm.datePickerOpenStatus.dateDebut = false;
+
+        
+        function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
+        }
+
+        
     }
 })();

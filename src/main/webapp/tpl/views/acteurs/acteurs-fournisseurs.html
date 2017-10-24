@@ -1,0 +1,133 @@
+ <div class="wrapper-md">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+          <form class="form-horizontal form-label-left input_mask">
+
+                   <div class="form-group col-sm-4">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nomFournisseur">Nom </label>
+                    <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                      <ui-select ng-model="nom" ng-required="false">
+                              <ui-select-match placeholder="Select Nom">{{$select.selected.nom}}</ui-select-match>
+                              <ui-select-choices repeat="fournisseur in vm.fournisseurs | filter: $select.search">
+                                  <div ng-bind-html="fournisseur.nom | highlight: $select.search"></div>
+                              </ui-select-choices>
+                            </ui-select> 
+                    </div>
+                  </div>
+
+                  <div class="form-group col-sm-4">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="adresse">Adresse </label>
+                    <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                        <ui-select ng-model="vm.searchfournisseur.adresse" ng-required="false">
+                              <ui-select-match placeholder="Select Adresse">{{$select.selected.adresse}}</ui-select-match>
+                              <ui-select-choices repeat="fournisseur in vm.fournisseurs | filter: $select.search">
+                                  <div ng-bind-html="fournisseur.adresse | highlight: $select.search"></div>
+                              </ui-select-choices>
+                            </ui-select> 
+                    </div>
+                  </div>
+
+                  <div class="form-group col-sm-4">
+                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="numeroCommerce">Num. Commerce </label>
+                     <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                        <ui-select ng-model="vm.searchfournisseur.numeroCommerce" ng-required="false">
+                              <ui-select-match placeholder="Select NC">{{$select.selected.numeroCommerce}}</ui-select-match>
+                              <ui-select-choices repeat="fournisseur in vm.fournisseurs | filter: $select.search">
+                                  <div ng-bind-html="fournisseur.numeroCommerce | highlight: $select.search"></div>
+                              </ui-select-choices>
+                            </ui-select> 
+                    </div>
+                  </div>
+
+                  
+
+                  <div class="form-group col-sm-4">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="courriel">Courriel </label>
+                    <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                        <ui-select ng-model="vm.searchfournisseur.email" ng-required="false">
+                              <ui-select-match placeholder="Select Courriel">{{$select.selected.email}}</ui-select-match>
+                              <ui-select-choices repeat="fournisseur in vm.fournisseurs | filter: $select.search">
+                                  <div ng-bind-html="fournisseur.email | highlight: $select.search"></div>
+                              </ui-select-choices>
+                            </ui-select> 
+                    </div>
+                  </div>
+
+                  <div class="form-group col-sm-4">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="siteWeb">Site web </label>
+                    <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                        <ui-select ng-model="vm.searchfournisseur.siteWeb" ng-required="false">
+                              <ui-select-match placeholder="Select SiteWeb">{{$select.selected.siteWeb}}</ui-select-match>
+                              <ui-select-choices repeat="fournisseur in vm.fournisseurs | filter: $select.search">
+                                  <div ng-bind-html="fournisseur.siteWeb | highlight: $select.search"></div>
+                              </ui-select-choices>
+                            </ui-select> 
+                    </div>
+                  </div>
+             </form>
+             </div>
+        </div>
+        <div class="panel-body table-responsive">
+
+            <div>
+              <div class="form-group" style='float: right;'>
+                 <button class="btn btn-primary" ui-sref="acteurs.fournisseurs.new" tooltip="Creer un fournisseur"><i class="fa fa-plus"></i></button>
+              </div>
+
+
+              <table id="dt_zonestockage" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
+
+                         <thead>
+                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                        <th class="column-title sortable-column"><span >Nom</span></th> 
+                        <th class="column-title sortable-column"><span >Email</span></th> 
+                        <th class="column-title sortable-column"><span >Telephone Portable</span></th> 
+                        <th class="column-title sortable-column"><span >Telephone Fixe</span></th> 
+                        <th class="column-title sortable-column">Site Web</span></th> 
+                        <th class="column-title sortable-column"><span >Boite Postale</span></th> 
+                        <th class="column-title sortable-column"><span >Adresse</span></th> 
+                        <th class="column-title sortable-column"><span >Responsable</span></th>
+                        <th jh-sort-by="numeroCommerce"><span >Numero Commerce</span></th>
+                        <th >
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="fournisseur in vm.fournisseurs | filter : nom">
+                        <td>{{fournisseur.nom}}</td>
+                        <td>{{fournisseur.email}}</td>
+                        <td>{{fournisseur.telephonePortable}}</td>
+                        <td>{{fournisseur.telephoneFixe}}</td>
+                        <td>{{fournisseur.siteWeb}}</td>
+                        <td>{{fournisseur.boitePostale}}</td>
+                        <td>{{fournisseur.adresse}}</td>
+                        <td>{{fournisseur.responsable.nom}}</td>
+                        <td>{{fournisseur.numeroCommerce}}</td>
+
+                        <td >
+
+                        
+                            <button type="submit"   ui-sref="acteurs.fournisseurs.edit({id:fournisseur.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="submit"  ui-sref="acteurs.fournisseurs.delete({id:fournisseur.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+              </table>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

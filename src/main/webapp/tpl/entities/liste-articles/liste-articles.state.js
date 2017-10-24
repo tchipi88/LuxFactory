@@ -14,7 +14,7 @@
                         },
                         views: {
                         'content@app': {
-                        templateUrl: 'tpl/entities/liste-articles/liste-articless.html',
+                        templateUrl: 'tpl/entities/liste-articles/liste-articles.html',
                                 controller: 'ListeArticlesController',
                                 controllerAs: 'vm'  }
                         },
@@ -43,8 +43,8 @@
                 })
                
                
-                .state('liste-articles.new', {
-                parent: 'liste-articles',
+                .state('liste-articles.articles.new', {
+                        parent: 'liste-articles.articles',
                         url: '/new',
                         data: {
                         authorities: ['ROLE_USER']
@@ -64,14 +64,14 @@
                                 }
                                 }
                         }).result.then(function () {
-                        $state.go('liste-articles', null, {reload: 'liste-articles'});
-                        }, function () {
-                        $state.go('liste-articles');
-                        });
+                                $state.go('liste-articles.articles', null, {reload: 'liste-articles.articles'});
+                                }, function () {
+                                $state.go('liste-articles.articles');
+                                });
                         }]
                 })
-                .state('liste-articles.edit', {
-                parent: 'liste-articles',
+                .state('liste-articles.articles.edit', {
+                parent: 'liste-articles.articles',
                         url: '/{id}/edit',
                         data: {
                         authorities: ['ROLE_USER']
@@ -95,8 +95,8 @@
                         });
                         }]
                 })
-                .state('liste-articles.delete', {
-                parent: 'liste-articles',
+                .state('liste-articles.articles.delete', {
+                parent: 'liste-articles.articles',
                         url: '/{id}/delete',
                         data: {
                         authorities: ['ROLE_USER']
@@ -117,6 +117,82 @@
                         }, function () {
                         $state.go('^');
                         });
+                        }]
+                })
+                .state('liste-articles.entrepot_new', {
+                    parent: 'liste-articles',
+                    url: '/entrepot_new',
+                    data: {
+                        authorities: ['ROLE_USER']
+                    },
+                    onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
+                            $uibModal.open({
+                                templateUrl: 'tpl/entities/entrepot/entrepot-dialog.html',
+                                controller: 'EntrepotDialogController',
+                                controllerAs: 'vm',
+                                backdrop: 'static',
+                                size: 'lg',
+                                resolve: {
+                                    entity: function () {
+                                        return {
+
+                                        };
+                                    }
+                                }
+                            }).result.then(function () {
+                                $state.go('liste-articles.zoneStockage', null, {reload: 'liste-articles.zoneStockage'});
+                            }, function () {
+                                $state.go('liste-articles.zoneStockage');
+                            });
+                        }]
+                })
+                .state('liste-articles.entrepot_edit', {
+                    parent: 'liste-articles',
+                    url: '/{id}/entrepot_edit',
+                    data: {
+                        authorities: ['ROLE_USER']
+                    },
+                    onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
+                            $uibModal.open({
+                                templateUrl: 'tpl/entities/entrepot/entrepot-dialog.html',
+                                controller: 'EntrepotDialogController',
+                                controllerAs: 'vm',
+                                backdrop: 'static',
+                                size: 'lg',
+                                resolve: {
+                                    entity: ['Entrepot', function (Entrepot) {
+                                            return Entrepot.get({id: $stateParams.id}).$promise;
+                                        }]
+                                }
+                            }).result.then(function () {
+                                $state.go('liste-articles.zoneStockage', null, {reload: 'liste-articles.zoneStockage'});
+                            }, function () {
+                                $state.go('^');
+                            });
+                        }]
+                })
+                .state('liste-articles.entrepot_delete', {
+                    parent: 'liste-articles',
+                    url: '/{id}/entrepot_delete',
+                    data: {
+                        authorities: ['ROLE_USER']
+                    },
+                    onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
+                            $uibModal.open({
+                                templateUrl: 'tpl/entities/entrepot/entrepot-delete-dialog.html',
+                                controller: 'EntrepotDeleteController',
+                                controllerAs: 'vm',
+                                size: 'md',
+                                resolve: {
+                                    entity: ['Entrepot', function (Entrepot) {
+                                            return Entrepot.get({id: $stateParams.id}).$promise;
+                                        }]
+                                }
+                            }).result.then(function () {
+                                $state.go('liste-articles.zoneStockage', null, {reload: 'liste-articles.zoneStockage'});
+                            }, function () {
+                                $state.go('^');
+                            });
                         }]
                 });
         }

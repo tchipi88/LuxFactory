@@ -1,4 +1,4 @@
-<div class="bg-light lter b-b wrapper-md" >
+<div class="bg-light lter b-b wrapper-md" ng-show="false">
     <h1 class="m-n font-thin h3">Factures</h1>
     <small class="text-muted"></small>
 </div>
@@ -10,30 +10,29 @@
     <div class="panel panel-default">
         
         <div class="panel-body table-responsive">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                        <th jh-sort-by="id"><span >ID</span> <span class="fa fa-sort"></span></th>
-                         <th jh-sort-by="dateEmission"><span >Date Emission</span> <span class="fa fa-sort"></span></th>
- <th jh-sort-by="commande"><span >Commande</span> <span class="fa fa-sort"></span></th>
 
+           
+              <div class="form-group" style='float: right;'>
+                 <button class="btn btn-primary" ui-sref="transactions.facture.new" tooltip="Creer une Facture"><i class="fa fa-plus"></i></button>
+              </div>
+
+            <table id="dt_article" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th><span >Numero Facture</span> </th>
+                        <th><span >Date Emission</span> </th>
+                        <th><span >Numero Commande</span> <span class="fa fa-sort"></span></th>
                         <th >
-                            <button class="btn btn-primary" ui-sref="facture.new"   tooltip="Créer Facture">
-                                <i class="fa fa-plus">
-                                </i>
-                            </button>
+                            Actions
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="facture in vm.factures track by facture.id">
                         <td>{{facture.id}}</td>
-                         <td>{{facture.dateEmission | date:'mediumDate'}}</td>
- <td>{{facture.commande.id}}</td>
-
+                        <td>{{facture.dateEmission | date:'mediumDate'}}</td>
+                        <td>{{facture.commande.id}}</td>
                         <td >
-
-                           
                             <button type="submit"   ui-sref="facture.edit({id:facture.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
                                 <i class="fa fa-edit">
                                 </i>
@@ -43,22 +42,12 @@
                                 <i class="fa fa-trash">
                                 </i>
                             </button>
-
                         </td>
                     </tr>
                 </tbody>
             </table>
 
         </div>
-        <div class="panel-footer">
-            <div class="row">
-                <div class="col-sm-6">
-                    <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
-                </div>
-                <div class="col-sm-6 text-right text-center-xs">
-                    <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>

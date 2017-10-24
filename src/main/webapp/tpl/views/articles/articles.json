@@ -1,0 +1,242 @@
+[ 
+	{
+		"Articles" : "PARACETAMOL",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 17,
+		"DerEntreeDate" : 
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 40,
+		"CumulSortie" : 23
+	},
+	{
+		"Articles" : "IBUPROFENE",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" : 
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	},
+	{
+		"Articles" : "TRABAR",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" :
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	},
+	{
+		"Articles" : "DOLIPRANE",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" : 
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	},
+	{
+		"Articles" : "DOLIPRANE",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" : 
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	},
+	{
+		"Articles" : "TRABAR",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" : 
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	},
+	{
+		"Articles" : "PARACETAMOL",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" :
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	},
+	{
+		"Articles" : "DOLIPRANE",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" : 
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	},
+	{
+		"Articles" : "PARACETAMOL",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" :
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	},
+	{
+		"Articles" : "IBUPROFENE",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" : 
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	},
+	{
+		"Articles" : "IBUPROFENE",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" : 
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	},
+	{
+		"Articles" : "IBUPROFENE",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" : 
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	},
+	{
+		"Articles" : "DOLIPRANE",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" : 
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	},
+	{
+		"Articles" : "DOLIPRANE",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" :
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	},
+	{
+		"Articles" : "PARACETAMOL",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" : 
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	},
+	{
+		"Articles" : "TRABAR",
+		"Unite" : "PLQ",
+		"SoldeInitial" : 4,
+		"SoldeFinal" : 7,
+		"DerEntreeDate" :
+			{
+				"derEntree":4,
+				"dateEntree": "21/07/2015"
+			}
+		,
+		"DateSortie" : "24/07/2015",
+		"CumulEntree" : 30,
+		"CumulSortie" : 27
+	}             
+]

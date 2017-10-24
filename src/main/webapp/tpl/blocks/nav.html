@@ -15,7 +15,7 @@
                 <i class="fa fa-fw fa-angle-right text"></i>
                 <i class="fa fa-fw fa-angle-down text-active"></i>
             </span>
-            <i class="glyphicon glyphicon-lock icon text-primary-dker"></i>
+            <i class="glyphicon glyphicon-lock icon text-info-lter"></i>
             <span class="font-bold" >Securite</span>
         </a>
         <ul class="nav nav-sub dk">
@@ -44,11 +44,70 @@
         </ul>
     </li>
 
+    <!-- Modules user  -->
+    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+        <span >Modules user</span>
+    </li>
+    
+    <li ui-sref-active="active">
+        <a ui-sref="articles">
+            <i class="fa fa-cubes icon text-danger"></i>
+            <span class="font-bold" >Articles</span>
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="transactions">
+            <i class="fa fa-compress icon text-danger"></i>
+            <span class="font-bold" >Transactions</span>
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="acteurs">
+            <i class="fa fa-users icon text-danger"></i>
+            <span class="font-bold" >Acteurs</span>
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="employe">
+            <i class="fa fa-user icon text-danger"></i>
+            <span class="font-bold">Employes</span>
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="">
+            <i class="fa fa-wrench icon text-danger"></i>
+            <span class="font-bold" >Maintenance</span>
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="">
+            <i class="fa fa-cogs icon text-danger"></i>
+            <span class="font-bold" >Configuration</span>
+        </a>
+    </li>
+    <!-- <li class="divider-dashed">
+        <div  style="border-top: 1px dashed #e7eaec;height: 1px;margin: 10px 0;"></div>
+    </li>  -->
+
+    <li ui-sref-active="active">
+        <a ui-sref="">
+            <i class="fa fa-area-chart icon text-danger"></i>
+            <span class="font-bold" >Analyses</span>
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="">
+            <i class="fa fa-file icon text-danger"></i>
+            <span class="font-bold" >Rapports</span>
+        </a>
+    </li>
+    
+
     <li  class="hidden-folded padder m-t m-b-sm text-muted text-xs">
         <span > Modules</span>
     </li>
     
-      <li>
+      <!-- <li>
         <a href class="auto">
             <span class="pull-right text-muted">
                 <i class="fa fa-fw fa-angle-right text"></i>
@@ -74,31 +133,8 @@
                 </a>
             </li>
         </ul>
-    </li>
+    </li> -->
 
-    <li>
-        <a href class="auto">
-            <span class="pull-right text-muted">
-                <i class="fa fa-fw fa-angle-right text"></i>
-                <i class="fa fa-fw fa-angle-down text-active"></i>
-            </span>
-            <i class="fa fa-users icon text-success"></i>
-            <span class="font-bold">RH</span>
-        </a>
-        <ul class="nav nav-sub dk">
-            <li class="nav-sub-header">
-                <a href>
-                    <span>RH</span>
-                </a>
-            </li>
-            <li ui-sref-active="active">
-                <a ui-sref="employe">
-                    <span>Employe</span>
-                </a>
-            </li>
-             
-        </ul>
-    </li>
     
      <li>
         <a href class="auto">
@@ -137,7 +173,8 @@
             <span class="font-bold" >Produits</span>
         </a>
     </li>
-    
+   
+
      <li>
         <a href class="auto">
             <span class="pull-right text-muted">
@@ -163,11 +200,11 @@
                     <span>Inventaire</span>
                 </a>
             </li>
-            <li ui-sref-active="active">
+           <!--  <li ui-sref-active="active">
                 <a ui-sref="liste-articles">
                     <span>Liste Articles</span>
                 </a>
-            </li>
+            </li> -->
             <li ui-sref-active="active">
                 <a ui-sref="mouvement-stock-init">
                     <span>Mouvement Stock Init</span>

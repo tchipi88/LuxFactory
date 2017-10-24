@@ -5,9 +5,9 @@
         .module('app')
         .controller('EntrepotProduitController', EntrepotProduitController);
 
-    EntrepotProduitController.$inject = ['$state', 'DataUtils', 'EntrepotProduit',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    EntrepotProduitController.$inject = ['$state', 'DataUtils', 'EntrepotProduit', 'Activites', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function EntrepotProduitController($state, DataUtils, EntrepotProduit,  ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function EntrepotProduitController($state, DataUtils, EntrepotProduit, Activites, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 
@@ -20,6 +20,9 @@
         vm.loadAll = loadAll;
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
+        vm.activitess = Activites.query();
 
         loadAll();
 
@@ -68,6 +71,14 @@
             vm.predicate = 'id';
             vm.reverse = true;
             vm.transition();
+        }
+
+        vm.datePickerOpenStatus.dateFin = false;
+        vm.datePickerOpenStatus.dateDebut = false;
+
+        
+        function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
         }
     }
 })();

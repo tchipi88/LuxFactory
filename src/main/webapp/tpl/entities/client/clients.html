@@ -34,7 +34,7 @@
                 <thead>
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                         <th jh-sort-by="id"><span >ID</span> <span class="fa fa-sort"></span></th>
-                         <th jh-sort-by="nom"><span >Nom</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="email"><span >Email</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="telephonePortable"><span >Telephone Portable</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="telephoneFixe"><span >Telephone Fixe</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="siteWeb"><span >Site Web</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="boitePostale"><span >Boite Postale</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="adresse"><span >Adresse</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="responsable"><span >Responsable</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="numeroCommerce"><span >Numero Commerce</span> <span class="fa fa-sort"></span></th>
+                         <th jh-sort-by="nom"><span >Nom</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="email"><span >Courriel</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="telephonePortable"><span >Telephone Portable</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="telephoneFixe"><span >Telephone Fixe</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="siteWeb"><span >Site Web</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="boitePostale"><span >Boite Postale</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="adresse"><span >Adresse</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="responsable"><span >Responsable</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="numeroCommerce"><span >Numero Commerce</span> <span class="fa fa-sort"></span></th>
                         <th >
                             <button class="btn btn-primary" ui-sref="client.new"   tooltip="Créer Client">
                                 <i class="fa fa-plus">
@@ -46,19 +46,16 @@
                 <tbody>
                     <tr ng-repeat="client in vm.clients track by client.id">
                         <td><a ui-sref="client-detail({id:client.id})">{{client.id}}</a></td>
-                         <td>{{client.nom}}</td>
- <td>{{client.email}}</td>
- <td>{{client.telephonePortable}}</td>
- <td>{{client.telephoneFixe}}</td>
- <td>{{client.siteWeb}}</td>
- <td>{{client.boitePostale}}</td>
- <td>{{client.adresse}}</td>
- <td>{{client.responsable.nom}}</td>
- <td>{{client.numeroCommerce}}</td>
-
+                        <td>{{client.nom}}</td>
+                        <td>{{client.email}}</td>
+                        <td>{{client.telephonePortable}}</td>
+                        <td>{{client.telephoneFixe}}</td>
+                        <td>{{client.siteWeb}}</td>
+                        <td>{{client.boitePostale}}</td>
+                        <td>{{client.adresse}}</td>
+                        <td>{{client.responsable.nom}}</td>
+                        <td>{{client.numeroCommerce}}</td>
                         <td >
-
-                           
                             <button type="submit"   ui-sref="client.edit({id:client.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
                                 <i class="fa fa-edit">
                                 </i>
@@ -68,7 +65,6 @@
                                 <i class="fa fa-trash">
                                 </i>
                             </button>
-
                         </td>
                     </tr>
                 </tbody>

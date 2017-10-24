@@ -11,7 +11,7 @@
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
-             'get': {
+            'get': {
                 method: 'GET',
                 transformResponse: function (data) {
                     if (data) {

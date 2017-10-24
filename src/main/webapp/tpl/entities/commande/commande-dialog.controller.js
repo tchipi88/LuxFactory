@@ -5,9 +5,9 @@
             .module('app')
             .controller('CommandeDialogController', CommandeDialogController);
 
-    CommandeDialogController.$inject = ['$timeout', '$scope', '$state', '$stateParams', '$uibModalInstance', '$uibModal', 'DataUtils', 'entity', 'Commande', 'Fournisseur', 'Employe', 'Client', 'commandeLignes', 'reglements'];
+    CommandeDialogController.$inject = ['$timeout', '$scope', '$state', '$stateParams', '$uibModalInstance', '$uibModal', 'DataUtils', 'entity', 'Commande', 'Fournisseur', 'Employe', 'Client', 'CommandeLigne', 'Reglement'];
 
-    function CommandeDialogController($timeout, $scope, $state, $stateParams, $uibModalInstance, $uibModal, DataUtils, entity, Commande, Fournisseur, Employe, Client, commandeLignes, reglements) {
+    function CommandeDialogController($timeout, $scope, $state, $stateParams, $uibModalInstance, $uibModal, DataUtils, entity, Commande, Fournisseur, Employe, Client, CommandeLigne, Reglement) {
         var vm = this;
 
         vm.commande = entity;
@@ -20,8 +20,8 @@
         vm.superviseurs = Employe.query();
         vm.clients = Client.query();
         vm.fournisseurs = Fournisseur.query();
-        vm.commandeLignes = commandeLignes;
-        vm.reglements = reglements;
+        vm.commandeLignes = CommandeLigne;
+        vm.reglements = Reglement;
 
 
 

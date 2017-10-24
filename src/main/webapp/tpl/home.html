@@ -1,5 +1,16 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n font-thin h3">Home</h1>
+    <nav class="navbar navbar-default" role="navigation" style="font-size: 17px">
+            <div>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a ui-sref="#">
+                            <i class="fa fa-home"></i> 
+                            Home
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 </div>
 <div class="wrapper-md" >
 
@@ -7,7 +18,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="jumbotron">
-                <h1>Gestion des stocks</h1>
+                <h1>LuxFactory manager</h1>
                 <p>Bien gérer ses stocks pour augmenter son chiffre d'affaires       </p>
                 <p>Le logiciel optimise la gestion des stocks tout en s'adaptant aux logiciels commerciaux et comptables.       </p>
             </div>
@@ -17,12 +28,14 @@
 
     <div class="row">
         <div class="col-lg-12">
+
+        
             <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageArticles()">
                 <div>
-                    <i class="fa fa-home fa-5x"></i>
+                    <h3><i class="fa fa-cubes fa-5x"></i></h3>
                 </div>
                 <div>
-                    Gerer mes articles
+                    <h3>Gerer mes articles</h3>
                 </div>
 
             </div>
@@ -30,29 +43,29 @@
 
             <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageShopping()">
                 <div>
-                    <i class="fa fa-shopping-cart fa-5x"></i>
+                    <h3><i class="fa fa-shopping-cart fa-5x"></i></h3>
                 </div>
                 <div>
-                    Gerer mes achats
+                    <h3>Gerer mes achats</h3>
                 </div>
             </div>
 
             <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageMaintenance()">
                 <div>
-                    <i class="fa fa-wrench fa-5x"></i>
+                    <h3><i class="fa fa-wrench fa-5x"></i></h3>
                 </div>
                 <div>
-                    Gerer ma maintenance
+                    <h3>Gerer ma maintenance</h3>
                 </div>
             </div>
 
 
             <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageSite()">
                 <div>
-                    <i class="fa fa-cog fa-5x"></i>
+                    <h3><i class="fa fa-cogs fa-5x"></i></h3>
                 </div>
                 <div>
-                    Configurer mon site
+                    <h3>Configurer mon site</h3>
                 </div>
             </div>
 
@@ -64,62 +77,7 @@
 </div>
 
 
-    <!-- top row -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="jumbotron">
-                <h1>Gestion des stocks</h1>
-                <p>Bien gérer ses stocks pour augmenter son chiffre d'affaires       </p>
-                <p>Le logiciel optimise la gestion des stocks tout en s'adaptant aux logiciels commerciaux et comptables.       </p>
-            </div>
-        </div>
-    </div>
-    <!-- /.row -->
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageArticles()">
-                <div>
-                    <i class="fa fa-home fa-5x"></i>
-                </div>
-                <div>
-                    Gerer mes articles
-                </div>
-
-            </div>
-
-
-            <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageShopping()">
-                <div>
-                    <i class="fa fa-shopping-cart fa-5x"></i>
-                </div>
-                <div>
-                    Gerer mes achats
-                </div>
-            </div>
-
-            <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageMaintenance()">
-                <div>
-                    <i class="fa fa-wrench fa-5x"></i>
-                </div>
-                <div>
-                    Gerer ma maintenance
-                </div>
-            </div>
-
-
-            <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageSite()">
-                <div>
-                    <i class="fa fa-cog fa-5x"></i>
-                </div>
-                <div>
-                    Configurer mon site
-                </div>
-            </div>
-
-
-        </div>
-    </div>
+   
 
 
 

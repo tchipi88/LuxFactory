@@ -41,8 +41,6 @@
                         }]
                         }
                 })
-               
-               
                 .state('activites.new', {
                 parent: 'activites',
                         url: '/new',

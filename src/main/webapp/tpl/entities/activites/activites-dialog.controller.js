@@ -50,7 +50,7 @@
 
 
          vm.datePickerOpenStatus.dateDebut = false;
- vm.datePickerOpenStatus.dateFin = false;
+         vm.datePickerOpenStatus.dateFin = false;
 
         
          function openCalendar (date) {

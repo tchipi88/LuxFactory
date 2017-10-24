@@ -18,7 +18,8 @@ angular.module('app', [
     'ui.load',
     'ui.jq',
     'oc.lazyLoad',
-    'ngFileUpload']).run(run);
+    'ngFileUpload',
+    'datatables']).run(run);
 
  run.$inject = ['stateHandler'];
 

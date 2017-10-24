@@ -18,7 +18,7 @@
         vm.openFile = DataUtils.openFile;
         vm.save = save;
         vm.produits = Produit.query();
-vm.entrepots = Entrepot.query();
+        vm.entrepots = Entrepot.query();
 
       
 
