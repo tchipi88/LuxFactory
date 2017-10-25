@@ -51,7 +51,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.listeArticless = data;
+                //vm.listeArticless = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {
@@ -64,12 +64,16 @@
             var dateFormat = 'yyyy-MM-dd';
             var fromDate = $filter('date')(vm.fromDate, dateFormat);
             var toDate = $filter('date')(vm.toDate, dateFormat);
+            var selected_activite = vm.produit == null ? "" : vm.produit.denomination;
+            var selected_entrepot = vm.entrepot == null ? "" : vm.entrepot.libelle;
+
+            //alert ('article: '+ selected_activite +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
 
             ListeArticles.query({
                 page: pagingParams.page - 1,
                 size: vm.itemsPerPage,
-                activite: vm.produit,
-                entrepot: vm.entrepot,
+                activite: selected_activite,
+                entrepot: selected_entrepot,
                 fromDate: fromDate, 
                 toDate: toDate
             }, onSuccess, onError);
