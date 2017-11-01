@@ -18,7 +18,7 @@
         vm.openFile = DataUtils.openFile;
         vm.save = save;
         vm.categories = ProduitCategorie.query();
-vm.unites = Unite.query();
+        vm.unites = Unite.query();
 
       
 
