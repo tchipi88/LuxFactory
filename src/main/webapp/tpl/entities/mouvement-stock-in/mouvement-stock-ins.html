@@ -10,13 +10,13 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row">
-                <form class="form-inline" name="searchForm" role="form" novalidate ng-submit="vm.search()"   class="form-validation">
+                <form class="form-inline" name="searchForm" role="form" novalidate   class="form-validation">
                     <input type="date" class="input-sm form-control" name="start" ng-model="vm.fromDate"  required/> 
                     <input type="date" class="input-sm form-control" name="end" ng-model="vm.toDate"  required/>
+                    
+
                     <label class="control-label"  for="field_produit">Produit <span style="color:red" >*</span></label>
-                    
-                    
-                    <select name="entrepot" id="entrepot"
+                    <select name="produit" id="produit" ng-change="vm.search()"
                             ng-options="produit.denomination for produit  in vm.produits track by produit.id"
                         ng-model="vm.produit">
                                 
@@ -26,11 +26,10 @@
                     <label class="control-label"  for="field_entrepot">Entrepot <span style="color:red" >*</span></label>
                     <select name="entrepot" id="entrepot"
                             ng-options="entrepot.libelle for entrepot  in vm.entrepots track by entrepot.id"
-                        ng-model="vm.entrepot">
-                                
+                        ng-model="vm.entrepot" ng-change="vm.search()">
                     </select>
 
-                    <button type="submit" class="btn btn-primary"   ng-disabled="searchForm.$invalid" >Submit</button>
+                    <button type="submit" class="btn btn-primary"   ng-disabled="searchForm.$invalid">Submit</button>
                 </form>
 
             </div>

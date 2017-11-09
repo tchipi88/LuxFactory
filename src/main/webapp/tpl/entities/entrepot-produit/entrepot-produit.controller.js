@@ -5,9 +5,9 @@
         .module('app')
         .controller('EntrepotProduitController', EntrepotProduitController);
 
-    EntrepotProduitController.$inject = ['$state', 'DataUtils', 'EntrepotProduit', 'Activites', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    EntrepotProduitController.$inject = ['$state', 'DataUtils', 'EntrepotProduit', 'Activites', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','Entrepot','Produit','$filter'];
 
-    function EntrepotProduitController($state, DataUtils, EntrepotProduit, Activites, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function EntrepotProduitController($state, DataUtils, EntrepotProduit, Activites, ParseLinks, AlertService, paginationConstants, pagingParams,Entrepot,Produit,$filter) {
 
         var vm = this;
 
@@ -23,6 +23,8 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.activitess = Activites.query();
+        vm.produits = Produit.query();
+        vm.entrepots = Entrepot.query();
 
         loadAll();
 
@@ -49,6 +51,34 @@
             function onError(error) {
                 AlertService.error(error.data.message);
             }
+        }
+
+        vm.search = search;
+
+        function search()
+        {
+            var dateFormat = 'yyyy-MM-dd';
+            var fromDate = $filter('date')(vm.fromDate, dateFormat);
+            var toDate = $filter('date')(vm.toDate, dateFormat);
+            var selected_produit = vm.produit == null ? "" : vm.produit.denomination;
+            var selected_entrepot = vm.entrepot == null ? "" : vm.entrepot.libelle;
+
+            //alert ('article: '+ selected_activite +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
+
+            EntrepotProduit.query({
+                page: vm.page - 1,
+                size: 20,
+                produit: selected_produit,
+                entrepot: selected_entrepot,
+                fromDate: fromDate, 
+                toDate: toDate
+            },  function (data, headers) {
+                vm.links = ParseLinks.parse(headers('link'));
+                vm.totalItems = headers('X-Total-Count');
+                vm.queryCount = vm.totalItems;
+                vm.entrepotProduits = data;
+            });
+           
         }
 
         function loadPage(page) {

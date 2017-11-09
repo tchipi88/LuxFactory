@@ -29,18 +29,13 @@
         vm.search = search;
 
 
-        function search() {
-            var dateFormat = 'yyyy-MM-dd';
-            var fromDate = $filter('date')(vm.fromDate, dateFormat);
-            var toDate = $filter('date')(vm.toDate, dateFormat);
+        loadAll();
 
-            MouvementStockIn.query({
+        function loadAll() {
+             MouvementStockIn.query({
                 page: pagingParams.page - 1,
                 size: vm.itemsPerPage,
-                sort: sort(),
-                produit: vm.produit.id,
-                entrepot: vm.entrepot.id,
-                fromDate: fromDate, toDate: toDate
+                sort: sort()
             }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
@@ -53,7 +48,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.commandes = data;
+                vm.mouvementStockIns = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {
@@ -61,9 +56,28 @@
             }
         }
 
+
+        function search() {
+            var dateFormat = 'yyyy-MM-dd';
+            var fromDate = $filter('date')(vm.fromDate, dateFormat);
+            var toDate = $filter('date')(vm.toDate, dateFormat);
+            var produitId = vm.produit == null ? "" : vm.produit.id;
+            var entrepotId = vm.entrepot == null ? "" : vm.entrepot.id;
+            
+            MouvementStockIn.query({page: vm.page - 1, size: 20, fromDate: fromDate, toDate: toDate,produit: produitId,entrepotId: entrepotId}, 
+                function (result, headers) {
+                    vm.mouvementStockIns = result;
+                    vm.links = ParseLinks.parse(headers('link'));
+                    vm.totalItems = headers('X-Total-Count');
+                    vm.queryCount = vm.totalItems;
+                }
+            )    
+        }
+
+        
         function loadPage(page) {
             vm.page = page;
-            vm.onChangeDate();
+            vm.search();
         }
 
         function transition() {
@@ -78,9 +92,6 @@
                 fromDate: fromDate, toDate: toDate
             });
         }
-
-
-
 
     }
 })();

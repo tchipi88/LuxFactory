@@ -12,7 +12,6 @@
                               ng-options="produit.denomination for produit  in vm.produits track by produit.id"
                               ng-model="vm.produit" ng-change="vm.search()">
                             </select>
-
                           </div>
                         </div>
 
@@ -20,14 +19,10 @@
                         <div class="form-group col-sm-3">
                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zone">Zone </label>
                            <div class="input-group col-md-7 col-sm-7 col-xs-12">
-
-                           
                             <select class="select2_single form-control" name="entrepot" id="entrepot"
                               ng-options="entrepot.libelle for entrepot  in vm.entrepots track by entrepot.id"
                               ng-model="vm.entrepot" ng-change="vm.search()">
                             </select>
-
-                             
                           </div>
                         </div>
 

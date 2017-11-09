@@ -5,9 +5,9 @@
         .module('app')
         .controller('ActivitesController', ActivitesController);
 
-    ActivitesController.$inject = ['$state', 'DataUtils', 'Activites',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','Employe'];
+    ActivitesController.$inject = ['$state', 'DataUtils', 'Activites',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','Employe','$filter'];
 
-    function ActivitesController($state, DataUtils, Activites,  ParseLinks, AlertService, paginationConstants, pagingParams,Employe) {
+    function ActivitesController($state, DataUtils, Activites,  ParseLinks, AlertService, paginationConstants, pagingParams,Employe,$filter) {
 
         var vm = this;
 
@@ -27,6 +27,7 @@
 
         loadAll();
 
+        vm.search = search;
 
         function loadAll () {
                 Activites.query({
@@ -51,6 +52,32 @@
             function onError(error) {
                 AlertService.error(error.data.message);
             }
+        }
+
+         function search()
+        {
+            var dateFormat = 'yyyy-MM-dd';
+            var fromDate = $filter('date')(vm.fromDate, dateFormat);
+            var toDate = $filter('date')(vm.toDate, dateFormat);
+            var selected_activite = vm.activite == null ? "" : vm.activite.libelle;
+            var selected_resp = vm.responsable == null ? "" : vm.responsable.nom;
+
+            //alert ('article: '+ selected_activite +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
+
+            Activites.query({
+                page: vm.page - 1,
+                size: 20,
+                libelle: selected_activite,
+                responsable: selected_resp,
+                fromDate: fromDate, 
+                toDate: toDate
+            },  function (data, headers) {
+                vm.links = ParseLinks.parse(headers('link'));
+                vm.totalItems = headers('X-Total-Count');
+                vm.queryCount = vm.totalItems;
+                vm.activitess = data;
+            });
+           
         }
 
         function loadPage(page) {

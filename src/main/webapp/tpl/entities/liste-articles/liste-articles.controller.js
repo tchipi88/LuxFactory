@@ -29,7 +29,6 @@
         vm.fromDate = new Date();
         vm.toDate = new Date();
 
-
         vm.search = search;
 
         loadAll();
@@ -51,13 +50,15 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                //vm.listeArticless = data;
+                vm.listeArticless = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {
                 AlertService.error(error.data.message);
             }
         }
+
+        
 
         function search()
         {
@@ -70,23 +71,19 @@
             //alert ('article: '+ selected_activite +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
 
             ListeArticles.query({
-                page: pagingParams.page - 1,
-                size: vm.itemsPerPage,
+                page: vm.page - 1,
+                size: 20,
                 activite: selected_activite,
                 entrepot: selected_entrepot,
                 fromDate: fromDate, 
                 toDate: toDate
-            }, onSuccess, onError);
-            function onSuccess(data, headers) {
+            },  function (data, headers) {
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
                 vm.listeArticless = data;
-                vm.page = pagingParams.page;
-            }
-            function onError(error) {
-                AlertService.error(error.data.message);
-            }
+            });
+           
         }
 
         function loadPage(page) {
