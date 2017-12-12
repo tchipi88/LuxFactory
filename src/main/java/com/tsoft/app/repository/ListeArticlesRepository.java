@@ -6,6 +6,9 @@
 package com.tsoft.app.repository;
 
 import com.tsoft.app.domain.ListeArticles;
+import java.time.LocalDate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -17,10 +20,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ListeArticlesRepository extends JpaRepository<ListeArticles, Long> {
 
-    
+    public Page<ListeArticles> findAllByActiviteAndEntrepotAndDateTransactionBetween(String activite, String entrepot, LocalDate fromDate,
+            LocalDate toDate, Pageable pageable);
 
 }
-
-
-
-
