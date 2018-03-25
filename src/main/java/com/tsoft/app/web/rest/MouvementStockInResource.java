@@ -132,8 +132,8 @@ public class MouvementStockInResource {
     @Timed
     public ResponseEntity<List<MouvementStockIn>> searchMouvementStockIn(
             @RequestParam(value = "fromDate") LocalDate fromDate,
-            @RequestParam(value = "toDate") LocalDate toDate,
-            @ApiParam Pageable pageable, @ApiParam Long produit, @ApiParam Long entrepotId) {
+            @RequestParam(value = "toDate") LocalDate toDate, @ApiParam Pageable pageable, @RequestParam Long produit,
+            @RequestParam Long entrepotId) {
         log.debug("REST request to search for a page of MouvementStockOut for  {}  to {}", fromDate, toDate);
         Page<MouvementStockIn> page = mouvementStockInRepository.findAllByEntrepotIdAndProduitAndDateTransactionBetween(entrepotId, produit, fromDate, toDate, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/mouvement-stock-ins");

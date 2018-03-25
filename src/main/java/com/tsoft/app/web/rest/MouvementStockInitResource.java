@@ -2,7 +2,6 @@ package com.tsoft.app.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.tsoft.app.domain.MouvementStockInit;
-import com.tsoft.app.domain.MouvementStockOut;
 
 import com.tsoft.app.repository.MouvementStockInitRepository;
 import com.tsoft.app.web.rest.util.HeaderUtil;
@@ -35,19 +34,20 @@ public class MouvementStockInitResource {
     private final Logger log = LoggerFactory.getLogger(MouvementStockInitResource.class);
 
     private static final String ENTITY_NAME = "mouvementStockInit";
-        
-    private final MouvementStockInitRepository mouvementStockInitRepository;
 
+    private final MouvementStockInitRepository mouvementStockInitRepository;
 
     public MouvementStockInitResource(MouvementStockInitRepository mouvementStockInitRepository) {
         this.mouvementStockInitRepository = mouvementStockInitRepository;
     }
 
     /**
-     * POST  /mouvement-stock-inits : Create a new mouvementStockInit.
+     * POST /mouvement-stock-inits : Create a new mouvementStockInit.
      *
      * @param mouvementStockInit the mouvementStockInit to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new mouvementStockInit, or with status 400 (Bad Request) if the mouvementStockInit has already an ID
+     * @return the ResponseEntity with status 201 (Created) and with body the
+     * new mouvementStockInit, or with status 400 (Bad Request) if the
+     * mouvementStockInit has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/mouvement-stock-inits")
@@ -59,17 +59,18 @@ public class MouvementStockInitResource {
         }
         MouvementStockInit result = mouvementStockInitRepository.save(mouvementStockInit);
         return ResponseEntity.created(new URI("/api/mouvement-stock-inits/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                .body(result);
     }
 
     /**
-     * PUT  /mouvement-stock-inits : Updates an existing mouvementStockInit.
+     * PUT /mouvement-stock-inits : Updates an existing mouvementStockInit.
      *
      * @param mouvementStockInit the mouvementStockInit to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated mouvementStockInit,
-     * or with status 400 (Bad Request) if the mouvementStockInit is not valid,
-     * or with status 500 (Internal Server Error) if the mouvementStockInit couldnt be updated
+     * @return the ResponseEntity with status 200 (OK) and with body the updated
+     * mouvementStockInit, or with status 400 (Bad Request) if the
+     * mouvementStockInit is not valid, or with status 500 (Internal Server
+     * Error) if the mouvementStockInit couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/mouvement-stock-inits")
@@ -81,14 +82,15 @@ public class MouvementStockInitResource {
         }
         MouvementStockInit result = mouvementStockInitRepository.save(mouvementStockInit);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, mouvementStockInit.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, mouvementStockInit.getId().toString()))
+                .body(result);
     }
 
     /**
-     * GET  /mouvement-stock-inits : get all the mouvementStockInits.
+     * GET /mouvement-stock-inits : get all the mouvementStockInits.
      *
-     * @return the ResponseEntity with status 200 (OK) and the list of mouvementStockInits in body
+     * @return the ResponseEntity with status 200 (OK) and the list of
+     * mouvementStockInits in body
      */
     @GetMapping("/mouvement-stock-inits")
     @Timed
@@ -99,13 +101,12 @@ public class MouvementStockInitResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
- 
-
     /**
-     * GET  /mouvement-stock-inits/:id : get the "id" mouvementStockInit.
+     * GET /mouvement-stock-inits/:id : get the "id" mouvementStockInit.
      *
      * @param id the id of the mouvementStockInit to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the mouvementStockInit, or with status 404 (Not Found)
+     * @return the ResponseEntity with status 200 (OK) and with body the
+     * mouvementStockInit, or with status 404 (Not Found)
      */
     @GetMapping("/mouvement-stock-inits/{id}")
     @Timed
@@ -116,7 +117,7 @@ public class MouvementStockInitResource {
     }
 
     /**
-     * DELETE  /mouvement-stock-inits/:id : delete the "id" mouvementStockInit.
+     * DELETE /mouvement-stock-inits/:id : delete the "id" mouvementStockInit.
      *
      * @param id the id of the mouvementStockInit to delete
      * @return the ResponseEntity with status 200 (OK)
@@ -129,28 +130,26 @@ public class MouvementStockInitResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    
-     /**
-     * GET /commandess : get a page of Commandes between the fromDate and toDate.
+    /**
+     * GET /commandess : get a page of Commandes between the fromDate and
+     * toDate.
      *
      * @param fromDate the start of the time period of Commande to get
      * @param toDate the end of the time period of Commande to get
      * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of
-     * Commandes in body
+     * @return the ResponseEntity with status 200 (OK) and the list of Commandes
+     * in body
      */
     @GetMapping(path = "/mouvement-stock-inits", params = {"fromDate", "toDate"})
     @Timed
     public ResponseEntity<List<MouvementStockInit>> searchMouvementStockOut(
             @RequestParam(value = "fromDate") LocalDate fromDate,
-            @RequestParam(value = "toDate") LocalDate toDate,
-            @ApiParam Pageable pageable, @ApiParam Long  produit,@ApiParam Long  entrepotId) {
+            @RequestParam(value = "toDate") LocalDate toDate, @ApiParam Pageable pageable, @RequestParam Long produit,
+            @RequestParam Long entrepotId) {
         log.debug("REST request to search for a page of MouvementStockOut for  {}  to {}", fromDate, toDate);
-        Page<MouvementStockInit> page = mouvementStockInitRepository.findAllByEntrepotIdAndProduitAndFirstDateBetween(entrepotId,produit,fromDate, toDate, pageable);
+        Page<MouvementStockInit> page = mouvementStockInitRepository.findAllByEntrepotIdAndProduitAndFirstDateBetween(entrepotId, produit, fromDate, toDate, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/mouvement-stock-inits");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
-   
-
 
 }
