@@ -3,22 +3,20 @@
 
     angular
         .module('app')
-        .controller('ListeArticlesDialogController', ListeArticlesDialogController);
+        .controller('DecompteZonesProduitsDialogController', DecompteZonesProduitsDialogController);
 
-    ListeArticlesDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'ListeArticles','Produit','Entrepot'];
+    DecompteZonesProduitsDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'DecompteZonesProduits'];
 
-    function ListeArticlesDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, ListeArticles ,Produit,Entrepot) {
+    function DecompteZonesProduitsDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, DecompteZonesProduits ) {
         var vm = this;
 
-        vm.listeArticles = entity;
+        vm.decompteZonesProduits = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.produits = Produit.query();
-        vm.entrepots = Entrepot.query();
         
       
 
@@ -32,17 +30,15 @@
 
         function save () {
             vm.isSaving = true;
-            vm.listeArticles.activite = vm.produit.denomination;
-            vm.listeArticles.entrepot = vm.entrepot.libelle;
-            if (vm.listeArticles.id !== null) {
-                ListeArticles.update(vm.listeArticles, onSaveSuccess, onSaveError);
+            if (vm.decompteZonesProduits.id !== null) {
+                DecompteZonesProduits.update(vm.decompteZonesProduits, onSaveSuccess, onSaveError);
             } else {
-                ListeArticles.save(vm.listeArticles, onSaveSuccess, onSaveError);
+                DecompteZonesProduits.save(vm.decompteZonesProduits, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('tkbrApp:listeArticlesUpdate', result);
+            $scope.$emit('tkbrApp:decompteZonesProduitsUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }
@@ -52,12 +48,9 @@
         }
 
 
-         vm.datePickerOpenStatus.dateTransaction = false;
-         vm.datePickerOpenStatus.lastOut = false;
-         vm.datePickerOpenStatus.lastIn = false;
-
         
-        function openCalendar (date) {
+        
+         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
         }
         
@@ -68,8 +61,8 @@
                 if ($file) {
                     DataUtils.toBase64($file, function (base64Data) {
                         $scope.$apply(function () {
-                            vm.listeArticles[fieldName] = base64Data;
-                            vm.listeArticles[fieldName + 'ContentType'] = $file.type;
+                            vm.decompteZonesProduits[fieldName] = base64Data;
+                            vm.decompteZonesProduits[fieldName + 'ContentType'] = $file.type;
                         });
                     });
                 }
@@ -88,7 +81,7 @@
                         }
                     }
                 }).result.then(function(item) {
-                        vm.listeArticles[fieldname] = item;
+                        vm.decompteZonesProduits[fieldname] = item;
                 }, function() {
                     
                 });

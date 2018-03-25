@@ -1,3 +1,6 @@
+ <div>
+    <jhi-alert></jhi-alert>
+</div>
  <div class="wrapper-md">
     <div class="panel panel-default">
        <div class="panel-heading">
@@ -17,8 +20,8 @@
 
 
                   <div class="form-group col-sm-3">
-                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="responsable">Responsable </label>
-                     <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                     <label class="control-label col-md-4 col-sm-4 col-xs-12" for="responsable">Responsable </label>
+                     <div class="input-group col-md-6 col-sm-6 col-xs-12">
                       <select class="select2_single form-control" name="responsable" id="responsable"
                         ng-options="responsable.nom for responsable in vm.responsables track by responsable.id"
                         ng-model="vm.responsable" ng-change="vm.search()">
@@ -67,25 +70,22 @@
                             <thead>
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                          <th><span >Activite</span></th>
+                         <th><span >Responsable</span></th>
                          <th><span >Date Debut</span></th>
                          <th><span >Date Fin</span></th>
-                         <th><span >Responsable</span></th>
 
                         <th >
-                           Actions
+                           
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="activites in vm.activitess">
                          <td>{{activites.libelle}}</td>
+                         <td>{{activites.responsable.nom}} {{activites.responsable.prenom}}</td>
                          <td>{{activites.dateDebut | date:'mediumDate'}}</td>
                          <td>{{activites.dateFin | date:'mediumDate'}}</td>
-                         <td>{{activites.responsable.nom}}</td>
-
                         <td >
-
-                           
                             <button type="submit"   ui-sref="articles.activites.edit({id:activites.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
                                 <i class="fa fa-edit">
                                 </i>

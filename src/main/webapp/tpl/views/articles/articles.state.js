@@ -280,8 +280,8 @@
                 })
                 .state('articles.zoneStockage',{
                         url: '/zoneStockage',
-                        templateUrl: 'tpl/entities/entrepot-produit/entrepot-produits.html',
-                        controller: 'EntrepotProduitController',
+                        templateUrl: 'tpl/entities/liste-zones/liste-zoness.html',
+                        controller: 'ListeZonesController',
                         controllerAs: 'vm'
                 })
                 .state('articles.activites',{

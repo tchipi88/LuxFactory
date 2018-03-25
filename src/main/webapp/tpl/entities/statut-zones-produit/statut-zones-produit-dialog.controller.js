@@ -3,22 +3,20 @@
 
     angular
         .module('app')
-        .controller('ListeArticlesDialogController', ListeArticlesDialogController);
+        .controller('StatutZonesProduitDialogController', StatutZonesProduitDialogController);
 
-    ListeArticlesDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'ListeArticles','Produit','Entrepot'];
+    StatutZonesProduitDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'StatutZonesProduit'];
 
-    function ListeArticlesDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, ListeArticles ,Produit,Entrepot) {
+    function StatutZonesProduitDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, StatutZonesProduit ) {
         var vm = this;
 
-        vm.listeArticles = entity;
+        vm.statutZonesProduit = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.produits = Produit.query();
-        vm.entrepots = Entrepot.query();
         
       
 
@@ -32,17 +30,15 @@
 
         function save () {
             vm.isSaving = true;
-            vm.listeArticles.activite = vm.produit.denomination;
-            vm.listeArticles.entrepot = vm.entrepot.libelle;
-            if (vm.listeArticles.id !== null) {
-                ListeArticles.update(vm.listeArticles, onSaveSuccess, onSaveError);
+            if (vm.statutZonesProduit.id !== null) {
+                StatutZonesProduit.update(vm.statutZonesProduit, onSaveSuccess, onSaveError);
             } else {
-                ListeArticles.save(vm.listeArticles, onSaveSuccess, onSaveError);
+                StatutZonesProduit.save(vm.statutZonesProduit, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('tkbrApp:listeArticlesUpdate', result);
+            $scope.$emit('tkbrApp:statutZonesProduitUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }
@@ -52,12 +48,9 @@
         }
 
 
-         vm.datePickerOpenStatus.dateTransaction = false;
-         vm.datePickerOpenStatus.lastOut = false;
-         vm.datePickerOpenStatus.lastIn = false;
-
         
-        function openCalendar (date) {
+        
+         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
         }
         
@@ -68,8 +61,8 @@
                 if ($file) {
                     DataUtils.toBase64($file, function (base64Data) {
                         $scope.$apply(function () {
-                            vm.listeArticles[fieldName] = base64Data;
-                            vm.listeArticles[fieldName + 'ContentType'] = $file.type;
+                            vm.statutZonesProduit[fieldName] = base64Data;
+                            vm.statutZonesProduit[fieldName + 'ContentType'] = $file.type;
                         });
                     });
                 }
@@ -88,7 +81,7 @@
                         }
                     }
                 }).result.then(function(item) {
-                        vm.listeArticles[fieldname] = item;
+                        vm.statutZonesProduit[fieldname] = item;
                 }, function() {
                     
                 });

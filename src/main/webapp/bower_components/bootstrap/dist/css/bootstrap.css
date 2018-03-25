@@ -1581,6 +1581,9 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  border : 2px solid lightgrey;
+  border-radius: 5px;
+  background-color: ghostwhite;
 }
 @media (min-width: 768px) {
   .container {

@@ -32,6 +32,7 @@
         function loadAll () {
                 Activites.query({
                     page: pagingParams.page - 1,
+                    //size: 1000,
                     size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);

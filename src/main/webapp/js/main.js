@@ -69,7 +69,7 @@ angular.module('app')
       
       $scope.dtOptions = {
         paginationType : 'full_numbers',
-            displayLength: 15,
+            displayLength: 20,
             bFilter:false,
             bLengthChange: false,
             bInfo: false
@@ -77,10 +77,10 @@ angular.module('app')
             oLanguage:{
               "sEmptyTable":     "Aucun enregistrement disponible",
               "oPaginate": {
-                  "sFirst":      "<<",
-                  "sPrevious":   "<",
-                  "sNext":       ">",
-                  "sLast":       ">>"
+                  "sFirst":      "«",
+                  "sPrevious":   "‹",
+                  "sNext":       "›",
+                  "sLast":       "»"
                }
                // sUrl:'lang/dataTables_fr.txt'
             }

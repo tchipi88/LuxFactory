@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .controller('EmployeController', EmployeController);
+        .controller('StatutZonesProduitController', StatutZonesProduitController);
 
-    EmployeController.$inject = ['$state', 'DataUtils', 'Employe', 'EmployeSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    StatutZonesProduitController.$inject = ['$state', 'DataUtils', 'StatutZonesProduit',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function EmployeController($state, DataUtils, Employe, EmployeSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function StatutZonesProduitController($state, DataUtils, StatutZonesProduit,  ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 
@@ -17,30 +17,18 @@
         vm.transition = transition;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.clear = clear;
-        vm.search = search;
         vm.loadAll = loadAll;
-        vm.searchQuery = pagingParams.search;
-        vm.currentSearch = pagingParams.search;
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
 
         loadAll();
 
         function loadAll () {
-            if (pagingParams.search) {
-                EmployeSearch.query({
-                    query: pagingParams.search,
+                StatutZonesProduit.query({
                     page: pagingParams.page - 1,
-                    size: 500, // vm.itemsPerPage,
+                    size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
-            } else {
-                Employe.query({
-                    page: pagingParams.page - 1,
-                    size: 500, //vm.itemsPerPage,
-                    sort: sort()
-                }, onSuccess, onError);
-            }
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
                 if (vm.predicate !== 'id') {
@@ -52,7 +40,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.employes = data;
+                vm.statutZonesProduits = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {
@@ -69,28 +57,16 @@
             $state.transitionTo($state.$current, {
                 page: vm.page,
                 sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
-                search: vm.currentSearch
             });
         }
 
-        function search(searchQuery) {
-            if (!searchQuery){
-                return vm.clear();
-            }
-            vm.links = null;
-            vm.page = 1;
-            vm.predicate = '_score';
-            vm.reverse = false;
-            vm.currentSearch = searchQuery;
-            vm.transition();
-        }
+       
 
         function clear() {
             vm.links = null;
             vm.page = 1;
             vm.predicate = 'id';
             vm.reverse = true;
-            vm.currentSearch = null;
             vm.transition();
         }
     }

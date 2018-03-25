@@ -3,22 +3,20 @@
 
     angular
         .module('app')
-        .controller('ListeArticlesDialogController', ListeArticlesDialogController);
+        .controller('ListeZonesDialogController', ListeZonesDialogController);
 
-    ListeArticlesDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'ListeArticles','Produit','Entrepot'];
+    ListeZonesDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'ListeZones'];
 
-    function ListeArticlesDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, ListeArticles ,Produit,Entrepot) {
+    function ListeZonesDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, ListeZones ) {
         var vm = this;
 
-        vm.listeArticles = entity;
+        vm.listeZones = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.produits = Produit.query();
-        vm.entrepots = Entrepot.query();
         
       
 
@@ -32,17 +30,15 @@
 
         function save () {
             vm.isSaving = true;
-            vm.listeArticles.activite = vm.produit.denomination;
-            vm.listeArticles.entrepot = vm.entrepot.libelle;
-            if (vm.listeArticles.id !== null) {
-                ListeArticles.update(vm.listeArticles, onSaveSuccess, onSaveError);
+            if (vm.listeZones.id !== null) {
+                ListeZones.update(vm.listeZones, onSaveSuccess, onSaveError);
             } else {
-                ListeArticles.save(vm.listeArticles, onSaveSuccess, onSaveError);
+                ListeZones.save(vm.listeZones, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('tkbrApp:listeArticlesUpdate', result);
+            $scope.$emit('tkbrApp:listeZonesUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }
@@ -52,12 +48,9 @@
         }
 
 
-         vm.datePickerOpenStatus.dateTransaction = false;
-         vm.datePickerOpenStatus.lastOut = false;
-         vm.datePickerOpenStatus.lastIn = false;
-
         
-        function openCalendar (date) {
+        
+         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
         }
         
@@ -68,8 +61,8 @@
                 if ($file) {
                     DataUtils.toBase64($file, function (base64Data) {
                         $scope.$apply(function () {
-                            vm.listeArticles[fieldName] = base64Data;
-                            vm.listeArticles[fieldName + 'ContentType'] = $file.type;
+                            vm.listeZones[fieldName] = base64Data;
+                            vm.listeZones[fieldName + 'ContentType'] = $file.type;
                         });
                     });
                 }
@@ -88,7 +81,7 @@
                         }
                     }
                 }).result.then(function(item) {
-                        vm.listeArticles[fieldname] = item;
+                        vm.listeZones[fieldname] = item;
                 }, function() {
                     
                 });

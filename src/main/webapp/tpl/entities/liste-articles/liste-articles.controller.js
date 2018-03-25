@@ -63,16 +63,17 @@
         function search()
         {
             var dateFormat = 'yyyy-MM-dd';
-            var fromDate = $filter('date')(vm.fromDate, dateFormat);
-            var toDate = $filter('date')(vm.toDate, dateFormat);
+            var fromDate = $filter('date')(vm.fromDate, dateFormat) == null?"": $filter('date')(vm.fromDate, dateFormat);
+            var toDate = $filter('date')(vm.toDate, dateFormat)== null?"":$filter('date')(vm.toDate, dateFormat);
             var selected_activite = vm.produit == null ? "" : vm.produit.denomination;
             var selected_entrepot = vm.entrepot == null ? "" : vm.entrepot.libelle;
 
-            //alert ('article: '+ selected_activite +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
+            alert ('article: '+ selected_activite +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
 
             ListeArticles.query({
                 page: vm.page - 1,
                 size: 20,
+                //activite: 'activite',
                 activite: selected_activite,
                 entrepot: selected_entrepot,
                 fromDate: fromDate, 

@@ -285,6 +285,7 @@ a.list-group-item.hover {
 
 .list-group-sm .list-group-item {
   padding: 6px 10px;
+  margin: 20px 10px;
 }
 
 .list-group-sp .list-group-item {
