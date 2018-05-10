@@ -1,0 +1,63 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()"   class="form-validation">
+
+    <div class="modal-header">
+        <button type="button" class="btn btn-link pull-right" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()"><i class="fa fa-remove"></i>  </button>
+        <h3 class="modal-title" id="myReglementLabel" >Créer ou modifier  Reglement</h3>
+        <small class="text-muted" >Les champs * sont obligatoires</small>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_id">Id</label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.reglement.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_montant">Montant <span style="color:red" >*</span></label>
+                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_montant" ng-model="vm.reglement.montant"                     ng-readonly="false"  ng-required="true"                     />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_dateVersement">Date Versement <span style="color:red" >*</span></label>
+                    <div class="input-group">
+                        <input  id="field_dateVersement" type="text" class="form-control" name="dateVersement"    ng-required="true"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.reglement.dateVersement"  is-open="vm.datePickerOpenStatus.dateVersement"
+                                />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateVersement')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_mode">Mode <span style="color:red" >*</span></label>
+                    <select class="form-control" name="mode"  ng-model="vm.reglement.mode"  id="field_mode"  required>
+                        <option value="ESPECES">ESPECES</option>
+                        <option value="CARTE_BANCAIRE">CARTE_BANCAIRE</option>
+                        <option value="VIREMENT">VIREMENT</option>
+                        <option value="AUTRES">AUTRES</option>
+                    </select>
+                </div>
+            </div>
+           
+         
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Annuler</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving  || vm.reglement.id" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Enregister</span>
+        </button>
+    </div>
+</form>

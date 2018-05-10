@@ -1,0 +1,56 @@
+
+<div>
+    <h2><span >EntrepotProduit</span> {{vm.entrepotProduit.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        
+       <dt><span >Produit</span></dt>
+        <dd>
+            <span>{{vm.entrepotProduit.produit}}</span>
+        </dd> 
+<dt><span >Entrepot</span></dt>
+        <dd>
+            <span>{{vm.entrepotProduit.entrepot}}</span>
+        </dd> 
+<dt><span >Stock Theorique</span></dt>
+        <dd>
+            <span>{{vm.entrepotProduit.stockTheorique}}</span>
+        </dd> 
+<dt><span >Stock Physique</span></dt>
+        <dd>
+            <span>{{vm.entrepotProduit.stockPhysique}}</span>
+        </dd> 
+<dt><span >Ecart</span></dt>
+        <dd>
+            <span>{{vm.entrepotProduit.ecart}}</span>
+        </dd> 
+<dt><span >Seuil Alerte</span></dt>
+        <dd>
+            <span>{{vm.entrepotProduit.seuilAlerte}}</span>
+        </dd> 
+<dt><span >Seuil Sur Stockage</span></dt>
+        <dd>
+            <span>{{vm.entrepotProduit.seuilSurStockage}}</span>
+        </dd> 
+<dt><span >En Surchauffe</span></dt>
+        <dd>
+            <span>{{vm.entrepotProduit.EnSurchauffe}}</span>
+        </dd> 
+<dt><span >En Manque</span></dt>
+        <dd>
+            <span>{{vm.entrepotProduit.EnManque}}</span>
+        </dd> 
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Retour</span>
+    </button>
+
+    <button type="button" ui-sref="entrepotProduit-detail.edit({id:vm.entrepotProduit.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" > Modifier</span>
+    </button>
+</div>

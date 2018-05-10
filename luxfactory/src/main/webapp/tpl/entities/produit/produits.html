@@ -1,0 +1,85 @@
+<div class="bg-light lter b-b wrapper-md" >
+    <h1 class="m-n font-thin h3">Produits</h1>
+    <small class="text-muted"></small>
+</div>
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+         <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-12 no-padding-right">
+                    <form name="searchForm" class="form-inline">
+                        <div class="input-group pull-right" >
+                            <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="Recherche">
+                            <span  class="input-group-btn width-min" >
+                                <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                            <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                                <button class="btn btn-info" ng-click="vm.clear()">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                        <th jh-sort-by="id"><span >ID</span> <span class="fa fa-sort"></span></th>
+                         <th jh-sort-by="denomination"><span >Denomination</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="type"><span >Type</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="categorie"><span >Categorie</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="prix"><span >Prix</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="unite"><span >Unite</span> <span class="fa fa-sort"></span></th>
+                        <th >
+                            <button class="btn btn-primary" ui-sref="produit.new"   tooltip="Créer Produit">
+                                <i class="fa fa-plus">
+                                </i>
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="produit in vm.produits track by produit.id">
+                        <td><a ui-sref="produit-detail({id:produit.id})">{{produit.id}}</a></td>
+                         <td>{{produit.denomination}}</td>
+ <td>{{produit.type}}</td>
+ <td>{{produit.categorie.libelle}}</td>
+ <td>{{produit.prix | number }}</td>
+ <td>{{produit.unite.libelle}}</td>
+
+                        <td >
+
+                           
+                            <button type="submit"   ui-sref="produit.edit({id:produit.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="submit"  ui-sref="produit.delete({id:produit.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6">
+                    <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+                </div>
+                <div class="col-sm-6 text-right text-center-xs">
+                    <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

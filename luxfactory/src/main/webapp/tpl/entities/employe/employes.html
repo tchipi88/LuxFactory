@@ -1,0 +1,97 @@
+<div class="bg-light lter b-b wrapper-md" >
+
+<nav class="navbar navbar-default" role="navigation" style="font-size: 17px">
+            <div>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a ui-sref="#">
+                           <i class="fa fa-user"></i>  Employes
+                            <small class="text-muted"></small>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+    
+</div>
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+         <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-12 no-padding-right">
+                    <form name="searchForm" class="form-inline">
+                        <div class="input-group pull-right" >
+                            <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="Recherche">
+                            <span  class="input-group-btn width-min" >
+                                <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                            <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                                <button class="btn btn-info" ng-click="vm.clear()">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body table-responsive">
+
+            <div class="form-group" style='float: right;'>
+                 <button class="btn btn-primary" ui-sref="employe.new"   tooltip="Nouveau Employe">
+                                <i class="fa fa-plus">
+                                </i>
+                            </button>
+              </div>
+
+            <table id="dtEmploye" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                        <th jh-sort-by="id" ng-show="false"><span >ID</span> <span class="fa fa-sort"></span></th>
+                         <th><span >Nom</span><th><span >Date Naissance</span> </th> <th><span >Lieu Naissance</span></th> <th><span >Numero Cni</span></th> <th><span >Telephone</span></th> <th><span >Email</span></th> <th><span >Adresse</span> </th> <th><span >Date Entree</span> </span></th> <th><span >Salaire</span> </th> <th ><span >Fonction</span></th>
+                        <th>
+                           Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="employe in vm.employes track by employe.id">
+                        <td ng-show="false"><a ui-sref="employe-detail({id:employe.id})">{{employe.id}}</a></td>
+                         <td>{{employe.nom}} {{employe.prenom}}</td>
+                         <td>{{employe.dateNaissance | date:'mediumDate'}}</td>
+                         <td>{{employe.lieuNaissance}}</td>
+                         <td>{{employe.numeroCni}}</td>
+                         <td>{{employe.telephone}}</td>
+                         <td>{{employe.email}}</td>
+                         <td>{{employe.adresse}}</td>
+                         <td>{{employe.dateEntree | date:'mediumDate'}}</td>
+                         <td>{{employe.salaire | number }}</td>
+                         <td>{{employe.fonction.libelle}}</td>
+                        <td >
+
+                            <button type="submit"   ui-sref="employe.edit({id:employe.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="submit"  ui-sref="employe.delete({id:employe.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        
+    </div>
+</div>

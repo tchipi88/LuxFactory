@@ -1,0 +1,36 @@
+
+<div>
+    <h2><span >CaisseOuverture</span> {{vm.caisseOuverture.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        
+       <dt><span >Date Debut</span></dt>
+        <dd>
+            <span>{{vm.caisseOuverture.dateDebut}}</span>
+        </dd> 
+<dt><span >Date Fin</span></dt>
+        <dd>
+            <span>{{vm.caisseOuverture.dateFin}}</span>
+        </dd> 
+<dt><span >Caisse</span></dt>
+        <dd>
+            <span>{{vm.caisseOuverture.caisse}}</span>
+        </dd> 
+<dt><span >Solde Ouverture</span></dt>
+        <dd>
+            <span>{{vm.caisseOuverture.soldeOuverture}}</span>
+        </dd> 
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Retour</span>
+    </button>
+
+    <button type="button" ui-sref="caisseOuverture-detail.edit({id:vm.caisseOuverture.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" > Modifier</span>
+    </button>
+</div>

@@ -44,11 +44,10 @@ angular.module('app')
                                 })
 
                                 .state('home', {
-                                    parent: 'app',
                                     url: '/',
-                                    views: {
-                                        'content@app': {
-                                            templateUrl: 'tpl/home.html'}}
+                                    templateUrl: 'tpl/home.html',
+                                    controller: 'NavbarController',
+                                    controllerAs: 'vm'
                                 })
                                 .state('page', {
                                     url: '/page',

@@ -1,0 +1,141 @@
+ <div class="wrapper-md">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <form class="form-horizontal form-label-left input_mask">
+
+                     
+                        <div class="form-group col-sm-4">
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="article">Article </label>
+                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                              <select class="select2_single form-control" tabindex="-1" ng-model="listeArticlesActivite">
+                                <option></option>                              
+                                <option ng-repeat="listeArticles in vm.listeArticless" value='{{listeArticles.activite}}'>{{listeArticles.activite}}</option>
+                            </select>
+                          </div>
+                        </div>
+                      
+                      
+                        <div class="form-group col-sm-4">
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="responsable">Responsable </label>
+                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                              <select class="select2_single form-control" tabindex="-1">
+                              <option></option>
+                              <option ng-repeat="entrepot in vm.entrepotProduits"  value='{{entrepot.responsable.nom}}'>{{entrepot.responsable.nom}}</option>
+                            </select>
+                          </div>
+                        </div>
+                      
+
+                      
+                        <div class="form-group col-sm-4">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="debut">Debut </label>
+                          <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                              <input  id="debut" type="text" class="form-control" name="debut"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.listeArticles.lastIn"  is-open="vm.datePickerOpenStatus.dateDebut"
+                                />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateDebut')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                          </div>
+                        </div>
+                     
+
+
+                      
+                        <div class="form-group col-sm-4">
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zone">Zone </label>
+                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                              <select class="select2_single form-control" tabindex="-1">
+                              <option>---</option>
+                              <option value="AK">Infirmerie</option>
+                              <option value="HI">Zone 2</option>
+                              <option value="CA">Zone 3</option>
+                            </select>
+                          </div>
+                        </div>
+                      
+
+                      
+                        <div class="form-group col-sm-4">
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="activites">Activites </label>
+                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                              <select class="select2_single form-control" tabindex="-1">
+                              <option>---</option>
+                              <option value="AK">activite 1</option>
+                              <option value="HI">activite 2</option>
+                            </select>
+                          </div>
+                        </div>
+                      
+
+                      
+                        <div class="form-group col-sm-4">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fin">Fin </label>
+                          <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                              <input  id="debut" type="text" class="form-control" name="fin"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.listeArticles.lastOut"  is-open="vm.datePickerOpenStatus.dateFin"
+                                />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateFin')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                          </div>
+                        </div>
+                      
+
+            </form>
+        </div>
+      </div>
+        <div class="panel-body table-responsive">
+
+            <div>
+              <div class="form-group" style='float: right;'>
+                 <button class="btn btn-primary" ui-sref="liste-articles.articles.new" tooltip="Ajouter un article"><i class="fa fa-plus"></i></button>
+              </div>
+
+
+              <table id="dt_article" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
+
+                            <thead>
+                                <tr>
+                                     <th class="column-title sortable-column">Articles </th>
+                                     <th class="column-title sortable-column">Unite</th>
+                                     <th class="column-title sortable-column">Solde initial </th>
+                                     <th class="column-title sortable-column">Solde final </th>
+                                     <th class="column-title">Date Der. entree</th>
+                                     <th class="column-title">Date Der. sortie</th>
+                                     <th class="column-title sortable-column">Cumul entrée </th>
+                                     <th class="column-title sortable-column">Cumul sortie </th>
+                                     <th class="column-title no-link last"><span class="nobr">Action</span></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr ng-repeat="listeArticles in vm.listeArticless|filter: listeArticlesActivite">
+                                    <td>{{listeArticles.activite}}</td>
+                                     <td>{{listeArticles.unite}}</td>
+                                     <td>{{listeArticles.soldeInitial}}</td>
+                                     <td>{{listeArticles.soldeFinal}}</td>
+                                     <td>{{listeArticles.lastIn | date:'mediumDate'}}</td>
+                                     <td>{{listeArticles.lastOut | date:'mediumDate'}}</td>
+                                     <td>{{listeArticles.cumulEntree}}</td>
+                                     <td>{{listeArticles.cumulSortie}}</td>
+                                    <td >
+                                        <button type="submit"   ui-sref="liste-articles.articles.edit({id:listeArticles.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                                            <i class="fa fa-edit">
+                                            </i>
+                                        </button>
+
+                                        <button type="submit"  ui-sref="liste-articles.articles.delete({id:listeArticles.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                            <i class="fa fa-trash-o">
+                                            </i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+              </table>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

@@ -1,6 +1,11 @@
 <div class="bg-light lter b-b wrapper-md" >
-    <h1 class="m-n font-thin h3">ProduitCategories</h1>
-    <small class="text-muted"></small>
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a ui-sref="home">Accueil</a></li>
+    <li class="breadcrumb-item">Items</li>
+    <li class="breadcrumb-item active" aria-current="page">Categorie</li>
+  </ol>
+</nav>
 </div>
 <div>
     <jhi-alert></jhi-alert>
@@ -10,17 +15,18 @@
     <div class="panel panel-default">
         
         <div class="panel-body table-responsive">
-            <table class="table table-striped table-bordered table-hover">
+             <div>
+              <div class="form-group" style='float: right;'>
+                 <button class="btn btn-primary" ui-sref="produit-categorie.new" title="Ajouter une Categorie"><i class="fa fa-plus"></i></button>
+              </div>
+
+            <table id="dt_zones" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                        <th jh-sort-by="id"><span >ID</span> <span class="fa fa-sort"></span></th>
-                         <th jh-sort-by="libelle"><span >Libelle</span> <span class="fa fa-sort"></span></th>
+                        <th><span >ID</span></th>
+                         <th><span >Libelle</span></th>
 
                         <th >
-                            <button class="btn btn-primary" ui-sref="produit-categorie.new"   tooltip="Créer ProduitCategorie">
-                                <i class="fa fa-plus">
-                                </i>
-                            </button>
                         </th>
                     </tr>
                 </thead>
@@ -46,17 +52,7 @@
                     </tr>
                 </tbody>
             </table>
-
         </div>
-        <div class="panel-footer">
-            <div class="row">
-                <div class="col-sm-6">
-                    <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
-                </div>
-                <div class="col-sm-6 text-right text-center-xs">
-                    <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
-                </div>
-            </div>
         </div>
     </div>
 </div>

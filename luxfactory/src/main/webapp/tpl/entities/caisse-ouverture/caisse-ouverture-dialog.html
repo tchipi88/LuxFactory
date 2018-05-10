@@ -1,0 +1,84 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()"   class="form-validation">
+
+    <div class="modal-header">
+        <button type="button" class="btn btn-link pull-right" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()"><i class="fa fa-remove"></i>  </button>
+        <h3 class="modal-title" id="myCaisseOuvertureLabel" >Créer ou modifier  CaisseOuverture</h3>
+         <small class="text-muted" >Les champs * sont obligatoires</small>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+              <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_id">Id</label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.caisseOuverture.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_dateDebut">Date Debut <span style="color:red" >*</span></label>
+  <div class="input-group">
+                    <input  id="field_dateDebut" type="text" class="form-control" name="dateDebut"    ng-required="true"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.caisseOuverture.dateDebut"  is-open="vm.datePickerOpenStatus.dateDebut"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateDebut')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_dateFin">Date Fin <span style="color:red" >*</span></label>
+  <div class="input-group">
+                    <input  id="field_dateFin" type="text" class="form-control" name="dateFin"    ng-required="true"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.caisseOuverture.dateFin"  is-open="vm.datePickerOpenStatus.dateFin"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateFin')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_caisse">Caisse <span style="color:red" >*</span></label>
+ <div class="input-group">
+                        <ui-select ng-model="vm.caisseOuverture.caisse"    ng-required="true">
+                            <ui-select-match placeholder="Select Caisse">{{$select.selected.id}}</ui-select-match>
+                            <ui-select-choices repeat="caisse in vm.caisses | filter: $select.search">
+                                <div ng-bind-html="caisse.id | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Caisse','caisse','caisse', vm.caisseOuverture.caisse)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.caisseOuverture.caisse">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Caisse', 'caisse','caisse', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.caisseOuverture.caisse">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_soldeOuverture">Solde Ouverture <span style="color:red" >*</span></label>
+  <input  class="form-control"   type="number"  autocomplete="off"  id="field_soldeOuverture" ng-model="vm.caisseOuverture.soldeOuverture"                     ng-readonly="false"  ng-required="true"                     />
+ </div>
+ </div>
+
+        </div>
+       
+    </div>
+    <div class="modal-footer">
+        
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Annuler</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Enregister</span>
+        </button>
+    </div>
+</form>

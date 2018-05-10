@@ -1,0 +1,155 @@
+ <div>
+    <jhi-alert></jhi-alert>
+</div>
+
+ <div class="bg-light lter wrapper-md" >
+    <!-- <h1 class="m-n font-thin h3"><i class="fa fa-cubes icon"></i> Articles</h1>
+    <small class="text-muted"></small> -->
+
+    <!-- <nav class="navbar navbar-default" role="navigation" style="font-size: 17px">
+            <div>
+                <ul class="nav navbar-nav">
+                    <li ng-class="{active: $state.includes('articles.articles')}">
+                        <a ui-sref=".articles">
+                            <i class="fa fa-home"></i> 
+                            Accueil
+                        </a>
+                    </li>
+
+                    <li ng-class="{active: $state.includes('articles.articles')}">
+                        <a ui-sref=".articles">
+                            >
+                        </a>
+                    </li>
+
+                    <li ng-class="{active: $state.includes('articles.zoneStockage')}">
+                        <a ui-sref=".zoneStockage">
+                            <i class="fa fa-cube"></i> 
+                            Articles
+                        </a>
+                    </li>
+                    <li ng-class="{active: $state.includes('articles.activites')}"> 
+                        <a ui-sref=".activites">
+                            <i class="fa fa-child"></i> 
+                            Activites
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav> -->
+
+          <ol class="breadcrumb">
+            <li><a href="#">Accueil</a></li>
+            <li class="active">Items</li>
+            <li class="active">Activites</li>
+          </ol>
+
+</div>
+
+ <div class="wrapper-md">
+    <div class="panel panel-default">
+       <div class="panel-heading">
+         <div class="row">
+           <form class="form-horizontal form-label-left input_mask">
+
+
+                  <div class="form-group col-sm-3">
+                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="activites">Activites </label>
+                     <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                      <select class="select2_single form-control" name="activite" id="activite"
+                        ng-options="activite.libelle for activite in vm.activitess track by activite.id"
+                        ng-model="vm.activite" ng-change="vm.search()">
+                      </select>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group col-sm-3">
+                     <label class="control-label col-md-4 col-sm-4 col-xs-12" for="responsable">Responsable </label>
+                     <div class="input-group col-md-6 col-sm-6 col-xs-12">
+                      <select class="select2_single form-control" name="responsable" id="responsable"
+                        ng-options="responsable.nom for responsable in vm.responsables track by responsable.id"
+                        ng-model="vm.responsable" ng-change="vm.search()">
+                      </select>
+                    </div>
+                  </div>
+
+                  
+                  <div class="form-group col-sm-3">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="debut">Debut </label>
+                          <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                              <input  id="debut" type="text" class="form-control" name="debut"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.fromDate"  is-open="vm.datePickerOpenStatus.dateDebut"
+                                />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateDebut')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                          </div>
+                        </div>
+                  
+
+
+                  <div class="form-group col-sm-3">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fin">Fin </label>
+                          <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                              <input  id="debut" type="text" class="form-control" name="fin"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.toDate"  is-open="vm.datePickerOpenStatus.dateFin"
+                                />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateFin')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                          </div>
+                        </div>
+                      
+             </form>
+         </div>
+       </div>
+        <div class="panel-body table-responsive">
+
+            <div>
+              <div class="form-group" style='float: right;'>
+                <button class="btn btn-default" ui-sref="articles.activites.new" title="Imprimer la liste" style='margin-right: 5px'><i class="fa fa-print"></i>  </button>
+                 <button class="btn btn-default" ui-sref="articles.activites.new" title="Ajouter une activite"><i class="fa fa-plus"></i></button>
+              </div>
+
+
+              <table id="dt_article" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
+
+                            <thead>
+                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                         <th class="dt-first-column">
+                           
+                         </th>
+                         <th><span >Activite</span></th>
+                         <th><span >Responsable</span></th>
+                         <th><span >Date Debut</span></th>
+                         <th><span >Date Fin</span></th>                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="activites in vm.activitess">
+                        <td >
+                            <button type="submit"   ui-sref="articles.activites.edit({id:activites.id})" class="btn btn-xs btn-default" title="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="submit"  ui-sref="articles.activites.delete({id:activites.id})"  class="btn btn-xs btn-danger"  title="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                        <td>{{activites.libelle}}</td>
+                         <td>{{activites.responsable.nom}} {{activites.responsable.prenom}}</td>
+                         <td>{{activites.dateDebut | date:'mediumDate'}}</td>
+                         <td>{{activites.dateFin | date:'mediumDate'}}</td>
+                    </tr>
+                         
+                </tbody>
+              </table>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

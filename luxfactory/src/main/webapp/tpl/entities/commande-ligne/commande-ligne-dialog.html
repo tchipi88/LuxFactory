@@ -1,0 +1,89 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()"   class="form-validation">
+
+    <div class="modal-header">
+        <button type="button" class="btn btn-link pull-right" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()"><i class="fa fa-remove"></i>  </button>
+        <h3 class="modal-title" id="myCommandeLigneLabel" >Créer ou modifier  CommandeLigne</h3>
+        <small class="text-muted" >Les champs * sont obligatoires</small>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div  class="row">
+            <div  class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_id">Id</label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.commandeLigne.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
+                </div>
+            </div>
+            <div  class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_produit">Produit <span style="color:red" >*</span></label>
+                    <div class="input-group">
+                        <ui-select ng-model="vm.commandeLigne.produit"    ng-required="true"  ng-disabled="vm.commandeLigne.id">
+                            <ui-select-match placeholder="Select Produit">{{$select.selected.denomination}}</ui-select-match>
+                            <ui-select-choices repeat="produit in vm.produits | filter: $select.search">
+                                <div ng-bind-html="produit.denomination | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Produit', 'produit', 'produit', vm.commandeLigne.produit)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.commandeLigne.produit"   ng-disabled="vm.commandeLigne.id">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Produit', 'produit', 'produit', {type:'BIEN'})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.commandeLigne.produit"   ng-disabled="vm.commandeLigne.id">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> 
+                </div>
+            </div>
+            <div  class="col-sm-6"  ng-show="$stateParams.type=='VENTE'">
+                <div class="form-group">
+                    <label class="control-label"  for="field_produit">Entrepot <span style="color:red" >*</span></label>
+                    <ui-select ng-model="vm.commandeLigne.entrepot"    ng-required="$stateParams.type=='VENTE'"  ng-disabled="vm.commandeLigne.id">
+                        <ui-select-match placeholder="Select Entrepot">{{$select.selected.libelle}}</ui-select-match>
+                        <ui-select-choices repeat="entrepot in vm.entrepots | filter: $select.search">
+                            <div ng-bind-html="entrepot.libelle | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>  
+                </div>
+            </div>
+            <div  class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_quantite">Quantite <span style="color:red" >*</span></label>
+                    <input  class="form-control"   type="number"  min="1" autocomplete="off"  id="field_quantite" ng-model="vm.commandeLigne.quantite"                     ng-readonly="false"  ng-required="true"                     />
+                </div>
+            </div>
+            <div  class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_quantiteLivree">Quantite Livree</label>
+                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_quantiteLivree" ng-model="vm.commandeLigne.quantiteLivree"                     ng-readonly="false"  ng-required="false"                     />
+                </div>
+            </div>
+            <div  class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_prixUnitaire">Prix Unitaire</label>
+                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_prixUnitaire" ng-model="vm.commandeLigne.prixUnitaire"                      ng-required="false"                     />
+                </div>
+            </div>
+            <div  class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_sousTotal">Sous Total</label>
+                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_sousTotal" ng-model="vm.commandeLigne.sousTotal"                     ng-readonly="true"  ng-required="false"                     />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Annuler</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Enregister</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,87 @@
+<div class="bg-light lter b-b wrapper-md" ng-show="false">
+    <h1 class="m-n font-thin h3"   ng-if="$stateParams.type == 'ACHAT'">Achats</h1>
+    <h1 class="m-n font-thin h3" ng-if="$stateParams.type == 'VENTE'">Ventes</h1>
+    <small class="text-muted"></small>
+</div>
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
+<div class="wrapper-md">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-5">
+                    <h4 >Filter by date</h4>
+                    <p class="input-group">
+                        <span class="input-group-addon" >from</span>
+                        <input type="date" class="input-sm form-control" name="start" ng-model="vm.fromDate" ng-change="vm.onChangeDate()" required/>
+                        <span class="input-group-addon" >to</span>
+                        <input type="date" class="input-sm form-control" name="end" ng-model="vm.toDate" ng-change="vm.onChangeDate()" required/>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body table-responsive">
+
+             <div>
+              <div class="form-group" style='float: right;'>
+                 <button class="btn btn-primary" ui-sref="transactions.commande.new" tooltip="Creer une commande"><i class="fa fa-plus"></i></button>
+              </div>
+
+            <table id="dt_article" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr >
+                        <th ><span >ID</span> </th>
+                        <th   ng-show="$stateParams.type == 'VENTE'"><span >Client</span> </th> 
+                        <th    ng-show="$stateParams.type == 'ACHAT'"><span >Fournisseur</span> </th>
+                        <th ><span >Etat</span> </th> 
+                        <th ><span >Date Emission</span> </th> 
+                        <th ><span >Date Livraison</span> </th>
+                        <th ><span >Date Echeance</span> </th>
+
+                        <th><span >Prix HT</span> </th> 
+                        <th ><span >Prix TTC</span> </th> 
+                        <th ><span >Somme versée</span> </th> 
+                        <th ><span >Restant à payer</span> </th> 
+
+
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="commande in vm.commandes track by commande.id">
+                        <td><a ui-sref="commande-detail({id:commande.id})">{{commande.id}}</a></td>
+                        <td  ng-show="$stateParams.type == 'VENTE'">{{commande.client.nom}}</td>
+                        <td  ng-show="$stateParams.type == 'ACHAT'">{{commande.fournisseur.nom}}</td>
+                        <td>{{commande.etat}}</td>
+                        <td>{{commande.dateEmission| date:'mediumDate'}}</td>
+                        <td>{{commande.dateLivraison| date:'mediumDate'}}</td>
+                        <td>{{commande.dateEcheance| date:'mediumDate'}}</td>
+                        <td>{{commande.prixHT| number }}</td>
+                        <td>{{commande.prixTTC| number }}</td>
+                        <td>{{commande.montantPaye| number }}</td>
+                        <td>{{commande.montantRestant| number }}</td>
+                        <td >
+
+
+                            <button type="submit"   ui-sref="transactions.commande.edit({id:commande.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="submit"  ui-sref="transactions.commande.delete({id:commande.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="bg-light lter b-b wrapper-md" >
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a ui-sref="home">Accueil</a></li>
+    <li class="breadcrumb-item active">Items</li>
+    <li class="breadcrumb-item active" aria-current="page">Zones de Stockage</li>
+  </ol>
+</nav>
+</div>
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        
+        <div class="panel-body table-responsive">
+
+            <div>
+              <div class="form-group" style='float: right;'>
+                 <button class="btn btn-primary" ui-sref="zone.new" title="Ajouter une zone"><i class="fa fa-plus"></i></button>
+              </div>
+
+            <table id="dt_zones" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                         <th><span >D&eacutesignation</span></th>
+                         <th><span >Responsable</span></th>
+                         <th><span >Activite</span></th>
+
+                        <th >
+                           
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="zone in vm.zones track by zone.id">
+                         <td>{{zone.libelle}}</td>
+                         <td>{{zone.responsable.nom}}</td>
+                         <td>{{zone.activite.libelle}}</td>
+                        <td >
+
+                           
+                            <button type="submit"   ui-sref="zone.edit({id:zone.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="submit"  ui-sref="zone.delete({id:zone.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+        
+    </div>
+</div>

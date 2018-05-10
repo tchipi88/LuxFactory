@@ -1,0 +1,99 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()"   class="form-validation">
+
+    <div class="modal-header">
+        <button type="button" class="btn btn-link pull-right" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()"><i class="fa fa-remove"></i>  </button>
+        <h3 class="modal-title" id="myProduitLabel" >Créer ou modifier  Produit</h3>
+        <small class="text-muted" >Les champs * sont obligatoires</small>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_id">Id</label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.produit.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_denomination">Denomination <span style="color:red" >*</span></label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_denomination" ng-model="vm.produit.denomination"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_type">Type<span style="color:red" >*</span></label>
+                    <select class="form-control" name="type"  ng-model="vm.produit.type"  id="field_type" required>
+                        <option value="BIEN">BIEN</option>
+                        <option value="SERVICE">IMMOBILIER</option>
+                        <option value="SERVICE">SERVICE</option>
+                        <option value="TRAVAIL">TRAVAIL</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_categorie">Categorie <span style="color:red" >*</span></label>
+                    <div class="input-group">
+                        <ui-select ng-model="vm.produit.categorie"    ng-required="true">
+                            <ui-select-match placeholder="Select ProduitCategorie">{{$select.selected.libelle}}</ui-select-match>
+                            <ui-select-choices repeat="categorie in vm.categories | filter: $select.search">
+                                <div ng-bind-html="categorie.libelle | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('ProduitCategorie', 'produit-categorie', 'categorie', vm.produit.categorie)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.produit.categorie">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('ProduitCategorie', 'produit-categorie', 'categorie', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.produit.categorie">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_prix">Prix Vente<span style="color:red" >*</span></label>
+                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_prix" ng-model="vm.produit.prix"                     ng-readonly="false"  ng-required="true"                     />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_unite">Unite</label>
+                    <div class="input-group">
+                        <ui-select ng-model="vm.produit.unite"    ng-required="false">
+                            <ui-select-match placeholder="Select Unite">{{$select.selected.libelle}}</ui-select-match>
+                            <ui-select-choices repeat="unite in vm.unites | filter: $select.search">
+                                <div ng-bind-html="unite.libelle | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Unite', 'unite', 'unite', vm.produit.unite)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.produit.unite">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Unite', 'unite', 'unite', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.produit.unite">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Annuler</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Enregister</span>
+        </button>
+    </div>
+</form>

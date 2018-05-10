@@ -1,0 +1,36 @@
+
+<div>
+    <h2><span >ProduitFournisseur</span> {{vm.produitFournisseur.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        
+       <dt><span >Prix Vente</span></dt>
+        <dd>
+            <span>{{vm.produitFournisseur.prixVente}}</span>
+        </dd> 
+<dt><span >Delai Fourniture</span></dt>
+        <dd>
+            <span>{{vm.produitFournisseur.delaiFourniture}}</span>
+        </dd> 
+<dt><span >Fournisseur</span></dt>
+        <dd>
+            <span>{{vm.produitFournisseur.fournisseur}}</span>
+        </dd> 
+<dt><span >Produit</span></dt>
+        <dd>
+            <span>{{vm.produitFournisseur.produit}}</span>
+        </dd> 
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Retour</span>
+    </button>
+
+    <button type="button" ui-sref="produitFournisseur-detail.edit({id:vm.produitFournisseur.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" > Modifier</span>
+    </button>
+</div>

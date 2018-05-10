@@ -1,0 +1,70 @@
+<div class="bg-light lter b-b wrapper-md" ng-show="false">
+    <h1 class="m-n font-thin h3">Procesverbals</h1>
+    <small class="text-muted"></small>
+</div>
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        
+        <div class="panel-body table-responsive">
+
+             <div class="form-group" style='float: right;'>
+                <button class="btn btn-primary" ui-sref="transactions.procesverbal.new"   tooltip="Créer Procesverbal">
+                                <i class="fa fa-plus">
+                                </i>
+                            </button>
+              </div>
+
+            <table id="dt_procesverbal" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th ng-show="false"><span >ID</span></th>
+                        <th><span >Commande</span></th>
+                        <th><span >Date Pv</span></th>
+                        <th><span >Lieu Pv</span></th>
+                        <th><span >Identite Responsable Acheteur</span></th>
+                        <th><span >Identite Responsable 1 Prestataire</span></th>
+                        <th><span >Identite Responsable 2 Prestataire</span></th>
+                        <th><span >Identite Responsable 3 Prestataire</span></th>
+
+                        <th >
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="procesverbal in vm.procesverbals track by procesverbal.id">
+                        <td>{{procesverbal.id}}</td>
+                         <td>{{procesverbal.commande.id}}</td>
+                         <td>{{procesverbal.datePv}}</td>
+                         <td>{{procesverbal.lieuPv}}</td>
+                         <td>{{procesverbal.identiteResponsableAcheteur}}</td>
+                         <td>{{procesverbal.identiteResponsable1Prestataire}}</td>
+                         <td>{{procesverbal.identiteResponsable2Prestataire}}</td>
+                         <td>{{procesverbal.identiteResponsable3Prestataire}}</td>
+
+                        <td >
+
+                           
+                            <button type="submit"   ui-sref="procesverbal.edit({id:procesverbal.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="submit"  ui-sref="procesverbal.delete({id:procesverbal.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        
+    </div>
+</div>

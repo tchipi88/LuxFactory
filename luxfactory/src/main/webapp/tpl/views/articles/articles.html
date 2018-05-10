@@ -1,0 +1,37 @@
+<div class="bg-light lter b-b wrapper-md" >
+    <!-- <h1 class="m-n font-thin h3"><i class="fa fa-cubes icon"></i> Articles</h1>
+    <small class="text-muted"></small> -->
+
+    <nav class="navbar navbar-default" role="navigation" style="font-size: 17px">
+            <div>
+                <ul class="nav navbar-nav">
+                    <li ng-class="{active: $state.includes('articles.articles')}">
+                        <a ui-sref=".articles">
+                            <i class="fa fa-cube"></i> 
+                            Articles
+                        </a>
+                    </li>
+                    <li ng-class="{active: $state.includes('articles.zoneStockage')}">
+                        <a ui-sref=".zoneStockage">
+                            <i class="fa fa-database"></i> 
+                            Zone de stockage
+                        </a>
+                    </li>
+                    <li ng-class="{active: $state.includes('articles.activites')}"> 
+                        <a ui-sref=".activites">
+                            <i class="fa fa-child"></i> 
+                            Activites
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+</div>
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
+
+
+<div ui-view></div>

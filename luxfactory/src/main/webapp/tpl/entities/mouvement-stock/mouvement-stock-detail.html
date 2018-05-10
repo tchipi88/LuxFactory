@@ -1,0 +1,60 @@
+
+<div>
+    <h2><span >MouvementStock</span> {{vm.mouvementStock.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        
+       <dt><span >Quantite</span></dt>
+        <dd>
+            <span>{{vm.mouvementStock.quantite}}</span>
+        </dd> 
+<dt><span >Date Transaction</span></dt>
+        <dd>
+            <span>{{vm.mouvementStock.dateTransaction}}</span>
+        </dd> 
+<dt><span >Motif Transaction</span></dt>
+        <dd>
+            <span>{{vm.mouvementStock.motifTransaction}}</span>
+        </dd> 
+<dt><span >Entrepot Depart</span></dt>
+        <dd>
+            <span>{{vm.mouvementStock.entrepotDepart}}</span>
+        </dd> 
+<dt><span >Entrepot Destination</span></dt>
+        <dd>
+            <span>{{vm.mouvementStock.entrepotDestination}}</span>
+        </dd> 
+<dt><span >Produit</span></dt>
+        <dd>
+            <span>{{vm.mouvementStock.produit}}</span>
+        </dd> 
+<dt><span >Stock Entrepot Depart</span></dt>
+        <dd>
+            <span>{{vm.mouvementStock.stockEntrepotDepart}}</span>
+        </dd> 
+<dt><span >Stock Final Entrepot Depart</span></dt>
+        <dd>
+            <span>{{vm.mouvementStock.stockFinalEntrepotDepart}}</span>
+        </dd> 
+<dt><span >Stock Entrepot Destination</span></dt>
+        <dd>
+            <span>{{vm.mouvementStock.stockEntrepotDestination}}</span>
+        </dd> 
+<dt><span >Stock Final Entrepot Destination</span></dt>
+        <dd>
+            <span>{{vm.mouvementStock.stockFinalEntrepotDestination}}</span>
+        </dd> 
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Retour</span>
+    </button>
+
+    <button type="button" ui-sref="mouvementStock-detail.edit({id:vm.mouvementStock.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" > Modifier</span>
+    </button>
+</div>

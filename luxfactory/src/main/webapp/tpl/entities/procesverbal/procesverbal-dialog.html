@@ -1,0 +1,90 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()"   class="form-validation">
+
+    <div class="modal-header">
+        <button type="button" class="btn btn-link pull-right" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()"><i class="fa fa-remove"></i>  </button>
+        <h3 class="modal-title" id="myProcesverbalLabel" >Cr&eacuteer ou modifier  Procesverbal</h3>
+         <small class="text-muted" >Les champs * sont obligatoires</small>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+              <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_id">Id</label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.procesverbal.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_commande">Commande</label>
+ <div class="input-group">
+                        <ui-select ng-model="vm.procesverbal.commande"    ng-required="false">
+                            <ui-select-match placeholder="Select Commande">{{$select.selected.id}}</ui-select-match>
+                            <ui-select-choices repeat="commande in vm.commandes | filter: $select.search">
+                                <div ng-bind-html="commande.id | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Commande','commande','commande', vm.procesverbal.commande)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.procesverbal.commande">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Commande', 'commande','commande', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.procesverbal.commande">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_datePv">Date Pv <span style="color:red" >*</span></label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_datePv" ng-model="vm.procesverbal.datePv"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_lieuPv">Lieu Pv</label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_lieuPv" ng-model="vm.procesverbal.lieuPv"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_identiteResponsableAcheteur">Identite Responsable Acheteur</label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_identiteResponsableAcheteur" ng-model="vm.procesverbal.identiteResponsableAcheteur"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_identiteResponsable1Prestataire">Identite Responsable 1 Prestataire</label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_identiteResponsable1Prestataire" ng-model="vm.procesverbal.identiteResponsable1Prestataire"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_identiteResponsable2Prestataire">Identite Responsable 2 Prestataire</label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_identiteResponsable2Prestataire" ng-model="vm.procesverbal.identiteResponsable2Prestataire"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+ </div>
+ </div>
+ <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_identiteResponsable3Prestataire">Identite Responsable 3 Prestataire</label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_identiteResponsable3Prestataire" ng-model="vm.procesverbal.identiteResponsable3Prestataire"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+ </div>
+ </div>
+
+        </div>
+       
+    </div>
+    <div class="modal-footer">
+        
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Annuler</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Enregister</span>
+        </button>
+    </div>
+</form>

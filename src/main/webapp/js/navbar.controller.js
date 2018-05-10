@@ -26,6 +26,29 @@
             $state.go('page.login');
         }
 
+        var copyAccount = function (account) {
+            return {
+                activated: account.activated,
+                email: account.email,
+                prenom: account.firstName,
+                nom: account.lastName,
+                login: account.login,
+                id:account.id,
+                
+                fonction:account.fonction,
+                departement:account.departement,
+                salaire:account.salaire,
+                adresse:account.adresse,
+                telephone:account.telephone,
+                dateNaissance:account.dateNaissance,
+                lieuNaissance:account.lieuNaissance,
+            };
+        };
+
+        Principal.identity().then(function(account) {
+            vm.settingsAccount = copyAccount(account);
+        });
+
       
     }
 })();

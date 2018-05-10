@@ -1,0 +1,133 @@
+ <div class="wrapper-md">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+             <form class="form-horizontal form-label-left input_mask">
+
+                   <div class="form-group col-sm-3">
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="article">Article </label>
+                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                            <select class="select2_single form-control" name="produit" id="produit"
+                              ng-options="produit.denomination for produit  in vm.produits track by produit.id"
+                              ng-model="vm.produit" ng-change="vm.search()">
+                            </select>
+
+                          </div>
+                        </div>
+                      
+                        
+                        <div class="form-group col-sm-3">
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zone">Zone </label>
+                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
+
+                           
+                            <select class="select2_single form-control" name="entrepot" id="entrepot"
+                              ng-options="entrepot.libelle for entrepot  in vm.entrepots track by entrepot.id"
+                              ng-model="vm.entrepot" ng-change="vm.search()">
+                            </select>
+
+                             
+                          </div>
+                        </div>
+
+                      
+                        <div class="form-group col-sm-3">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="debut">Debut </label>
+                          <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                              <input  id="debut" type="text" class="form-control" name="debut"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.fromDate"  is-open="vm.datePickerOpenStatus.dateDebut" ng-change="vm.search()"
+                                />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateDebut')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                          </div>
+                        </div>
+                     
+
+                      
+                        <div class="form-group col-sm-3">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fin">Fin </label>
+                          <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                              <input  id="debut" type="text" class="form-control" name="fin"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.toDate"  is-open="vm.datePickerOpenStatus.dateFin"  ng-change="vm.search()"
+                                />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateFin')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                          </div>
+                        </div>
+             </form>
+          </div>
+        </div>
+        <div class="panel-body table-responsive">
+
+
+            <div>
+              <div class="form-group" style='float: right;'>
+                 <button class="btn btn-primary" ui-sref="articles.zoneStockage.new" tooltip="Ajouter un entrepot"><i class="fa fa-plus"></i></button>
+              </div>
+
+
+              <table id="dt_zonestockage" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
+
+                <thead>
+                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                        <th><span >Produit</span> </th>
+                        <th><span >Entrepot</span> </th>
+                        <th><span >Stock Theorique</span> </th>
+                        <th><span >Stock Physique</span> </th>
+                        <th><span >Ecart</span> </th>
+                        <th><span >Seuil Alerte</span> </th>
+                        <th><span >Seuil Sur Stockage</span> </th>
+                        <th><span >En Surchauffe</span> </th>
+                        <th><span >En Manque</span> </th>
+
+                        <th >
+                           Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="entrepotProduit in vm.entrepotProduits track by entrepotProduit.id">
+                        <td>{{entrepotProduit.produit.denomination}}</td>
+                        <td>{{entrepotProduit.entrepot.libelle}}</td>
+                        <td>{{entrepotProduit.stockTheorique}}</td>
+                        <td>{{entrepotProduit.stockPhysique}}</td>
+                        <td>{{entrepotProduit.ecart}}</td>
+                        <td>{{entrepotProduit.seuilAlerte}}</td>
+                        <td>{{entrepotProduit.seuilSurStockage}}</td>
+                        <td>
+                            <button class="btn btn-danger btn-xs"  ng-show="entrepotProduit.EnSurchauffe"
+                                    ><i class="fa fa-warning"></i></button>
+                            <button class="btn btn-success btn-xs"  ng-show="!entrepotProduit.EnSurchauffe"
+                                    ><i class="fa  fa-smile-o"></i></button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-xs"  ng-show="entrepotProduit.EnManque"
+                                    ><i class="fa fa-warning"></i></button>
+                            <button class="btn btn-success btn-xs"  ng-show="!entrepotProduit.EnManque"
+                                    ><i class="fa  fa-smile-o"></i></button>
+                        </td>
+
+                        <td >
+
+                           
+                            <button type="submit"   ui-sref="articles.zoneStockage.edit({id:entrepotProduit.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="submit"  ui-sref="articles.zoneStockage.delete({id:entrepotProduit.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

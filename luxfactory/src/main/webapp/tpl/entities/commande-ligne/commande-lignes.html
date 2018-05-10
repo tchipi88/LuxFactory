@@ -1,0 +1,50 @@
+
+
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        <div class="panel-body table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr >
+                        <th ><span >ID</span></th>
+                        <th ><span >Produit</span></th>
+                        <th ><span >Quantite</span></th> 
+                        <th ><span >Quantite Livree</span></th> 
+                        <th ><span >Prix Unitaire</span></th> 
+                        <th ><span >Sous Total</span></th> 
+                        <th >
+                            <button class="btn btn-primary" ng-click="vm.addCommandeLigne()"  type="button"  tooltip="Créer CommandeLigne">
+                                <i class="fa fa-plus">
+                                </i>
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="commandeLigne in vm.commandeLignes track by commandeLigne.id">
+                        <td>{{commandeLigne.id}}</td>
+                        <td>{{commandeLigne.produit.denomination}}</td>
+                        <td>{{commandeLigne.quantite}}</td>
+                        <td>{{commandeLigne.quantiteLivree}}</td>
+                        <td>{{commandeLigne.prixUnitaire| number }}</td>
+                        <td>{{commandeLigne.quantite* commandeLigne.prixUnitaire| number }}</td>
+                        <td >
+                            <button type="button"  ng-click="vm.editCommandeLigne(commandeLigne,$index)"  class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="button"  ng-click="vm.delCommandeLigne(commandeLigne,$index)" class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

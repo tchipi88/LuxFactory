@@ -1,0 +1,40 @@
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+
+
+        <div class="panel-body table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                        <th ><span >ID</span> </th>
+                        <th ><span >Montant</span> </th>
+                        <th ><span >Date Versement</span> </th> 
+                        <th ><span >Mode</span> </th>
+
+                        <th >
+                            <button class="btn btn-primary" ng-click="vm.addReglement()" type="button"   tooltip="Créer Reglement">
+                                <i class="fa fa-plus">
+                                </i>
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="reglement in vm.reglements track by reglement.id">
+                        <td>{{reglement.id}}</td>
+                        <td>{{reglement.montant| number }}</td>
+                        <td>{{reglement.dateVersement| date:'mediumDate'}}</td>
+                        <td>{{reglement.mode}}</td>
+
+                        <td >
+                         
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+      
+    </div>
+</div>

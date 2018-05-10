@@ -1,0 +1,227 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()"   class="form-validation">
+
+    <div class="modal-header">
+        <button type="button" class="btn btn-link pull-right" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()"><i class="fa fa-remove"></i>  </button>
+        <h3 class="modal-title" id="myCommandeLabel"  ng-show="$stateParams.type == 'ACHAT'">Créer ou modifier  Achat</h3>
+        <h3 class="modal-title" id="myCommandeLabel" ng-show="$stateParams.type == 'VENTE'">Créer ou modifier  Vente</h3>
+        <small class="text-muted" >Les champs * sont obligatoires</small>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_id">Id</label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.commande.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
+                </div>
+            </div>
+            <!--  <div class="col-sm-6">
+                  <div class="form-group">
+                      <label class="control-label"  for="field_type">Type</label>
+                      <select class="form-control" name="type"  ng-model="vm.commande.type"  id="field_type" readonly>
+                          <option value="ACHAT">ACHAT</option>
+                          <option value="VENTE">VENTE</option>
+                      </select>
+                  </div>
+              </div> -->
+            <div class="col-sm-6"  ng-show="$stateParams.type == 'VENTE'">
+                <div class="form-group">
+                    <label class="control-label"  for="field_client">Client <span style="color:red" >*</span></label>
+                    <div class="input-group">
+                        <ui-select ng-model="vm.commande.client"    ng-required="vm.commande.type=='VENTE'"  ng-disabled="vm.commande.type == 'ACHAT' || vm.commande.id">
+                            <ui-select-match placeholder="Select Client">{{$select.selected.nom}}</ui-select-match>
+                            <ui-select-choices repeat="client in vm.clients | filter: $select.search">
+                                <div ng-bind-html="client.nom | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Client', 'client', 'client', vm.commande.client)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.commande.client" >
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Client', 'client', 'client', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.commande.client" ng-disabled="vm.commande.type == 'ACHAT' || vm.commande.id">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> </div>
+            </div>
+
+            <div class="col-sm-6"   ng-show="$stateParams.type == 'ACHAT'">
+                <div class="form-group">
+                    <label class="control-label"  for="field_fournisseur">Fournisseur <span style="color:red" >*</span></label>
+                    <div class="input-group">
+                        <ui-select ng-model="vm.commande.fournisseur"    ng-required="vm.commande.type=='ACHAT'"  ng-disabled="vm.commande.type == 'VENTE' || vm.commande.id">
+                            <ui-select-match placeholder="Select Fournisseur">{{$select.selected.nom}}</ui-select-match>
+                            <ui-select-choices repeat="fournisseur in vm.fournisseurs | filter: $select.search">
+                                <div ng-bind-html="fournisseur.nom | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Fournisseur', 'fournisseur', 'fournisseur', vm.commande.fournisseur)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.commande.fournisseur"  disabled="">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Fournisseur', 'fournisseur', 'fournisseur', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.commande.fournisseur"  ng-disabled="vm.commande.type == 'VENTE' || vm.commande.id">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_etat">Etat <span style="color:red" >*</span>
+                      <span class="label bg-success"  ng-show="vm.commande.livree">Livree</span>
+                        <span class="label bg-info"  ng-show="vm.commande.facturee">Facturee</span>
+                        <span class="label bg-primary"  ng-show="vm.commande.commandee">Commandee</span>
+                    </label>
+                    <select class="form-control" name="etat"  ng-model="vm.commande.etat"  id="field_etat" ng-required="vm.commande.id"  ng-disabled="!vm.commande.id">
+                        <!-- <option value="ANNULE">ANNULE</option>-->
+                        <option value="DEVIS" ng-show="vm.commande.etat == 'DEVIS'">DEVIS</option>
+                        <option value="BON_COMMANDE"   ng-show="!vm.commande.commandee || vm.commande.etat == 'BON_COMMANDE'">BON_COMMANDE</option>
+                        <option value="FACTUREE"  ng-show="!vm.commande.facturee || vm.commande.etat == 'FACTUREE'">FACTUREE</option>
+                        <option value="BON_LIVRAISON"   ng-show="!vm.commande.livree || vm.commande.etat == 'BON_LIVRAISON'">BON_LIVRAISON</option>
+                        <option value="REGLE"   ng-show="!vm.commande.reglee || vm.commande.etat == 'REGLE'">REGLE</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_dateEmission">Date Emission <span style="color:red" >*</span></label>
+                    <div class="input-group">
+                        <input  id="field_dateEmission" type="text" class="form-control" name="dateEmission"    ng-required="!vm.commande.id"  ng-disabled="vm.commande.id"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.commande.dateEmission"  is-open="vm.datePickerOpenStatus.dateEmission"
+                                />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateEmission')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <uib-tabset class="uib-tab-container" justified="true"   vertical="false"  type="pills">
+                    <uib-tab>
+                        <uib-tab-heading  >
+                            <span  ng-show="$stateParams.type == 'VENTE'">Vente</span>
+                            <span  ng-show="$stateParams.type == 'ACHAT'">Achat</span>
+                        </uib-tab-heading>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label"  for="field_dateLivraison">Date Livraison</label>
+                                    <div class="input-group">
+                                        <input  id="field_dateLivraison" type="text" class="form-control" name="dateLivraison"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.commande.dateLivraison"  is-open="vm.datePickerOpenStatus.dateLivraison"
+                                                />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateLivraison')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label"  for="field_dateEcheance">Date Echeance</label>
+                                    <div class="input-group">
+                                        <input  id="field_dateEcheance" type="text" class="form-control" name="dateEcheance"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.commande.dateEcheance"  is-open="vm.datePickerOpenStatus.dateEcheance"
+                                                />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateEcheance')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label"  for="field_delai">Delai</label>
+                                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_delai" ng-model="vm.commande.delai"                     ng-readonly="false"  ng-required="false"    ng-min="1"     ng-max="30"                      />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label"  for="field_superviseur">Superviseur</label>
+                                    <div class="input-group">
+                                        <ui-select ng-model="vm.commande.superviseur"    ng-required="false">
+                                            <ui-select-match placeholder="Select Employe">{{$select.selected.nom}}</ui-select-match>
+                                            <ui-select-choices repeat="superviseur in vm.superviseurs | filter: $select.search">
+                                                <div ng-bind-html="superviseur.nom | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>  
+                                        <span class="input-group-btn" >
+                                            <button   ng-click="vm.zoomColumn('Employe', 'employe', 'superviseur', vm.commande.superviseur)" 
+                                                      class="btn btn-default" type="button"  ng-hide="!vm.commande.superviseur">
+                                                <span class="fa fa-eye"></span>
+                                            </button>
+                                            <button ng-click="vm.zoomColumn('Employe', 'employe', 'superviseur', {})"      
+                                                    class="btn btn-default" type="button"  ng-hide="vm.commande.superviseur">
+                                                <span class="fa fa-plus fw"></span>
+                                            </button>
+                                        </span>
+                                    </div> </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label"  for="field_prixHT">Prix HT</label>
+                                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_prixHT"    placeholder="{{vm.commande.prixHT|number}}"                  ng-readonly="true"  ng-required="false"                     />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label"  for="field_prixTTC">Prix TTC</label>
+                                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_prixTTC"     placeholder="{{vm.commande.prixTTC|number}}"                      ng-readonly="true"  ng-required="false"                     />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label"  for="field_prixHT">Montant Payé</label>
+                                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_montantPaye"     placeholder="{{vm.commande.montantPaye|number}}"                ng-readonly="true"  ng-required="false"                     />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label"  for="field_prixTTC">Montant Restant</label>
+                                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_montantRestant"     placeholder="{{vm.commande.montantRestant|number}}"                  ng-readonly="true"  ng-required="false"                     />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="control-label"  for="field_commentaires">Commentaires</label>
+                                    <textarea class="form-control" rows="3"  cols="30"   id="field_commentaires" ng-model="vm.commande.commentaires"                     ng-readonly="false"  ng-required="false"                     > </textarea>
+                                </div>
+                            </div> 
+                        </div>
+
+                    </uib-tab>
+                    <uib-tab  ng-if="vm.commande.id"  >
+                        <uib-tab-heading  >Detail Commandes</uib-tab-heading>
+                        <ng-include  src="'tpl/entities/commande-ligne/commande-lignes.html'"></ng-include> 
+                    </uib-tab>
+                    <uib-tab  ng-if="vm.commande.id && vm.commande.etat !== 'DEVIS'"  >
+                        <uib-tab-heading  >Reglements</uib-tab-heading>
+                        <ng-include  src="'tpl/entities/reglement/reglements.html'"></ng-include> 
+                    </uib-tab>
+
+                </uib-tabset>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Annuler</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Enregister</span>
+        </button>
+    </div>
+</form>

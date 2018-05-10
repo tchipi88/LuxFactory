@@ -1,0 +1,63 @@
+<div class="bg-light lter b-b wrapper-md">
+
+ <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i> <a ui-sref="home">Accueil</a></li>
+                <li class="active">Site</li>
+              </ol>
+
+    
+</div>
+
+
+
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        
+        <div class="panel-body table-responsive">
+
+            <div class="form-group" style='float: right;margin-bottom: 1px'>
+                 <button class="btn btn-primary" ui-sref="site.new" title="Ajouter un site"><i class="fa fa-plus"></i></button>
+              </div>
+
+            
+
+
+            
+
+        </div>
+        <div class="panel-footer" style="border-top: 0px">
+          <div class="row">
+
+            <div ng-repeat="site in vm.sites track by site.id" class="col-md-55" style="width:15%;float: left;padding: 10px">
+                        <div class="thumbnail" style="padding: 0px">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="img/logo.png" alt="image" />
+                            <div class="mask">
+                              <p>{{site.nom}}</p>
+                              <div class="tools tools-bottom">
+                                <a ui-sref="site.edit({id:site.id})"><i class="fa fa-pencil text-info-lter"></i></a>
+                                <a ui-sref="site.delete({id:site.id})"><i class="fa fa-times text-danger"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="caption">
+                             <p>Localisation: {{site.localisation}}</p>
+                             <p>Responsable: {{site.responsable.nom}}</p>
+                          </div>
+                        </div>
+                        <div style="text-align:center;font-weight: bold">{{site.nom}}</div>
+                      </div>
+
+                        
+            </div>
+        </div>
+
+
+        
+
+    </div>
+</div>

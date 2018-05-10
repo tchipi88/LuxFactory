@@ -1,0 +1,64 @@
+
+<div>
+    <h2><span >Client</span> {{vm.client.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        
+       <dt><span >Nom</span></dt>
+        <dd>
+            <span>{{vm.client.nom}}</span>
+        </dd> 
+<dt><span >Email</span></dt>
+        <dd>
+            <span>{{vm.client.email}}</span>
+        </dd> 
+<dt><span >Telephone Portable</span></dt>
+        <dd>
+            <span>{{vm.client.telephonePortable}}</span>
+        </dd> 
+<dt><span >Telephone Fixe</span></dt>
+        <dd>
+            <span>{{vm.client.telephoneFixe}}</span>
+        </dd> 
+<dt><span >Site Web</span></dt>
+        <dd>
+            <span>{{vm.client.siteWeb}}</span>
+        </dd> 
+<dt><span >Boite Postale</span></dt>
+        <dd>
+            <span>{{vm.client.boitePostale}}</span>
+        </dd> 
+<dt><span >Adresse</span></dt>
+        <dd>
+            <span>{{vm.client.adresse}}</span>
+        </dd> 
+<dt><span >Logo</span></dt>
+        <dd>
+            <span>{{vm.client.logo}}</span>
+        </dd> 
+<dt><span >Logo Content Type</span></dt>
+        <dd>
+            <span>{{vm.client.logoContentType}}</span>
+        </dd> 
+<dt><span >Responsable</span></dt>
+        <dd>
+            <span>{{vm.client.responsable}}</span>
+        </dd> 
+<dt><span >Numero Commerce</span></dt>
+        <dd>
+            <span>{{vm.client.numeroCommerce}}</span>
+        </dd> 
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Retour</span>
+    </button>
+
+    <button type="button" ui-sref="client-detail.edit({id:vm.client.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" > Modifier</span>
+    </button>
+</div>

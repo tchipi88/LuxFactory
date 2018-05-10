@@ -46,15 +46,49 @@
 
     <!-- Modules user  -->
     <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-        <span >Modules user</span>
+        <span >Modules Stock</span>
     </li>
     
-    <li ui-sref-active="active">
-        <a ui-sref="articles">
+   
+
+    <li>
+        <a href class="auto">
+            <span class="pull-right text-muted">
+                <i class="fa fa-fw fa-angle-right text"></i>
+                <i class="fa fa-fw fa-angle-down text-active"></i>
+            </span>
             <i class="fa fa-cubes icon text-danger"></i>
-            <span class="font-bold" >Articles</span>
+            <span class="font-bold"> Items</span>
         </a>
+        <ul class="nav nav-sub dk">
+            <li class="nav-sub-header">
+                <a href>
+                    <span> Items</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="liste-articles">
+                    <span>Articles</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="zone">
+                    <span>Zone de stockage</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="activites">
+                    <span>Activites</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="produit-categorie">
+                    <span>Categorie</span>
+                </a>
+            </li>
+        </ul>
     </li>
+
     <li ui-sref-active="active">
         <a ui-sref="transactions">
             <i class="fa fa-compress icon text-danger"></i>
@@ -67,24 +101,7 @@
             <span class="font-bold" >Acteurs</span>
         </a>
     </li>
-    <li ui-sref-active="active">
-        <a ui-sref="employe">
-            <i class="fa fa-user icon text-danger"></i>
-            <span class="font-bold">Employes</span>
-        </a>
-    </li>
-    <li ui-sref-active="active">
-        <a ui-sref="">
-            <i class="fa fa-wrench icon text-danger"></i>
-            <span class="font-bold" >Maintenance</span>
-        </a>
-    </li>
-    <li ui-sref-active="active">
-        <a ui-sref="">
-            <i class="fa fa-cogs icon text-danger"></i>
-            <span class="font-bold" >Configuration</span>
-        </a>
-    </li>
+   
     <!-- <li class="divider-dashed">
         <div  style="border-top: 1px dashed #e7eaec;height: 1px;margin: 10px 0;"></div>
     </li>  -->
@@ -95,16 +112,10 @@
             <span class="font-bold" >Analyses</span>
         </a>
     </li>
-    <li ui-sref-active="active">
-        <a ui-sref="">
-            <i class="fa fa-file icon text-danger"></i>
-            <span class="font-bold" >Rapports</span>
-        </a>
-    </li>
     
 
     <li  class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-        <span > Modules</span>
+        <span > Configuration</span>
     </li>
     
       <!-- <li>
@@ -136,6 +147,12 @@
     </li> -->
 
     
+    <li ui-sref-active="active">
+        <a ui-sref="employe">
+            <i class="fa fa-user icon text-success"></i>
+            <span class="font-bold">Employes</span>
+        </a>
+    </li>
      <li>
         <a href class="auto">
             <span class="pull-right text-muted">
@@ -169,7 +186,7 @@
 
     <li ui-sref-active="active">
         <a ui-sref="produit">
-            <i class="fa fa-cube icon text-info-lter"></i>
+            <i class="fa fa-cube icon text-success"></i>
             <span class="font-bold" >Produits</span>
         </a>
     </li>

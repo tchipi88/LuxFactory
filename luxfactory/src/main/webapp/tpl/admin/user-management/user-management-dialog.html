@@ -1,0 +1,135 @@
+<form name="editForm" role="form" novalidate ng-submit="vm.save()"  class="form-validation">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h3 class="modal-title" id="myUserLabel" >
+            Créer ou modifier User</h3>
+        <small class="text-muted" >Les champs * sont obligatoires</small>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label >ID</label>
+                    <input type="text" class="form-control" name="id"
+                           ng-model="vm.user.id" readonly>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label" >Login<span style="color:red" >*</span></label>
+                    <input type="text" class="form-control" name="login"
+                           ng-model="vm.user.login" ng-required="vm.user.id == null" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[_'.@A-Za-z0-9-]*$/">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label >Nom<span style="color:red" >*</span></label>
+                    <input type="text" class="form-control" name="lastName"  required=""
+                           ng-model="vm.user.lastName" ng-maxlength="50">
+                  
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label" >Prénom</label>
+                    <input type="text" class="form-control" name="firstName"
+                           ng-model="vm.user.firstName" ng-maxlength="50">
+
+                   
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label" >Email</label>
+                    <input type="email" class="form-control" name="email"
+                           ng-model="vm.user.email"  ng-maxlength="100">
+
+                    
+                </div>
+            </div>
+           
+            
+            <!--   <div class="col-sm-6">
+                   <div class="form-group">
+                       <label class="control-label" for="password" >New password</label>
+                       <input type="password" class="form-control" id="password" name="password" 
+                              ng-model="vm.registerAccount.password" ng-minlength=4 ng-maxlength=50 required>
+                       <div ng-show="form.password.$dirty && form.password.$invalid">
+                           <p class="help-block"
+                              ng-show="form.password.$error.required" >
+                               Your password is required.
+                           </p>
+                           <p class="help-block"
+                              ng-show="form.password.$error.minlength" >
+                               Your password is required to be at least 4 characters.
+                           </p>
+                           <p class="help-block"
+                              ng-show="form.password.$error.maxlength" >
+                               Your password cannot be longer than 50 characters.
+                           </p>
+                       </div>
+                       <password-strength-bar password-to-check="vm.registerAccount.password"></password-strength-bar>
+                   </div>
+               </div>
+               <div class="col-sm-6">
+                   <div class="form-group">
+                       <label class="control-label" for="confirmPassword" >New password confirmation</label>
+                       <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" 
+                              ng-model="vm.confirmPassword" ng-minlength=4 ng-maxlength=50 required>
+                       <div ng-show="form.confirmPassword.$dirty && form.confirmPassword.$invalid">
+                           <p class="help-block"
+                              ng-show="form.confirmPassword.$error.required" >
+                               Your confirmation password is required.
+                           </p>
+                           <p class="help-block"
+                              ng-show="form.confirmPassword.$error.minlength" >
+                               Your confirmation password is required to be at least 4 characters.
+                           </p>
+                           <p class="help-block"
+                              ng-show="form.confirmPassword.$error.maxlength" >
+                               Your confirmation password cannot be longer than 50 characters.
+                           </p>
+                       </div>
+                   </div>
+               </div> -->
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label" >Activated</label>
+                    <div class="form-control">
+                        <label for="activated"  class="i-checks">
+                            <input ng-disabled="vm.user.id === null" type="checkbox" id="activated" name="activated" ng-model="vm.user.activated">
+                            <i></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+           
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label >Profiles</label>
+
+                    <ui-select multiple ng-model="vm.user.authorities" theme="bootstrap" >
+                        <ui-select-match>{{$item}}</ui-select-match>
+                        <ui-select-choices  repeat="authority in vm.authorities">
+                            <div ng-bind-html="authority"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle">Annuler</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save">Enregistrer</span>
+        </button>
+    </div>
+</form>

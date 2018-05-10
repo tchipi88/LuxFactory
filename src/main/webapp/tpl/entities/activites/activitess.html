@@ -1,4 +1,13 @@
- <div>
+<div class="bg-light lter b-b wrapper-md" >
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a ui-sref="home">Accueil</a></li>
+    <li class="breadcrumb-item active">Items</li>
+    <li class="breadcrumb-item active" aria-current="page">Activites</li>
+  </ol>
+</nav>
+</div>
+<div>
     <jhi-alert></jhi-alert>
 </div>
  <div class="wrapper-md">
@@ -61,7 +70,7 @@
 
             <div>
               <div class="form-group" style='float: right;'>
-                 <button class="btn btn-primary" ui-sref="articles.activites.new" tooltip="Ajouter un article"><i class="fa fa-plus"></i></button>
+                 <button class="btn btn-primary" ui-sref="activites.new" tooltip="Ajouter un article"><i class="fa fa-plus"></i></button>
               </div>
 
 
@@ -86,12 +95,12 @@
                          <td>{{activites.dateDebut | date:'mediumDate'}}</td>
                          <td>{{activites.dateFin | date:'mediumDate'}}</td>
                         <td >
-                            <button type="submit"   ui-sref="articles.activites.edit({id:activites.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                            <button type="submit"   ui-sref="activites.edit({id:activites.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
                                 <i class="fa fa-edit">
                                 </i>
                             </button>
 
-                            <button type="submit"  ui-sref="articles.activites.delete({id:activites.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                            <button type="submit"  ui-sref="activites.delete({id:activites.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
                                 <i class="fa fa-trash">
                                 </i>
                             </button>

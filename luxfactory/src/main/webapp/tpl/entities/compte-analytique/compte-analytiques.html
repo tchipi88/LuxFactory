@@ -1,0 +1,57 @@
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-12 no-padding-right">
+                    <form name="searchForm" class="form-inline">
+                        <div class="input-group pull-right" >
+                            <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="Recherche">
+                            <span  class="input-group-btn width-min" >
+                                <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                            <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                                <button class="btn btn-info" ng-click="vm.clear()">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body table-responsive">
+            <table id="dt_article" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                        <th><span >ID</span></th>
+                        <th><span >Tiers</span></th>
+                        <th><span >Intitule</span></th>
+                        <th><span >Type</span></th>
+                        <th ><span >Debit</span> </th>
+                        <th ><span >Credit</span> </th>
+                        <th ><span >Solde</span></th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="compteAnalytique in vm.compteAnalytiques track by compteAnalytique.id">
+                        <td><a ui-sref="compteAnalytique-detail({id:compte-analytique.id})">{{compteAnalytique.id}}</a></td>
+                        <td>{{compteAnalytique.tiers.nom}}</td>
+                        <td>{{compteAnalytique.intitule}}</td>
+                        <td>{{compteAnalytique.type}}</td>
+                        <td>{{compteAnalytique.debit| number }}</td>
+                        <td>{{compteAnalytique.credit| number }}</td>
+                        <td>{{compteAnalytique.solde| number }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

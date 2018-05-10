@@ -1,0 +1,49 @@
+
+
+  <div class="form-group" style='float: right;'>
+     <button class="btn btn-primary" ui-sref="liste-articles.new" tooltip="Ajouter un article"><i class="fa fa-plus"></i></button>
+  </div>
+
+
+  <table id="dt_article" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
+
+                <thead>
+                    <tr>
+                         <th class="column-title sortable-column">Articles </th>
+                         <th class="column-title sortable-column">Unite</th>
+                         <th class="column-title sortable-column">Solde initial </th>
+                         <th class="column-title sortable-column">Solde final </th>
+                         <th class="column-title">Date Der. entree</th>
+                         <th class="column-title">Date Der. sortie</th>
+                         <th class="column-title sortable-column">Cumul entrée </th>
+                         <th class="column-title sortable-column">Cumul sortie </th>
+                         <th class="column-title no-link last"><span class="nobr">Action</span></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="listeArticles in vm.listeArticless track by listeArticles.id">
+                        <td>{{listeArticles.activite}}</td>
+                         <td>{{listeArticles.unite}}</td>
+                         <td>{{listeArticles.soldeInitial}}</td>
+                         <td>{{listeArticles.soldeFinal}}</td>
+                         <td>{{listeArticles.lastIn | date:'mediumDate'}}</td>
+                         <td>{{listeArticles.lastOut | date:'mediumDate'}}</td>
+                         <td>{{listeArticles.cumulEntree}}</td>
+                         <td>{{listeArticles.cumulSortie}}</td>
+                        <td >
+                            <button type="submit"   ui-sref="liste-articles.edit({id:listeArticles.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="submit"  ui-sref="liste-articles.delete({id:listeArticles.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash-o">
+                                </i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+  </table>
+  
+

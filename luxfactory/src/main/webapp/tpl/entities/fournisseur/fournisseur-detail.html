@@ -1,0 +1,68 @@
+
+<div>
+    <h2><span >Fournisseur</span> {{vm.fournisseur.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        
+       <dt><span >Produits</span></dt>
+        <dd>
+            <span>{{vm.fournisseur.produits}}</span>
+        </dd> 
+<dt><span >Nom</span></dt>
+        <dd>
+            <span>{{vm.fournisseur.nom}}</span>
+        </dd> 
+<dt><span >Email</span></dt>
+        <dd>
+            <span>{{vm.fournisseur.email}}</span>
+        </dd> 
+<dt><span >Telephone Portable</span></dt>
+        <dd>
+            <span>{{vm.fournisseur.telephonePortable}}</span>
+        </dd> 
+<dt><span >Telephone Fixe</span></dt>
+        <dd>
+            <span>{{vm.fournisseur.telephoneFixe}}</span>
+        </dd> 
+<dt><span >Site Web</span></dt>
+        <dd>
+            <span>{{vm.fournisseur.siteWeb}}</span>
+        </dd> 
+<dt><span >Boite Postale</span></dt>
+        <dd>
+            <span>{{vm.fournisseur.boitePostale}}</span>
+        </dd> 
+<dt><span >Adresse</span></dt>
+        <dd>
+            <span>{{vm.fournisseur.adresse}}</span>
+        </dd> 
+<dt><span >Logo</span></dt>
+        <dd>
+            <span>{{vm.fournisseur.logo}}</span>
+        </dd> 
+<dt><span >Logo Content Type</span></dt>
+        <dd>
+            <span>{{vm.fournisseur.logoContentType}}</span>
+        </dd> 
+<dt><span >Responsable</span></dt>
+        <dd>
+            <span>{{vm.fournisseur.responsable}}</span>
+        </dd> 
+<dt><span >Numero Commerce</span></dt>
+        <dd>
+            <span>{{vm.fournisseur.numeroCommerce}}</span>
+        </dd> 
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Retour</span>
+    </button>
+
+    <button type="button" ui-sref="fournisseur-detail.edit({id:vm.fournisseur.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" > Modifier</span>
+    </button>
+</div>

@@ -1,0 +1,44 @@
+
+<div>
+    <h2><span >Encaissement</span> {{vm.encaissement.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        
+       <dt><span >Caisse</span></dt>
+        <dd>
+            <span>{{vm.encaissement.caisse}}</span>
+        </dd> 
+<dt><span >Date Versement</span></dt>
+        <dd>
+            <span>{{vm.encaissement.dateVersement}}</span>
+        </dd> 
+<dt><span >Montant</span></dt>
+        <dd>
+            <span>{{vm.encaissement.montant}}</span>
+        </dd> 
+<dt><span >Mode Paiement</span></dt>
+        <dd>
+            <span>{{vm.encaissement.modePaiement}}</span>
+        </dd> 
+<dt><span >Motif</span></dt>
+        <dd>
+            <span>{{vm.encaissement.motif}}</span>
+        </dd> 
+<dt><span >Commentaires</span></dt>
+        <dd>
+            <span>{{vm.encaissement.commentaires}}</span>
+        </dd> 
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Retour</span>
+    </button>
+
+    <button type="button" ui-sref="encaissement-detail.edit({id:vm.encaissement.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" > Modifier</span>
+    </button>
+</div>

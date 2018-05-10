@@ -1,0 +1,132 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()"   class="form-validation">
+
+    <div class="modal-header">
+        <button type="button" class="btn btn-link pull-right" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()"><i class="fa fa-remove"></i>  </button>
+        <h3 class="modal-title" id="myEmployeLabel" >Créer ou modifier  Employe</h3>
+        <small class="text-muted" >Les champs * sont obligatoires</small>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label"  for="field_id">Id</label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.employe.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_nom">Nom <span style="color:red" >*</span></label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_nom" ng-model="vm.employe.nom"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_prenom">Prenom</label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_prenom" ng-model="vm.employe.prenom"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_dateNaissance">Date Naissance</label>
+                    <div class="input-group">
+                        <input  id="field_dateNaissance" type="text" class="form-control" name="dateNaissance"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.employe.dateNaissance"  is-open="vm.datePickerOpenStatus.dateNaissance"
+                                />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateNaissance')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_lieuNaissance">Lieu Naissance</label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_lieuNaissance" ng-model="vm.employe.lieuNaissance"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_numeroCni">Numero Cni</label>
+                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_numeroCni" ng-model="vm.employe.numeroCni"                     ng-readonly="false"  ng-required="false"                     />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_telephone">Telephone</label>
+                    <div class="input-group"> <input  class="form-control"   type="text"  autocomplete="off"  id="field_telephone"  ng-model="vm.employe.telephone"                     ng-readonly="false"  ng-required="false"                     /><span class="input-group-addon" >  <span >
+                                <i class="fa fa-phone"></i>
+                            </span> </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_email">Email</label>
+                    <div class="input-group"> <input  class="form-control"   type="email"  autocomplete="off"  id="field_email"  ng-model="vm.employe.email"                     ng-readonly="false"  ng-required="false"                     /><span class="input-group-addon" >  <span >
+                                <i class="fa fa-envelope"></i>
+                            </span> </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_adresse">Adresse</label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_adresse" ng-model="vm.employe.adresse"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_dateEntree">Date Entree</label>
+                    <div class="input-group">
+                        <input  id="field_dateEntree" type="text" class="form-control" name="dateEntree"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.employe.dateEntree"  is-open="vm.datePickerOpenStatus.dateEntree"
+                                />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateEntree')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_salaire">Salaire</label>
+                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_salaire" ng-model="vm.employe.salaire"                     ng-readonly="false"  ng-required="false"                     />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_fonction">Fonction <span style="color:red" >*</span></label>
+                    <div class="input-group">
+                        <ui-select ng-model="vm.employe.fonction"    ng-required="true">
+                            <ui-select-match placeholder="Select EmployeFonction">{{$select.selected.libelle}}</ui-select-match>
+                            <ui-select-choices repeat="fonction in vm.fonctions | filter: $select.search">
+                                <div ng-bind-html="fonction.libelle | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('EmployeFonction', 'employe-fonction', 'fonction', vm.employe.fonction)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.employe.fonction">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('EmployeFonction', 'employe-fonction', 'fonction', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.employe.fonction">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> 
+                </div>
+            </div>
+            
+
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Annuler</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Enregister</span>
+        </button>
+    </div>
+</form>

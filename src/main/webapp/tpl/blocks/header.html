@@ -129,7 +129,7 @@
             <a class="dropdown-toggle" uib-dropdown-toggle href="">
                 <span>
                     <span class="glyphicon glyphicon-user"></span>
-                    <span class="hidden-sm" > Compte  </span>
+                    <span class="hidden-sm" > {{vm.settingsAccount.login}}  </span>
                     <b class="caret"></b>
                 </span>
             </a>
@@ -148,9 +148,9 @@
                     </a>
                 </li>
                 <li ui-sref-active="active" >
-                    <a ui-sref="sessions" >
-                        <span class="glyphicon glyphicon-cloud"></span>&nbsp;
-                        <span>Sessions</span>
+                    <a ui-sref="site" >
+                        <span class="glyphicon glyphicon-home"></span>&nbsp;
+                        <span>Sites</span>
                     </a>
                 </li>
                 <li ui-sref-active="active" >

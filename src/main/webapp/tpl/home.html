@@ -1,4 +1,174 @@
-<div class="bg-light lter b-b wrapper-md">
+<!-- navbar -->
+<div class="app-header navbar">
+
+<!-- navbar header -->
+<div class="navbar-header">
+    <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+        <i class="glyphicon glyphicon-cog"></i>
+    </button>
+    <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll-to="app">
+        <i class="glyphicon glyphicon-align-justify"></i>
+    </button>
+    <!-- brand -->
+    <a href="#/" class="navbar-brand text-lt" style="padding: 0 10px;">
+        <img src="img/logo.png" alt="." style="max-height: 45px">
+    </a>
+    <!-- / brand -->
+</div>
+<!-- / navbar header -->
+
+<!-- navbar collapse -->
+<div class="collapse pos-rlt navbar-collapse box-shadow" style="margin-left: 0px">
+    <!-- buttons -->
+    
+    <!-- / buttons -->
+
+    <!-- link and dropdown -->
+
+    <!-- / link and dropdown -->
+
+    <!-- search form -->
+
+    <!-- / search form -->
+
+    <!-- nabar right -->
+    <ul class="nav navbar-nav navbar-right">
+        
+        <li ng-class="{active: vm.$state.includes('admin')}" has-authority="ROLE_ADMIN"  uib-dropdown class="dropdown">
+            <a class="dropdown-toggle" uib-dropdown-toggle href="" id="admin-menu">
+                <span>
+                    <span class="glyphicon glyphicon-tower"></span>
+                    <span class="hidden-sm" >Administration</span>
+                    <b class="caret"></b>
+                </span>
+            </a>
+            <ul class="dropdown-menu" uib-dropdown-menu>
+               
+                <li ui-sref-active="active">
+                    <a ui-sref="jhi-metrics" >
+                        <span class="glyphicon glyphicon-dashboard"></span>&nbsp;
+                        <span data-translate="global.menu.admin.metrics">Metrics</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="jhi-health" >
+                        <span class="glyphicon glyphicon-heart"></span>&nbsp;
+                        <span data-translate="global.menu.admin.health">Health</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="jhi-configuration" >
+                        <span class="glyphicon glyphicon-list-alt"></span>&nbsp;
+                        <span data-translate="global.menu.admin.configuration">Configuration</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="audits" >
+                        <span class="glyphicon glyphicon-bell"></span>&nbsp;
+                        <span data-translate="global.menu.admin.audits">Audits</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="logs" >
+                        <span class="glyphicon glyphicon-tasks"></span>&nbsp;
+                        <span data-translate="global.menu.admin.logs">Logs</span>
+                    </a>
+                </li>
+                <li ng-show="vm.swaggerEnabled" ui-sref-active="active">
+                    <a ui-sref="docs" >
+                        <span class="glyphicon glyphicon-book"></span>&nbsp;
+                        <span data-translate="global.menu.admin.apidocs">API</span>
+                    </a>
+                </li>
+                <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
+            </ul>
+        </li>
+
+       
+        <li  uib-dropdown class="dropdown">
+            <a href class="dropdown-toggle" dropdown-toggle>
+                <i class="icon-bell fa-fw"></i>
+                <span class="visible-xs-inline">Notifications</span>
+                <span class="badge badge-sm up bg-danger pull-right-xs">2</span>
+            </a>
+            <!-- dropdown -->
+            <div class="dropdown-menu w-xl animated fadeInUp">
+                <div class="panel bg-white">
+                    <div class="panel-heading b-light bg-light">
+                        <strong>You have <span>2</span> notifications</strong>
+                    </div>
+                    <div class="list-group">
+                        <a href class="list-group-item">
+                            <span class="pull-left m-r thumb-sm">
+                                <img src="img/a0.jpg" alt="..." class="img-circle">
+                            </span>
+                            <span class="clear block m-b-none">
+                                Use awesome animate.css<br>
+                                <small class="text-muted">10 minutes ago</small>
+                            </span>
+                        </a>
+                        <a href class="list-group-item">
+                            <span class="clear block m-b-none">
+                                1.0 initial released<br>
+                                <small class="text-muted">1 hour ago</small>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="panel-footer text-sm">
+                        <a href class="pull-right"><i class="fa fa-cog"></i></a>
+                        <a href="#notes" data-toggle="class:show animated fadeInRight">See all the notifications</a>
+                    </div>
+                </div>
+            </div>
+            <!-- / dropdown -->
+        </li>
+        <li  uib-dropdown class="dropdown">
+            <a class="dropdown-toggle" uib-dropdown-toggle href="">
+                <span>
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span class="hidden-sm" > {{vm.settingsAccount.nom}}  </span>
+                    <b class="caret"></b>
+                </span>
+            </a>
+            <!-- dropdown -->
+            <ul class="dropdown-menu" uib-dropdown-menu>
+                <li ui-sref-active="active" >
+                    <a ui-sref="settings" >
+                        <span class="glyphicon glyphicon-wrench"></span>&nbsp;
+                        <span data-translate="global.menu.account.settings">Settings</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active" >
+                    <a ui-sref="password" >
+                        <span class="glyphicon glyphicon-lock"></span>&nbsp;
+                        <span data-translate="global.menu.account.password">Password</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active" >
+                    <a ui-sref="site" >
+                        <span class="glyphicon glyphicon-home"></span>&nbsp;
+                        <span>Sites</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active" >
+                    <a href="" ng-click="vm.logout()" id="logout"  >
+                        <span class="glyphicon glyphicon-log-out"></span>&nbsp;
+                        <span >Sign out</span>
+                    </a>
+                </li>
+              
+            </ul>
+            <!-- / dropdown -->
+        </li>
+    </ul>
+    <!-- / navbar right -->
+
+</div>
+<!-- / navbar collapse -->
+</div>
+<!-- / navbar -->
+
+<!-- <div class="bg-light lter b-b wrapper-md">
     <nav class="navbar navbar-default" role="navigation" style="font-size: 17px">
             <div>
                 <ul class="nav navbar-nav">
@@ -11,34 +181,40 @@
                 </ul>
             </div>
         </nav>
+</div> -->
+<div class="bg-light lter b-b wrapper-md" >
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a ui-sref="home"> <i class="fa fa-home"></i> Accueil</a></li>
+  </ol>
+</nav>
 </div>
+
 <div class="wrapper-md" >
 
     <!-- top row -->
     <div class="row">
         <div class="col-lg-12">
-            <div class="jumbotron">
+            <div class="jumbotron" style="padding-left: 15px">
                 <h1>LuxFactory manager</h1>
                 <p>Bien gérer ses stocks pour augmenter son chiffre d'affaires       </p>
                 <p>Le logiciel optimise la gestion des stocks tout en s'adaptant aux logiciels commerciaux et comptables.       </p>
-            </div>
-        </div>
-    </div>
-    <!-- /.row -->
 
-    <div class="row">
+
+                 <div class="row" style="margin-top: 50px">
         <div class="col-lg-12">
 
-        
-            <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageArticles()">
-                <div>
-                    <h3><i class="fa fa-cubes fa-5x"></i></h3>
-                </div>
-                <div>
-                    <h3>Gerer mes articles</h3>
-                </div>
+            <a ui-sref='liste-articles'>
+                <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageArticles()">
+                    <div>
+                        <h3><i class="fa fa-cubes fa-5x"></i></h3>
+                    </div>
+                    <div>
+                        <h3>Stocks</h3>
+                    </div>
 
-            </div>
+                </div>
+            </a>
 
 
             <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageShopping()">
@@ -46,7 +222,7 @@
                     <h3><i class="fa fa-shopping-cart fa-5x"></i></h3>
                 </div>
                 <div>
-                    <h3>Gerer mes achats</h3>
+                    <h3>Achats - Ventes</h3>
                 </div>
             </div>
 
@@ -55,23 +231,31 @@
                     <h3><i class="fa fa-wrench fa-5x"></i></h3>
                 </div>
                 <div>
-                    <h3>Gerer ma maintenance</h3>
+                    <h3>Maintenance</h3>
                 </div>
             </div>
 
 
             <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageSite()">
                 <div>
-                    <h3><i class="fa fa-cogs fa-5x"></i></h3>
+                    <h3><i class="fa fa-bank fa-5x"></i></h3>
                 </div>
                 <div>
-                    <h3>Configurer mon site</h3>
+                    <h3>Sites</h3>
                 </div>
             </div>
 
 
         </div>
     </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+   
 
 
 </div>

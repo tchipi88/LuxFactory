@@ -43,16 +43,16 @@
                 })
                
                
-                .state('liste-articles.articles.new', {
-                        parent: 'liste-articles.articles',
+                .state('liste-articles.new', {
+                        parent: 'liste-articles',
                         url: '/new',
                         data: {
                         authorities: ['ROLE_USER']
                         },
                         onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                         $uibModal.open({
-                        templateUrl: 'tpl/entities/liste-articles/liste-articles-dialog.html',
-                                controller: 'ListeArticlesDialogController',
+                        templateUrl: 'tpl/entities/produits/produits-dialog.html',
+                                controller: 'ProduitsDialogController',
                                 controllerAs: 'vm',
                                 backdrop: 'static',
                                 size: 'lg',
@@ -64,9 +64,9 @@
                                 }
                                 }
                         }).result.then(function () {
-                                $state.go('liste-articles.articles', null, {reload: 'liste-articles.articles'});
+                                $state.go('liste-articles', null, {reload: 'liste-articles'});
                                 }, function () {
-                                $state.go('liste-articles.articles');
+                                $state.go('liste-articles');
                                 });
                         }]
                 })
