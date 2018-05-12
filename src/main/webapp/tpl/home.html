@@ -201,53 +201,102 @@
                 <p>Le logiciel optimise la gestion des stocks tout en s'adaptant aux logiciels commerciaux et comptables.       </p>
 
 
-                 <div class="row" style="margin-top: 50px">
-        <div class="col-lg-12">
+                 <div class="row bs-glyphicons" style="margin-top: 50px">
 
-            <a ui-sref='liste-articles'>
-                <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageArticles()">
-                    <div>
-                        <h3><i class="fa fa-cubes fa-5x"></i></h3>
+                    <div class="col-lg-12 bs-glyphicons-list">
+
+                       <!--  <ul class="bs-glyphicons-list">
+                            <li class="col-xs-6 col-md-3">
+                                <a ui-sref='liste-articles'>
+                                    <span class="glyphicon glyphicon-plus">
+                                        
+                                    </span> 
+                                    <span class="glyphicon glyphicon-class">
+                                        Stocks
+                                    </span>
+                                </a>    
+                            </li>
+
+                            <li class="col-xs-6 col-md-3">
+                                 <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageShopping()">
+                                    <div>
+                                        <h3><i class="fa fa-shopping-cart fa-5x"></i></h3>
+                                    </div>
+                                    <div class="glyphicon-class">
+                                        Achats - Ventes
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="col-xs-6 col-md-3">
+                                 <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageMaintenance()">
+                                    <div>
+                                        <h3><i class="fa fa-wrench fa-5x"></i></h3>
+                                    </div>
+                                    <div>
+                                        <h3>Maintenance</h3>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="col-xs-6 col-md-3">
+                                 <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageSite()">
+                                    <div>
+                                        <h3><i class="fa fa-bank fa-5x"></i></h3>
+                                    </div>
+                                    <div>
+                                        <h3>Sites</h3>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul> -->
+
+                        <a ui-sref='liste-articles'>
+                            <div class="dashboard-elt text-center col-xs-6 col-md-3 width-max" ng-click="ctrl.manageArticles()">
+                                <div>
+                                    <h3><i class="fa fa-cubes fa-5x"></i></h3>
+                                </div>
+                                <div>
+                                    <h3>Stocks</h3>
+                                </div>
+
+                            </div>
+                        </a>
+
+                        <a href="">
+                            <div class="dashboard-elt text-center col-xs-6 col-md-3 width-max" ng-click="ctrl.manageShopping()">
+                                <div>
+                                    <h3><i class="fa fa-shopping-cart fa-5x"></i></h3>
+                                </div>
+                                <div>
+                                    <h3>Achats - Ventes</h3>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="">
+                            <div class="dashboard-elt text-center col-xs-6 col-md-3 width-max" ng-click="ctrl.manageMaintenance()">
+                                <div>
+                                    <h3><i class="fa fa-wrench fa-5x"></i></h3>
+                                </div>
+                                <div>
+                                    <h3>Maintenance</h3>
+                                </div>
+                            </div>
+                        </a>    
+
+                        <a href="">
+                            <div class="dashboard-elt text-center col-xs-6 col-md-3 width-max" ng-click="ctrl.manageSite()">
+                                <div>
+                                    <h3><i class="fa fa-bank fa-5x"></i></h3>
+                                </div>
+                                <div>
+                                    <h3>Sites</h3>
+                                </div>
+                            </div>
+                        </a>    
                     </div>
-                    <div>
-                        <h3>Stocks</h3>
-                    </div>
-
                 </div>
-            </a>
-
-
-            <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageShopping()">
-                <div>
-                    <h3><i class="fa fa-shopping-cart fa-5x"></i></h3>
-                </div>
-                <div>
-                    <h3>Achats - Ventes</h3>
-                </div>
-            </div>
-
-            <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageMaintenance()">
-                <div>
-                    <h3><i class="fa fa-wrench fa-5x"></i></h3>
-                </div>
-                <div>
-                    <h3>Maintenance</h3>
-                </div>
-            </div>
-
-
-            <div class="dashboard-elt text-center col-xs-6 col-md-3" ng-click="ctrl.manageSite()">
-                <div>
-                    <h3><i class="fa fa-bank fa-5x"></i></h3>
-                </div>
-                <div>
-                    <h3>Sites</h3>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
 
 
             </div>
