@@ -3,13 +3,7 @@
     <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
         <span >Navigation</span>
     </li>
-    <li ui-sref-active="active">
-        <a ui-sref="home">
-            <i class="fa fa-home icon text-info-lter"></i>
-            <span class="font-bold" >Accueil</span>
-        </a>
-    </li>
-    <li ng-class="{active: vm.$state.includes('admin')}"  has-authority="ROLE_ADMIN" >
+    <!-- <li ng-class="{active: vm.$state.includes('admin')}"  has-authority="ROLE_ADMIN" >
         <a href class="auto">      
             <span class="pull-right text-muted">
                 <i class="fa fa-fw fa-angle-right text"></i>
@@ -42,13 +36,9 @@
 
 
         </ul>
-    </li>
+    </li> -->
 
-    <!-- Modules user  -->
-    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-        <span >Modules Stock</span>
-    </li>
-    
+   
    
 
     <li>
@@ -89,17 +79,70 @@
         </ul>
     </li>
 
-    <li ui-sref-active="active">
-        <a ui-sref="transactions">
-            <i class="fa fa-compress icon text-danger"></i>
-            <span class="font-bold" >Transactions</span>
+    <li>
+        <a href class="auto">
+            <span class="pull-right text-muted">
+                <i class="fa fa-fw fa-angle-right text"></i>
+                <i class="fa fa-fw fa-angle-down text-active"></i>
+            </span>
+            <i class="fa fa-shopping-cart icon text-danger"></i>
+            <span class="font-bold">Transactions</span>
         </a>
+        <ul class="nav nav-sub dk">
+            <li class="nav-sub-header">
+                <a href>
+                    <span>Transactions</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="mouvement-stock">
+                    <span>Mouvement Stock</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="zone">
+                    <span>Factures</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="procesverbal">
+                    <span>Procès verbal</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="commande">
+                    <span>Commandes</span>
+                </a>
+            </li>
+        </ul>
     </li>
+
     <li ui-sref-active="active">
-        <a ui-sref="acteurs">
+         <a href class="auto">
+            <span class="pull-right text-muted">
+                <i class="fa fa-fw fa-angle-right text"></i>
+                <i class="fa fa-fw fa-angle-down text-active"></i>
+            </span>
             <i class="fa fa-users icon text-danger"></i>
-            <span class="font-bold" >Acteurs</span>
+            <span class="font-bold"> Acteurs</span>
         </a>
+        <ul class="nav nav-sub dk">
+            <li class="nav-sub-header">
+                <a href>
+                    <span> Acteurs</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="fournisseur">
+                    <span>Fournisseurs</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="client">
+                    <span>Clients</span>
+                </a>
+            </li>
+        </ul>
     </li>
    
     <!-- <li class="divider-dashed">

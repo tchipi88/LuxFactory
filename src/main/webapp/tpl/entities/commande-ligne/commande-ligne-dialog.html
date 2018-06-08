@@ -39,10 +39,10 @@
                     </div> 
                 </div>
             </div>
-            <div  class="col-sm-6"  ng-show="$stateParams.type=='VENTE'">
+            <div  class="col-sm-6"  ng-show="$stateParams.type=='ACHAT'">
                 <div class="form-group">
                     <label class="control-label"  for="field_produit">Entrepot <span style="color:red" >*</span></label>
-                    <ui-select ng-model="vm.commandeLigne.entrepot"    ng-required="$stateParams.type=='VENTE'"  ng-disabled="vm.commandeLigne.id">
+                    <ui-select ng-model="vm.commandeLigne.entrepot"    ng-required="$stateParams.type=='ACHAT'"  ng-disabled="vm.commandeLigne.id">
                         <ui-select-match placeholder="Select Entrepot">{{$select.selected.libelle}}</ui-select-match>
                         <ui-select-choices repeat="entrepot in vm.entrepots | filter: $select.search">
                             <div ng-bind-html="entrepot.libelle | highlight: $select.search"></div>

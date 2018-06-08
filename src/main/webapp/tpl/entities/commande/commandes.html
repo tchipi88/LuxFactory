@@ -1,7 +1,11 @@
-<div class="bg-light lter b-b wrapper-md" ng-show="false">
-    <h1 class="m-n font-thin h3"   ng-if="$stateParams.type == 'ACHAT'">Achats</h1>
-    <h1 class="m-n font-thin h3" ng-if="$stateParams.type == 'VENTE'">Ventes</h1>
-    <small class="text-muted"></small>
+<div class="bg-light lter b-b wrapper-md" >
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a ui-sref="home"><i class="fa fa-home icon"></i> Accueil</a></li>
+        <li class="breadcrumb-item active">Transactions</li>
+        <li class="breadcrumb-item active" aria-current="page">Commandes</li>
+      </ol>
+    </nav>
 </div>
 <div>
     <jhi-alert></jhi-alert>
@@ -27,15 +31,17 @@
 
              <div>
               <div class="form-group" style='float: right;'>
-                 <button class="btn btn-primary" ui-sref="transactions.commande.new" tooltip="Creer une commande"><i class="fa fa-plus"></i></button>
+                 <button class="btn btn-primary" ui-sref="commande.new" tooltip="Creer une commande"><i class="fa fa-plus"></i></button>
               </div>
 
             <table id="dt_article" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr >
                         <th ><span >ID</span> </th>
-                        <th   ng-show="$stateParams.type == 'VENTE'"><span >Client</span> </th> 
-                        <th    ng-show="$stateParams.type == 'ACHAT'"><span >Fournisseur</span> </th>
+                        <!-- <th   ng-show="$stateParams.type == 'ACHAT'"><span >Client</span> </th> 
+                        <th    ng-show="$stateParams.type == 'ACHAT'"><span >Fournisseur</span> </th> -->
+                        <th><span >Client</span> </th> 
+                        <th><span >Fournisseur</span> </th>
                         <th ><span >Etat</span> </th> 
                         <th ><span >Date Emission</span> </th> 
                         <th ><span >Date Livraison</span> </th>
@@ -55,8 +61,8 @@
                 <tbody>
                     <tr ng-repeat="commande in vm.commandes track by commande.id">
                         <td><a ui-sref="commande-detail({id:commande.id})">{{commande.id}}</a></td>
-                        <td  ng-show="$stateParams.type == 'VENTE'">{{commande.client.nom}}</td>
-                        <td  ng-show="$stateParams.type == 'ACHAT'">{{commande.fournisseur.nom}}</td>
+                        <td >{{commande.client.nom}}</td>
+                        <td >{{commande.fournisseur.nom}}</td>
                         <td>{{commande.etat}}</td>
                         <td>{{commande.dateEmission| date:'mediumDate'}}</td>
                         <td>{{commande.dateLivraison| date:'mediumDate'}}</td>
@@ -68,12 +74,12 @@
                         <td >
 
 
-                            <button type="submit"   ui-sref="transactions.commande.edit({id:commande.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                            <button type="submit"   ui-sref="commande.edit({id:commande.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
                                 <i class="fa fa-edit">
                                 </i>
                             </button>
 
-                            <button type="submit"  ui-sref="transactions.commande.delete({id:commande.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                            <button type="submit"  ui-sref="commande.delete({id:commande.id})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
                                 <i class="fa fa-trash">
                                 </i>
                             </button>

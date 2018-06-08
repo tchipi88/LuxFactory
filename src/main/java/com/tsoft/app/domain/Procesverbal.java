@@ -5,13 +5,15 @@
  */
 package com.tsoft.app.domain;
 
+import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
-import org.joda.time.LocalDate;
+//import org.joda.time.LocalDate;
 
 /**
  *
@@ -31,7 +33,8 @@ public class Procesverbal extends AbstractAuditingEntity {
     private Commande commande;
     
     @NotNull
-    private LocalDate datePv=LocalDate.now();
+    @Column
+    private LocalDate datePv;
     
     private String lieuPv;
     

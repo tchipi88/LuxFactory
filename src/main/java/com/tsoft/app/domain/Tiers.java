@@ -77,6 +77,18 @@ public class Tiers extends AbstractAuditingEntity {
 
     private String referencesBancaires;
 
+    @NotNull
+    @Column(nullable = false)
+    private boolean locataire = false;
+
+    public boolean isLocataire() {
+        return locataire;
+    }
+
+    public void setLocataire(boolean locataire) {
+        this.locataire = locataire;
+    }
+    
     public String getReferencesBancaires() {
         return referencesBancaires;
     }

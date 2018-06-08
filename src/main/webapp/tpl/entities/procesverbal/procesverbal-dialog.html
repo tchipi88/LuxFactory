@@ -4,18 +4,13 @@
     <div class="modal-header">
         <button type="button" class="btn btn-link pull-right" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()"><i class="fa fa-remove"></i>  </button>
-        <h3 class="modal-title" id="myProcesverbalLabel" >Cr&eacuteer ou modifier  Procesverbal</h3>
+        <h3 class="modal-title" id="myProcesverbalLabel" >Cr&eacuteer ou modifier  Proces verbal</h3>
          <small class="text-muted" >Les champs * sont obligatoires</small>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="row">
-              <div class="col-sm-6">
- <div class="form-group">
- <label class="control-label"  for="field_id">Id</label>
-  <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.procesverbal.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
- </div>
- </div>
+             
  <div class="col-sm-6">
  <div class="form-group">
  <label class="control-label"  for="field_commande">Commande</label>
@@ -40,38 +35,49 @@
  </div>
  <div class="col-sm-6">
  <div class="form-group">
- <label class="control-label"  for="field_datePv">Date Pv <span style="color:red" >*</span></label>
-  <input  class="form-control"   type="text"  autocomplete="off"   id="field_datePv" ng-model="vm.procesverbal.datePv"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
+ <label class="control-label"  for="field_datePv">Date PV <span style="color:red" >*</span></label>
+  <div class="input-group">
+    <input  class="form-control"   type="text"    id="field_datePv" ng-model="vm.procesverbal.datePv"        uib-datepicker-popup="{{dateformat}}"         ng-required="true"      is-open="vm.datePickerOpenStatus.datePv"                    />
+    <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datePv')"><i class="glyphicon glyphicon-calendar"></i></button>
+    </span>
+</div>
  </div>
  </div>
  <div class="col-sm-6">
  <div class="form-group">
- <label class="control-label"  for="field_lieuPv">Lieu Pv</label>
+ <label class="control-label"  for="field_lieuPv">Lieu PV</label>
   <input  class="form-control"   type="text"  autocomplete="off"   id="field_lieuPv" ng-model="vm.procesverbal.lieuPv"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
  </div>
  </div>
  <div class="col-sm-6">
  <div class="form-group">
- <label class="control-label"  for="field_identiteResponsableAcheteur">Identite Responsable Acheteur</label>
-  <input  class="form-control"   type="text"  autocomplete="off"   id="field_identiteResponsableAcheteur" ng-model="vm.procesverbal.identiteResponsableAcheteur"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+ <label class="control-label"  for="field_identiteResponsableAcheteur">Client</label>
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_identiteResponsable1Prestataire" ng-model="vm.procesverbal.identiteResponsableAcheteur"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+
  </div>
  </div>
  <div class="col-sm-6">
  <div class="form-group">
- <label class="control-label"  for="field_identiteResponsable1Prestataire">Identite Responsable 1 Prestataire</label>
+ <label class="control-label"  for="field_identiteResponsable1Prestataire">Prestataire</label>
   <input  class="form-control"   type="text"  autocomplete="off"   id="field_identiteResponsable1Prestataire" ng-model="vm.procesverbal.identiteResponsable1Prestataire"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+
+
+
  </div>
  </div>
  <div class="col-sm-6">
  <div class="form-group">
- <label class="control-label"  for="field_identiteResponsable2Prestataire">Identite Responsable 2 Prestataire</label>
-  <input  class="form-control"   type="text"  autocomplete="off"   id="field_identiteResponsable2Prestataire" ng-model="vm.procesverbal.identiteResponsable2Prestataire"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+ <label class="control-label"  for="field_identiteResponsable2Prestataire">Commentaires</label>
+  <textarea  class="form-control"  rows="3" cols="30"  id="field_identiteResponsable2Prestataire" ng-model="vm.procesverbal.identiteResponsable2Prestataire"                     ng-readonly="false"  ng-required="false"></textarea>
+
+
  </div>
  </div>
  <div class="col-sm-6">
  <div class="form-group">
- <label class="control-label"  for="field_identiteResponsable3Prestataire">Identite Responsable 3 Prestataire</label>
-  <input  class="form-control"   type="text"  autocomplete="off"   id="field_identiteResponsable3Prestataire" ng-model="vm.procesverbal.identiteResponsable3Prestataire"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+ <label class="control-label"  for="field_identiteResponsable3Prestataire">Reserves</label>
+  <textarea  class="form-control"  rows="3" cols="30"  id="field_identiteResponsable3Prestataire" ng-model="vm.procesverbal.identiteResponsable3Prestataire"                     ng-readonly="false"  ng-required="false"                         ></textarea>
  </div>
  </div>
 

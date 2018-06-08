@@ -5,9 +5,9 @@
         .module('app')
         .controller('ProcesverbalDialogController', ProcesverbalDialogController);
 
-    ProcesverbalDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'Procesverbal','Commande'];
+    ProcesverbalDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'Procesverbal','Commande','Client','Fournisseur'];
 
-    function ProcesverbalDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, Procesverbal ,Commande) {
+    function ProcesverbalDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, Procesverbal ,Commande,Client,Fournisseur) {
         var vm = this;
 
         vm.procesverbal = entity;
@@ -18,6 +18,8 @@
         vm.openFile = DataUtils.openFile;
         vm.save = save;
         vm.commandes = Commande.query();
+        vm.clients = Client.query();
+        vm.fournisseurs = Fournisseur.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -47,7 +49,7 @@
         }
 
 
-        
+         vm.datePickerOpenStatus.datePv = false;
         
          function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;

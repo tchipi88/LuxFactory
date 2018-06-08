@@ -5,9 +5,9 @@
         .module('app')
         .controller('ProcesverbalController', ProcesverbalController);
 
-    ProcesverbalController.$inject = ['$state', 'DataUtils', 'Procesverbal',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    ProcesverbalController.$inject = ['$state', 'DataUtils', 'Procesverbal',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','Client','Fournisseur'];
 
-    function ProcesverbalController($state, DataUtils, Procesverbal,  ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function ProcesverbalController($state, DataUtils, Procesverbal,  ParseLinks, AlertService, paginationConstants, pagingParams,Client,Fournisseur) {
 
         var vm = this;
 
@@ -20,6 +20,10 @@
         vm.loadAll = loadAll;
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
+        vm.clients = Client.query();
+        vm.fournisseurs = Fournisseur.query();
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
 
         loadAll();
 
@@ -68,6 +72,13 @@
             vm.predicate = 'id';
             vm.reverse = true;
             vm.transition();
+        }
+
+        vm.datePickerOpenStatus.dateFin = false;
+        vm.datePickerOpenStatus.dateDebut = false;
+                
+        function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
         }
     }
 })();

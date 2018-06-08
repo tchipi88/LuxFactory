@@ -110,10 +110,11 @@
                                         return {
 
                                         };
-                                    },
-                                    produitFournisseurs: function () {
-                                        return [];
                                     }
+                                    // ,
+                                    // produitFournisseurs: function () {
+                                    //     return [];
+                                    // }
                                 }
                             }).result.then(function () {
                                 $state.go('fournisseur', null, {reload: 'fournisseur'});
@@ -138,10 +139,11 @@
                                 resolve: {
                                     entity: ['Fournisseur', function (Fournisseur) {
                                             return Fournisseur.get({id: $stateParams.id}).$promise;
-                                        }],
-                                    produitFournisseurs: ['$resource', function ($resource) {
-                                            return  $resource('api/produit-fournisseurss/' + $stateParams.id).query();
                                         }]
+                                    //     ,
+                                    // produitFournisseurs: ['$resource', function ($resource) {
+                                    //         return  $resource('api/produit-fournisseurss/' + $stateParams.id).query();
+                                    //     }]
                                 }
                             }).result.then(function () {
                                 $state.go('fournisseur', null, {reload: 'fournisseur'});
