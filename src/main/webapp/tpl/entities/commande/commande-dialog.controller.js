@@ -5,9 +5,9 @@
             .module('app')
             .controller('CommandeDialogController', CommandeDialogController);
 
-    CommandeDialogController.$inject = ['$timeout', '$scope', '$state', '$stateParams', '$uibModalInstance', '$uibModal', 'DataUtils', 'entity', 'Commande', 'Fournisseur', 'Employe', 'Client', 'CommandeLigne', 'Reglement'];
+    CommandeDialogController.$inject = ['$resource','$timeout', '$scope', '$state', '$stateParams', '$uibModalInstance', '$uibModal', 'DataUtils', 'entity', 'Commande', 'Fournisseur', 'Employe', 'Client', 'CommandeLigne', 'Reglement'];
 
-    function CommandeDialogController($timeout, $scope, $state, $stateParams, $uibModalInstance, $uibModal, DataUtils, entity, Commande, Fournisseur, Employe, Client, CommandeLigne, Reglement) {
+    function CommandeDialogController($resource,$timeout, $scope, $state, $stateParams, $uibModalInstance, $uibModal, DataUtils, entity, Commande, Fournisseur, Employe, Client, CommandeLigne, Reglement) {
         var vm = this;
 
         vm.commande = entity;
@@ -20,8 +20,8 @@
         vm.superviseurs = Employe.query();
         vm.clients = Client.query();
         vm.fournisseurs = Fournisseur.query();
-        vm.commandeLignes = CommandeLigne;
-        vm.reglements = Reglement;
+        vm.commandeLignes = ($stateParams.id == null?CommandeLigne.query(): $resource('api/commande-ligness/' + $stateParams.id).query());
+        vm.reglements = ($stateParams.id == null?Reglement.query():$resource('api/reglementss/' + $stateParams.id).query());
 
 
 
@@ -148,8 +148,11 @@
                         return {
                             commande: vm.commande
                         };
+                    },
+                   commandeLignes: ['$resource', function ($resource) {
+                            return  $resource('api/commande-ligness/' + $stateParams.id).query();
+                        }]
                     }
-                }
             }).result.then(function (item) {
                 vm.commandeLignes.push(item);
                 vm.commande = Commande.get({id: $stateParams.id});

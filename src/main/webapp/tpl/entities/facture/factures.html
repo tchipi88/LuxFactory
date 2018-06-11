@@ -1,6 +1,11 @@
-<div class="bg-light lter b-b wrapper-md" ng-show="false">
-    <h1 class="m-n font-thin h3">Factures</h1>
-    <small class="text-muted"></small>
+<div class="bg-light lter b-b wrapper-md" >
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a ui-sref="home"><i class="fa fa-home icon"></i> Accueil</a></li>
+        <li class="breadcrumb-item active">Transactions</li>
+        <li class="breadcrumb-item active" aria-current="page">Factures</li>
+      </ol>
+    </nav>
 </div>
 <div>
     <jhi-alert></jhi-alert>
@@ -13,17 +18,17 @@
 
            
               <div class="form-group" style='float: right;'>
-                 <button class="btn btn-primary" ui-sref="transactions.facture.new" tooltip="Creer une Facture"><i class="fa fa-plus"></i></button>
+                 <button class="btn btn-primary" ui-sref="facture.new" tooltip="Creer une Facture"><i class="fa fa-plus"></i></button>
               </div>
 
             <table id="dt_article" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
-                        <th><span >Date Emission</span> </th>
                         <th><span >Numero Facture</span> </th>
-                        <th><span >Numero Commande</span></th>
-                        <th><span >Identite prestataire</span></th>
+                        <th><span >Prestation</span></th>
                         <th><span >Identite acheteur</span></th>
+                        <th><span >Date Emission</span> </th>
+                        <th><span >Numero Commande</span></th>
                         <th >
                             Actions
                         </th>
@@ -31,11 +36,11 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="facture in vm.factures track by facture.id">
-                        <td>{{facture.dateEmission}}</td>
                         <td>{{facture.id}}</td>
-                        <td>{{facture.commande.id}}</td>
                         <td>{{facture.commande.fournisseur.nom}}</td>
                         <td>{{facture.commande.client.nom}}</td>
+                        <td>{{facture.dateEmission}}</td>
+                        <td>{{facture.commande.id}}</td>
                         <td >
                             <button type="submit"   ui-sref="facture.edit({id:facture.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
                                 <i class="fa fa-edit">
