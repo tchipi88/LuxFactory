@@ -1,0 +1,75 @@
+<div class="bg-light lter b-b wrapper-md" >
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a ui-sref="home"><i class="fa fa-home icon"></i> Accueil</a></li>
+        <li class="breadcrumb-item active">Transactions</li>
+        <li class="breadcrumb-item active" aria-current="page">Factures</li>
+      </ol>
+    </nav>
+</div>
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        
+        <div class="panel-body table-responsive">
+
+             <div class="form-group" style='float: right;'>
+                 <button class="btn btn-primary" ui-sref="liste-factures.new" tooltip="Creer une Facture"><i class="fa fa-plus"></i></button>
+              </div>
+
+
+            <table id="dt_article" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th><span >Numero facture</span></th>
+                         <th><span >Date Emission</span> </th>
+                         <th><span >Date Echeance</span> </th>
+                         <th><span >Date Livraison</span> </th>
+                         <th><span >Fournisseur</span> </th>
+                         <th><span >Client</span> </th>
+                         <th><span >Prix Unitaire</span> </th>
+                         <th><span >Quantite</span> </th>
+                         <th><span >Produit</span> </th>
+
+                        <th >
+                           
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="listeFactures in vm.listeFacturess track by listeFactures.id ">
+                        <td>{{listeFactures.numeroFacture}}</td>
+                         <td>{{listeFactures.dateEmission | date:'mediumDate'}}</td>
+                         <td>{{listeFactures.dateEcheance | date:'mediumDate'}}</td>
+                         <td>{{listeFactures.dateLivraison | date:'mediumDate'}}</td>
+                         <td>{{listeFactures.fournisseur}}</td>
+                         <td>{{listeFactures.client}}</td>
+                         <td>{{listeFactures.prixUnitaire | number }}</td>
+                         <td>{{listeFactures.quantite}}</td>
+                         <td>{{listeFactures.produit}}</td>
+
+                        <td >
+
+                           
+                            <button type="submit"   ui-sref="facture.edit({id:listeFactures.numeroFacture})" class="btn btn-sm btn-default"  tooltip="Modifier">
+                                <i class="fa fa-edit">
+                                </i>
+                            </button>
+
+                            <button type="submit"  ui-sref="facture.delete({id:listeFactures.numeroFacture})"  class="btn btn-sm btn-danger"  tooltip="Supprimer">
+                                <i class="fa fa-trash">
+                                </i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+       
+    </div>
+</div>

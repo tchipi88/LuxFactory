@@ -6,9 +6,9 @@
         stateConfig.$inject = ['$stateProvider'];
         function stateConfig($stateProvider) {
         $stateProvider
-                .state('facture', {
+                .state('liste-factures', {
                 parent: 'entity',
-                        url: '/facture?page&sort&search',
+                        url: '/liste-factures?page&sort&search',
                         data: {
                         authorities: ['ROLE_USER']
                         },
@@ -43,8 +43,8 @@
                 })
                
                
-                .state('facture.new', {
-                parent: 'facture',
+                .state('liste-factures.new', {
+                parent: 'liste-factures',
                         url: '/new',
                         data: {
                         authorities: ['ROLE_USER']
@@ -64,14 +64,14 @@
                                 }
                                 }
                         }).result.then(function () {
-                        $state.go('facture', null, {reload: 'facture'});
+                        $state.go('liste-factures', null, {reload: 'liste-factures'});
                         }, function () {
-                        $state.go('facture');
+                        $state.go('liste-factures');
                         });
                         }]
                 })
-                .state('facture.edit', {
-                parent: 'facture',
+                .state('liste-factures.edit', {
+                parent: 'liste-factures',
                         url: '/{id}/edit',
                         data: {
                         authorities: ['ROLE_USER']
@@ -84,8 +84,8 @@
                                 backdrop: 'static',
                                 size: 'lg',
                                 resolve: {
-                                entity: ['Facture', function (Facture) {
-                                return Facture.get({id: $stateParams.id}).$promise;
+                                entity: ['ListeFactures', function (ListeFactures) {
+                                return ListeFactures.get({id: $stateParams.id}).$promise;
                                 }]
                                 }
                         }).result.then(function () {
@@ -95,8 +95,8 @@
                         });
                         }]
                 })
-                .state('facture.delete', {
-                parent: 'facture',
+                .state('liste-factures.delete', {
+                parent: 'liste-factures',
                         url: '/{id}/delete',
                         data: {
                         authorities: ['ROLE_USER']
@@ -108,8 +108,8 @@
                                 controllerAs: 'vm',
                                 size: 'md',
                                 resolve: {
-                                entity: ['Facture', function (Facture) {
-                                return Facture.get({id: $stateParams.id}).$promise;
+                                entity: ['ListeFactures', function (ListeFactures) {
+                                return ListeFactures.get({id: $stateParams.id}).$promise;
                                 }]
                                 }
                         }).result.then(function () {
