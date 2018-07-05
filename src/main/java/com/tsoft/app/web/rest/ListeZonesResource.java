@@ -2,7 +2,7 @@ package com.tsoft.app.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.tsoft.app.domain.ListeZones;
-
+import com.tsoft.app.domain.enumeration.TypeCommande;
 import com.tsoft.app.repository.ListeZonesRepository;
 import com.tsoft.app.web.rest.util.HeaderUtil;
 import com.tsoft.app.web.rest.util.PaginationUtil;
@@ -18,10 +18,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -131,7 +127,30 @@ public class ListeZonesResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-   
+	
+	/**
+	 * GET /liste-zoness : get a page of listeZones between the activite and
+	 * zone and responsable.
+	 *
+	 * @param activite the activity of the zone to get
+	 * @param entrepot the zone to get
+	 * @param responsable the responsable of the zone to get
+	 * @param pageable the pagination information
+	 * @return the ResponseEntity with status 200 (OK) and the list of listeZones
+	 * in body
+	 */
+	@GetMapping(path = "/liste-zoness", params = {"activite", "entrepot","responsable"})
+	@Timed
+	public ResponseEntity<List<ListeZones>> searchListeZones(
+	        @RequestParam(value = "activite") String activite,
+	        @RequestParam(value = "entrepot") String entrepot,
+	        @RequestParam(value = "responsable") String responsable, 
+	        @ApiParam Pageable pageable, @ApiParam TypeCommande type) {
+	    log.debug("REST request to search for a page of ListeZones for  {}  and {} and {}", activite, entrepot,responsable);
+	    Page<ListeZones> page = listeZonesRepository.findAllByActiviteAndEntrepotAndResponsableContaining(activite, entrepot, responsable, pageable);
+	    HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/liste-zoness");
+	    return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+	}
 
 
 }

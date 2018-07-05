@@ -5,9 +5,9 @@
         .module('app')
         .controller('ListeArticlesController', ListeArticlesController);
 
-    ListeArticlesController.$inject = ['$state', 'DataUtils', 'ListeArticles','Activites','Employe',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','$filter', 'Zone', 'Produits'];
+    ListeArticlesController.$inject = ['$state', 'DataUtils', 'ListeArticles','Activites','Employe',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','$filter', 'Entrepot', 'Produit'];
 
-    function ListeArticlesController($state, DataUtils, ListeArticles,Activites, Employe, ParseLinks, AlertService, paginationConstants, pagingParams,$filter, Zone, Produits) {
+    function ListeArticlesController($state, DataUtils, ListeArticles,Activites, Employe, ParseLinks, AlertService, paginationConstants, pagingParams,$filter, Entrepot, Produit) {
 
         var vm = this;
 
@@ -22,10 +22,10 @@
         vm.byteSize = DataUtils.byteSize;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
-        vm.entrepots = Zone.query();
+        vm.entrepots = Entrepot.query();
         vm.activitess = Activites.query();
         vm.employes = Employe.query();
-        vm.produits = Produits.query();
+        vm.produits = Produit.query();
         vm.fromDate = new Date();
         vm.toDate = new Date();
 
@@ -34,10 +34,22 @@
         loadAll();
 
         function loadAll () {
+            var dateFormat = 'yyyy-MM-dd';
+            var fromDate = $filter('date')(vm.fromDate, dateFormat);
+            var toDate = $filter('date')(vm.toDate, dateFormat);
+            var selected_activite = vm.produit == null ? "aliquam" : vm.produit.denomination;
+            var selected_entrepot = vm.entrepot == null ? "euismod" : vm.entrepot.libelle;
+
+             
+
+
                 ListeArticles.query({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
-                    sort: sort()
+                    sort: sort(),
+                    activite: selected_activite,
+                    entrepot: selected_entrepot,
+                    fromDate: fromDate, toDate: toDate
                 }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
@@ -65,8 +77,8 @@
             var dateFormat = 'yyyy-MM-dd';
             var fromDate = $filter('date')(vm.fromDate, dateFormat) == null?"": $filter('date')(vm.fromDate, dateFormat);
             var toDate = $filter('date')(vm.toDate, dateFormat)== null?"":$filter('date')(vm.toDate, dateFormat);
-            var selected_activite = vm.produit == null ? "" : vm.produit.denomination;
-            var selected_entrepot = vm.entrepot == null ? "" : vm.entrepot.libelle;
+            var selected_activite = vm.produit == null ? "viverra." : vm.produit.denomination;
+            var selected_entrepot = vm.entrepot == null ? "Duis" : vm.entrepot.libelle;
 
             alert ('article: '+ selected_activite +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
 
@@ -93,9 +105,13 @@
         }
 
         function transition() {
+            var dateFormat = 'yyyy-MM-dd';
+            var fromDate = $filter('date')(vm.fromDate, dateFormat);
+            var toDate = $filter('date')(vm.toDate, dateFormat);
             $state.transitionTo($state.$current, {
                 page: vm.page,
                 sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
+                fromDate: fromDate, toDate: toDate
             });
         }
 

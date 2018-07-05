@@ -51,8 +51,8 @@
                         },
                         onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                         $uibModal.open({
-                        templateUrl: 'tpl/entities/liste-zones/liste-zones-dialog.html',
-                                controller: 'ListeZonesDialogController',
+                        templateUrl:  'tpl/entities/entrepot/entrepot-dialog.html',  //'tpl/entities/liste-zones/liste-zones-dialog.html',
+                                controller: 'EntrepotDialogController',
                                 controllerAs: 'vm',
                                 backdrop: 'static',
                                 size: 'lg',
@@ -70,7 +70,7 @@
                         });
                         }]
                 })
-                .state('liste-zones.edit', {
+                .state('liste-zone.edit', {
                 parent: 'liste-zones',
                         url: '/{id}/edit',
                         data: {
@@ -95,7 +95,56 @@
                         });
                         }]
                 })
+                .state('liste-zones.edit', {
+                    parent: 'liste-zones',
+                    url: '/{id}/edit',
+                    data: {
+                        authorities: ['ROLE_USER']
+                    },
+                    onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
+                            $uibModal.open({
+                                templateUrl: 'tpl/entities/entrepot/entrepot-dialog.html',
+                                controller: 'EntrepotDialogController',
+                                controllerAs: 'vm',
+                                backdrop: 'static',
+                                size: 'lg',
+                                resolve: {
+                                    entity: ['Entrepot', function (Entrepot) {
+                                            return Entrepot.get({id: $stateParams.id}).$promise;
+                                        }]
+                                }
+                            }).result.then(function () {
+                                $state.go('liste-zones', null, {reload: 'liste-zones'});
+                            }, function () {
+                                $state.go('^');
+                            });
+                        }]
+                })
                 .state('liste-zones.delete', {
+                    parent: 'liste-zones',
+                    url: '/{id}/delete',
+                    data: {
+                        authorities: ['ROLE_USER']
+                    },
+                    onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
+                            $uibModal.open({
+                                templateUrl: 'tpl/entities/entrepot/entrepot-delete-dialog.html',
+                                controller: 'EntrepotDeleteController',
+                                controllerAs: 'vm',
+                                size: 'md',
+                                resolve: {
+                                    entity: ['Entrepot', function (Entrepot) {
+                                            return Entrepot.get({id: $stateParams.id}).$promise;
+                                        }]
+                                }
+                            }).result.then(function () {
+                                $state.go('liste-zones', null, {reload: 'liste-zones'});
+                            }, function () {
+                                $state.go('^');
+                            });
+                        }]
+                })
+                .state('liste-zone.delete', {
                 parent: 'liste-zones',
                         url: '/{id}/delete',
                         data: {

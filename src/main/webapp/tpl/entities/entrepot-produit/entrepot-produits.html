@@ -1,62 +1,19 @@
+ <div class="bg-light lter b-b wrapper-md" >
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a ui-sref="home"><i class="fa fa-home icon"></i> Accueil</a></li>
+    <li class="breadcrumb-item active">Configuration</li>
+    <li class="breadcrumb-item active" aria-current="page">Inventaire</li>
+  </ol>
+</nav>
+</div>
+<div>
+    <jhi-alert></jhi-alert>
+</div>
+
  <div class="wrapper-md">
     <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="row">
-             <form class="form-horizontal form-label-left input_mask">
-
-                   <div class="form-group col-sm-3">
-                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="article">Article </label>
-                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
-                            <select class="select2_single form-control" name="produit" id="produit"
-                              ng-options="produit.denomination for produit  in vm.produits track by produit.id"
-                              ng-model="vm.produit" ng-change="vm.search()">
-                            </select>
-
-                          </div>
-                        </div>
-                      
-                        
-                        <div class="form-group col-sm-3">
-                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zone">Zone </label>
-                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
-
-                           
-                            <select class="select2_single form-control" name="entrepot" id="entrepot"
-                              ng-options="entrepot.libelle for entrepot  in vm.entrepots track by entrepot.id"
-                              ng-model="vm.entrepot" ng-change="vm.search()">
-                            </select>
-
-                             
-                          </div>
-                        </div>
-
-                      
-                        <div class="form-group col-sm-3">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="debut">Debut </label>
-                          <div class="input-group col-md-7 col-sm-7 col-xs-12">
-                              <input  id="debut" type="text" class="form-control" name="debut"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.fromDate"  is-open="vm.datePickerOpenStatus.dateDebut" ng-change="vm.search()"
-                                />
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateDebut')"><i class="glyphicon glyphicon-calendar"></i></button>
-                                </span>
-                          </div>
-                        </div>
-                     
-
-                      
-                        <div class="form-group col-sm-3">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fin">Fin </label>
-                          <div class="input-group col-md-7 col-sm-7 col-xs-12">
-                              <input  id="debut" type="text" class="form-control" name="fin"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.toDate"  is-open="vm.datePickerOpenStatus.dateFin"  ng-change="vm.search()"
-                                />
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateFin')"><i class="glyphicon glyphicon-calendar"></i></button>
-                                </span>
-                          </div>
-                        </div>
-             </form>
-          </div>
-        </div>
+        
         <div class="panel-body table-responsive">
 
 
@@ -125,7 +82,16 @@
                 </tbody>
               </table>
             </div>
-
+<div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6">
+                    <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+                </div>
+                <div class="col-sm-6 text-right text-center-xs">
+                    <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+                </div>
+            </div>
+        </div>
 
 
         </div>

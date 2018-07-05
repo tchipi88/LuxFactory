@@ -1,6 +1,11 @@
 <div class="bg-light lter b-b wrapper-md" >
-    <h1 class="m-n font-thin h3">Entrepots</h1>
-    <small class="text-muted"></small>
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a ui-sref="home"><i class="fa fa-home icon"></i> Accueil</a></li>
+    <li class="breadcrumb-item active">Configuration</li>
+    <li class="breadcrumb-item active" aria-current="page">Entrepot</li>
+  </ol>
+</nav>
 </div>
 <div>
     <jhi-alert></jhi-alert>
@@ -10,19 +15,21 @@
     <div class="panel panel-default">
         
         <div class="panel-body table-responsive">
-            <table class="table table-striped table-bordered table-hover">
+            <div class="form-group" style='float: right;'>
+                 <button class="btn btn-primary" ui-sref="entrepot.new" tooltip="Ajouter un entrepot"><i class="fa fa-plus"></i></button>
+              </div>
+
+
+              <table id="dt_entrepot" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                        <th jh-sort-by="id"><span >ID</span> <span class="fa fa-sort"></span></th>
-                         <th jh-sort-by="libelle"><span >Libelle</span> <span class="fa fa-sort"></span></th>
-                         <th jh-sort-by="capactite"><span >Capactite</span> <span class="fa fa-sort"></span></th>
-                         <th jh-sort-by="responsable"><span >Responsable</span> <span class="fa fa-sort"></span></th>
-
+                        <th><span >ID</span> </th>
+                         <th><span >Libelle</span> </th>
+                         <th><span >Capactite</span> </th>
+                         <th><span >Responsable</span></th>
+                         <th><span >Activite</span></th>
                         <th >
-                            <button class="btn btn-primary" ui-sref="entrepot.new"   tooltip="Créer Entrepot">
-                                <i class="fa fa-plus">
-                                </i>
-                            </button>
+                           
                         </th>
                     </tr>
                 </thead>
@@ -32,7 +39,7 @@
                          <td>{{entrepot.libelle}}</td>
  <td>{{entrepot.capactite}}</td>
  <td>{{entrepot.responsable.nom}}</td>
-
+ <td>{{entrepot.activite.libelle}}</td>
                         <td >
 
                           

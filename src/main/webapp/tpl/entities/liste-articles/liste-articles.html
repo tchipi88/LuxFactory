@@ -17,32 +17,36 @@
           <form class="form-horizontal form-label-left input_mask">
 
                      
-                        <div class="form-group col-sm-3">
-                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="article">Article </label>
-                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
-                            <select class="select2_single form-control" name="produit" id="produit"
-                              ng-options="produit.denomination for produit  in vm.produits track by produit.id"
-                              ng-model="vm.produit" ng-change="vm.search()">
-                            </select>
-                          </div>
-                        </div>
+                        
 
+                        <div class="form-group col-sm-3">
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zone">Article </label>
+                            <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                                <ui-select ng-model="vm.produit"    ng-required="false" ng-change="vm.search()">
+                                    <ui-select-match allow-clear="true" placeholder="Select Article">{{$select.selected.denomination}}</ui-select-match>
+                                    <ui-select-choices repeat="produit in vm.produits | filter: $select.search">
+                                        <div ng-bind-html="produit.denomination | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select> 
+                            </div> 
+                        </div>
 
                         <div class="form-group col-sm-3">
                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zone">Zone </label>
-                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
-                            <select class="select2_single form-control" name="entrepot" id="entrepot"
-                              ng-options="entrepot.libelle for entrepot  in vm.entrepots track by entrepot.id"
-                              ng-model="vm.entrepot" ng-change="vm.search()">
-                            </select>
-                          </div>
+                            <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                                <ui-select ng-model="vm.zone"    ng-required="false" ng-change="vm.search()">
+                                    <ui-select-match allow-clear="true" placeholder="Select Zone">{{$select.selected.libelle}}</ui-select-match>
+                                    <ui-select-choices repeat="entrepot in vm.entrepots | filter: $select.search">
+                                        <div ng-bind-html="entrepot.libelle | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select> 
+                            </div> 
                         </div>
-
                       
                         <div class="form-group col-sm-3">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="debut">Debut </label>
                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
-                              <input  id="debut" type="text" class="form-control" name="debut"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.fromDate"  is-open="vm.datePickerOpenStatus.dateDebut"
+                              <input  id="debut" type="text" class="form-control" name="debut"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.fromDate"  is-open="vm.datePickerOpenStatus.dateDebut" ng-change="vm.search()"
                                 />
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateDebut')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -55,7 +59,7 @@
                         <div class="form-group col-sm-3">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fin">Fin </label>
                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
-                              <input  id="debut" type="text" class="form-control" name="fin"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.toDate"  is-open="vm.datePickerOpenStatus.dateFin"
+                              <input  id="debut" type="text" class="form-control" name="fin"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.toDate"  is-open="vm.datePickerOpenStatus.dateFin" ng-change="vm.search()"
                                 />
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateFin')"><i class="glyphicon glyphicon-calendar"></i></button>

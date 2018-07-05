@@ -31,13 +31,13 @@
                 EmployeSearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,
-                    size: 500, // vm.itemsPerPage,
+                    size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
             } else {
                 Employe.query({
                     page: pagingParams.page - 1,
-                    size: 500, //vm.itemsPerPage,
+                    size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
             }

@@ -32,7 +32,7 @@
         function loadAll () {
                 Activites.query({
                     page: pagingParams.page - 1,
-                    //size: 1000,
+                    size: vm.itemsPerPage,
                     size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
@@ -67,7 +67,7 @@
 
             Activites.query({
                 page: vm.page - 1,
-                size: 20,
+                size: vm.itemsPerPage,
                 libelle: selected_activite,
                 responsable: selected_resp,
                 fromDate: fromDate, 

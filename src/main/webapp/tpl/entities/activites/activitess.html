@@ -17,7 +17,7 @@
            <form class="form-horizontal form-label-left input_mask">
 
 
-                  <div class="form-group col-sm-3">
+                  <!-- <div class="form-group col-sm-3">
                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="activites">Activites </label>
                      <div class="input-group col-md-7 col-sm-7 col-xs-12">
                       <select class="select2_single form-control" name="activite" id="activite"
@@ -25,10 +25,22 @@
                         ng-model="vm.activite" ng-change="vm.search()">
                       </select>
                     </div>
-                  </div>
-
+                  </div> -->
 
                   <div class="form-group col-sm-3">
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="article">Activite </label>
+                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                            <ui-select ng-model="vm.activite"    ng-required="false" ng-change="vm.search()">
+                                <ui-select-match allow-clear="true" placeholder="Select Activite">{{$select.selected.libelle}}</ui-select-match>
+                                <ui-select-choices repeat="activite in vm.activitess | filter: $select.search">
+                                    <div ng-bind-html="activite.libelle | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select> 
+                          </div> 
+                    </div>
+
+
+                 <!--  <div class="form-group col-sm-3">
                      <label class="control-label col-md-4 col-sm-4 col-xs-12" for="responsable">Responsable </label>
                      <div class="input-group col-md-6 col-sm-6 col-xs-12">
                       <select class="select2_single form-control" name="responsable" id="responsable"
@@ -36,7 +48,19 @@
                         ng-model="vm.responsable" ng-change="vm.search()">
                       </select>
                     </div>
-                  </div>
+                  </div> -->
+
+                   <div class="form-group col-sm-3">
+                           <label class="control-label col-md-4 col-sm-3 col-xs-12" for="responsable">Responsable </label>
+                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                                <ui-select ng-model="vm.responsable"    ng-required="false" ng-change="vm.search()">
+                                    <ui-select-match allow-clear="true" placeholder="Select Responsable">{{$select.selected.nom}}</ui-select-match>
+                                    <ui-select-choices repeat="responsable in vm.responsables | filter: $select.search">
+                                        <div ng-bind-html="responsable.nom | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select> 
+                            </div> 
+                        </div>
 
                   
                   <div class="form-group col-sm-3">
@@ -110,7 +134,17 @@
                 </tbody>
               </table>
             </div>
-
+            <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6">
+                    <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+                </div>
+                <div class="col-sm-6 text-right text-center-xs">
+                    <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+                </div>
+            </div>
+        </div>
+        </div>
 
 
         </div>

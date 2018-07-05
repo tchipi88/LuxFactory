@@ -5,9 +5,9 @@
         .module('app')
         .controller('ListeZonesController', ListeZonesController);
 
-    ListeZonesController.$inject = ['$state', 'DataUtils', 'ListeZones',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    ListeZonesController.$inject = ['$state', 'DataUtils', 'ListeZones',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','Entrepot','Activites','Employe'];
 
-    function ListeZonesController($state, DataUtils, ListeZones,  ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function ListeZonesController($state, DataUtils, ListeZones,  ParseLinks, AlertService, paginationConstants, pagingParams,Entrepot,Activites,Employe) {
 
         var vm = this;
 
@@ -20,6 +20,11 @@
         vm.loadAll = loadAll;
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
+        vm.entrepots = Entrepot.query();
+        vm.activitess = Activites.query();
+        vm.employes = Employe.query();
+
+        vm.search = search;
 
         loadAll();
 
@@ -47,6 +52,41 @@
                 AlertService.error(error.data.message);
             }
         }
+
+        function search()
+        {
+            // var dateFormat = 'yyyy-MM-dd';
+            // var fromDate = $filter('date')(vm.fromDate, dateFormat) == null?"": $filter('date')(vm.fromDate, dateFormat);
+            // var toDate = $filter('date')(vm.toDate, dateFormat)== null?"":$filter('date')(vm.toDate, dateFormat);
+             var selected_activite = vm.activite == null ? "" : vm.activite.libelle;
+             var selected_entrepot = vm.zone == null ? "" : vm.zone.libelle;
+             var selected_responsable = vm.responsable == null ? "":vm.responsable.nom;
+
+             if(selected_activite == "" & selected_responsable == "" & selected_entrepot == "")
+             {
+                //alert ('activite: '+ selected_activite + 'zone : ' + selected_entrepot+ 'responsable : '+ selected_responsable);
+                loadAll();
+             }
+             else{
+                    ListeZones.query({
+                    page: vm.page - 1,
+                    size: vm.itemsPerPage,
+                    //activite: 'activite',
+                    activite: selected_activite,
+                    entrepot: selected_entrepot,
+                    responsable: selected_responsable
+                },  function (data, headers) {
+                    vm.links = ParseLinks.parse(headers('link'));
+                    vm.totalItems = headers('X-Total-Count');
+                    vm.queryCount = vm.totalItems;
+                    vm.listeZoness = data;
+                })
+             }
+            
+            
+           
+        }
+
 
         function loadPage(page) {
             vm.page = page;

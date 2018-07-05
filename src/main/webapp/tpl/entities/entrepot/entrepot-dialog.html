@@ -51,7 +51,37 @@
                     </div> </div>
  </div>
 
+
+<div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_responsable">Activite</label>
+ <div class="input-group">
+                        <ui-select ng-model="vm.entrepot.activite"    ng-required="false">
+                            <ui-select-match placeholder="Select Activite">{{$select.selected.libelle}}</ui-select-match>
+                            <ui-select-choices repeat="activite in vm.activites | filter: $select.search">
+                                <div ng-bind-html="activite.libelle | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Activite','activite','activite', vm.entrepot.activite)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.entrepot.activite">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Activite', 'activite','activite', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.entrepot.activite">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> </div>
+ </div>
+
+        </div> 
+ 
+
         </div>
+
+
+       
        
     </div>
     <div class="modal-footer">

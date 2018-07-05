@@ -1,6 +1,11 @@
 <div class="bg-light lter b-b wrapper-md" >
-    <h1 class="m-n font-thin h3">Produits</h1>
-    <small class="text-muted"></small>
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a ui-sref="home"><i class="fa fa-home icon"></i> Accueil</a></li>
+    <li class="breadcrumb-item active">Configuration</li>
+    <li class="breadcrumb-item active" aria-current="page">Produits</li>
+  </ol>
+</nav>
 </div>
 <div>
     <jhi-alert></jhi-alert>
@@ -34,7 +39,7 @@
                 <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                        <th jh-sort-by="id"><span >ID</span> <span class="fa fa-sort"></span></th>
+                        <th jh-sort-by="denomination"><span >ID</span> <span class="fa fa-sort"></span></th>
                          <th jh-sort-by="denomination"><span >Denomination</span> <span class="fa fa-sort"></span></th> <th jh-sort-by="type"><span >Type</span> <span class="fa fa-sort"></span></th> 
                          <th jh-sort-by="categorie"><span >Categorie</span> <span class="fa fa-sort"></span></th> 
                          <th jh-sort-by="prix"><span >Prix</span> <span class="fa fa-sort"></span></th> 

@@ -88,6 +88,7 @@ public class ListeArticlesResource {
      * GET /liste-articless : get all the listeArticless.
      *
      * @param fromDate
+     * @param toDate
      * @param entrepot
      * @return the ResponseEntity with status 200 (OK) and the list of listeArticless in body
      */

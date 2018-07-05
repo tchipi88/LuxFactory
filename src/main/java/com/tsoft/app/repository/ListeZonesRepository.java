@@ -6,6 +6,11 @@
 package com.tsoft.app.repository;
 
 import com.tsoft.app.domain.ListeZones;
+
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -17,7 +22,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ListeZonesRepository extends JpaRepository<ListeZones, Long> {
 
-    
+    public Page<ListeZones> findAllByActiviteAndEntrepotAndResponsableContaining(String activite,String entrepot,String responsable, Pageable pageable);
 
 }
 

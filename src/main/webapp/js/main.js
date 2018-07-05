@@ -68,8 +68,9 @@ angular.module('app')
 
       
       $scope.dtOptions = {
-        paginationType : 'full_numbers',
-            displayLength: 20,
+            paginationType : 'full_numbers',
+            paging:   false,
+            displayLength: 30,
             bFilter:false,
             bLengthChange: false,
             bInfo: false
