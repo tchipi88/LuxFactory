@@ -19,32 +19,35 @@
           <form class="form-horizontal form-label-left input_mask">
 
                      
-                        <div class="form-group col-sm-3">
+                        
+                    <div class="form-group col-sm-3">
                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="article">Client </label>
                            <div class="input-group col-md-7 col-sm-7 col-xs-12">
-                            <select class="select2_single form-control" name="client" id="client"
-                              ng-options="client.nom for client  in vm.clients track by client.id"
-                              ng-model="vm.client" ng-change="vm.search()">
-                            </select>
-                          </div>
-                        </div>
+                            <ui-select ng-model="vm.client"    ng-required="false" ng-change="vm.search()">
+                                <ui-select-match allow-clear="true" placeholder="Select Client">{{$select.selected.nom}}</ui-select-match>
+                                <ui-select-choices repeat="client in vm.clients | filter: $select.search">
+                                    <div ng-bind-html="client.nom | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select> 
+                          </div> 
+                    </div>
 
-
-                        <div class="form-group col-sm-3">
-                           <label class="control-label col-md-4 col-sm-4 col-xs-12" for="zone">Fournisseur </label>
+                    <div class="form-group col-sm-3">
+                           <label class="control-label col-md-4 col-sm-4 col-xs-12" for="article">Fournisseur </label>
                            <div class="input-group col-md-7 col-sm-7 col-xs-12">
-                            <select class="select2_single form-control" name="fournisseur" id="fournisseur"
-                              ng-options="fournisseur.nom for fournisseur  in vm.fournisseurs track by fournisseur.id"
-                              ng-model="vm.fournisseur" ng-change="vm.search()">
-                            </select>
-                          </div>
-                        </div>
-
+                            <ui-select ng-model="vm.fournisseur"    ng-required="false" ng-change="vm.search()">
+                                <ui-select-match allow-clear="true" placeholder="Select fournisseur">{{$select.selected.nom}}</ui-select-match>
+                                <ui-select-choices repeat="fournisseur in vm.fournisseurs | filter: $select.search">
+                                    <div ng-bind-html="fournisseur.nom | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select> 
+                          </div> 
+                    </div>
                       
                         <div class="form-group col-sm-3">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="debut">Debut </label>
                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
-                              <input  id="debut" type="text" class="form-control" name="debut"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.fromDate"  is-open="vm.datePickerOpenStatus.dateDebut"
+                              <input  id="debut" type="text" class="form-control" name="debut"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.fromDate"  is-open="vm.datePickerOpenStatus.dateDebut" ng-change="vm.search()"
                                 />
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateDebut')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -57,7 +60,7 @@
                         <div class="form-group col-sm-3">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fin">Fin </label>
                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
-                              <input  id="debut" type="text" class="form-control" name="fin"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.toDate"  is-open="vm.datePickerOpenStatus.dateFin"
+                              <input  id="debut" type="text" class="form-control" name="fin"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.toDate"  is-open="vm.datePickerOpenStatus.dateFin" ng-change="vm.search()"
                                 />
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateFin')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -124,6 +127,16 @@
             </table>
 
         </div>
-        
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6">
+                    <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+                </div>
+                <div class="col-sm-6 text-right text-center-xs">
+                    <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
 </div>

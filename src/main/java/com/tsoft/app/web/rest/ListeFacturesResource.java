@@ -2,7 +2,8 @@ package com.tsoft.app.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.tsoft.app.domain.ListeFactures;
-
+import com.tsoft.app.domain.Procesverbal;
+import com.tsoft.app.domain.enumeration.TypeCommande;
 import com.tsoft.app.repository.ListeFacturesRepository;
 import com.tsoft.app.web.rest.util.HeaderUtil;
 import com.tsoft.app.web.rest.util.PaginationUtil;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -131,7 +133,31 @@ public class ListeFacturesResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-   
+    /**
+	 * GET /liste-facturess : get a page of ListeFactures between the client and
+	 * and fournisseur and dateEmission.
+	 *
+	 * @param client the client of the Factures to get
+	 * @param fourniseur the fournisseur of the Factures to get
+	 * @param fromDate
+	 * @param toDate
+	 * @param pageable the pagination information
+	 * @return the ResponseEntity with status 200 (OK) and the list of listeZones
+	 * in body
+	 */
+	@GetMapping(path = "/liste-facturess", params = {"client", "fournisseur","fromDate","toDate"})
+	@Timed
+	public ResponseEntity<List<ListeFactures>> searchListeFactures(
+	        @RequestParam(value = "client") String client,
+	        @RequestParam(value = "fournisseur") String fournisseur,
+	        @RequestParam(value = "fromDate") LocalDate fromDate,
+	        @RequestParam(value = "toDate") LocalDate toDate,
+	        @ApiParam Pageable pageable, @ApiParam TypeCommande type) {
+	    log.debug("REST request to search for a page of Factures for  {}  and {} between {} and {}", client, fournisseur,fromDate,toDate);
+	    Page<ListeFactures> page = listeFacturesRepository.findAllByClientAndFournisseurAndDateEmissionBetween(client, fournisseur, fromDate, toDate, pageable);
+	    HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/liste-facturess");
+	    return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+	}
 
 
 }

@@ -5,9 +5,9 @@
         .module('app')
         .controller('FactureDialogController', FactureDialogController);
 
-    FactureDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'Facture','Commande'];
+    FactureDialogController.$inject = ['$resource','$timeout', '$scope','ParseLinks', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'Facture','Commande'];
 
-    function FactureDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, Facture ,Commande) {
+    function FactureDialogController ($resource,$timeout, $scope,ParseLinks, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, Facture ,Commande) {
         var vm = this;
 
         vm.facture = entity;
@@ -17,8 +17,27 @@
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.commandes = Commande.query();
+       // vm.commandes = Commande.query();
+        //vm.commandes = $resource('api/commandes/false').query();
+       
+        GetCommandeFacturee();
 
+        function GetCommandeFacturee()
+        {
+            // var facturee = false;
+            Commande.query({
+            page: vm.page - 1,
+            size: vm.itemsPerPage,
+            facturee: 0
+                },  function (data, headers) {
+                    //vm.links = ParseLinks.parse(headers('link'));
+                    vm.totalItems = headers('X-Total-Count');
+                    vm.queryCount = vm.totalItems;
+                    vm.commandes = data;
+                })
+        }
+            
+          
       
 
         $timeout(function (){

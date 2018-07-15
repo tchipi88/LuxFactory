@@ -5,9 +5,9 @@
         .module('app')
         .controller('ListeFacturesController', ListeFacturesController);
 
-    ListeFacturesController.$inject = ['$state', 'DataUtils', 'ListeFactures',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    ListeFacturesController.$inject = ['$state','$filter', 'DataUtils', 'ListeFactures',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','Client','Fournisseur'];
 
-    function ListeFacturesController($state, DataUtils, ListeFactures,  ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function ListeFacturesController($state,$filter, DataUtils, ListeFactures,  ParseLinks, AlertService, paginationConstants, pagingParams,Client,Fournisseur) {
 
         var vm = this;
 
@@ -20,6 +20,11 @@
         vm.loadAll = loadAll;
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
+        vm.clients = Client.query();
+        vm.fournisseurs = Fournisseur.query();
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
+        vm.search = search;
         //vm.listeFacturess = ListeFactures.query();
 
         loadAll();
@@ -49,6 +54,31 @@
             }
         }
 
+        function search(){
+            var dateFormat = 'yyyy-MM-dd';
+            var today = $filter('date')(new Date(), dateFormat);
+            var fromDate = $filter('date')(vm.fromDate, dateFormat) == null? today: $filter('date')(vm.fromDate, dateFormat);
+            var toDate = $filter('date')(vm.toDate, dateFormat)== null? today:$filter('date')(vm.toDate, dateFormat);
+            var selected_client = vm.client == null ? "viverra." : vm.client.nom;
+            var selected_fournisseur = vm.fournisseur == null ? "Duis" : vm.fournisseur.nom;
+
+            //alert ('client: '+ selected_client +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
+
+            ListeFactures.query({
+                page: vm.page - 1,
+                size: vm.itemsPerPage,
+                client: selected_client,
+                fournisseur: selected_fournisseur,
+                fromDate: fromDate, 
+                toDate: toDate
+            },  function (data, headers) {
+                vm.links = ParseLinks.parse(headers('link'));
+                vm.totalItems = headers('X-Total-Count');
+                vm.queryCount = vm.totalItems;
+                vm.listeFacturess = data;
+            });
+        }
+
         function loadPage(page) {
             vm.page = page;
             vm.transition();
@@ -69,6 +99,13 @@
             vm.predicate = 'id';
             vm.reverse = true;
             vm.transition();
+        }
+
+        vm.datePickerOpenStatus.dateFin = false;
+        vm.datePickerOpenStatus.dateDebut = false;
+                
+        function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
         }
     }
 })();

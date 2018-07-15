@@ -6,6 +6,12 @@
 package com.tsoft.app.repository;
 
 import com.tsoft.app.domain.ListeFactures;
+import com.tsoft.app.domain.Procesverbal;
+
+import java.time.LocalDate;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -17,7 +23,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ListeFacturesRepository extends JpaRepository<ListeFactures, Long> {
 
-    
+	 public Page<ListeFactures> findAllByClientAndFournisseurAndDateEmissionBetween(String client, String fournisseur, LocalDate fromDate,
+	            LocalDate toDate, Pageable pageable);
 
 }
 

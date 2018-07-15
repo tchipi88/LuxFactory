@@ -116,6 +116,23 @@ public class CommandeResource {
         Commande commande = commandeRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(commande));
     }
+    
+    /**
+     * GET /commandes/:facturee : get the "facturee" commande.
+     *
+     * @param facturee the facturee of the commande to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the
+     * commande, or with status 404 (Not Found)
+     */
+    @GetMapping(path = "/commandes", params = {"facturee"})
+    @Timed
+    public ResponseEntity<List<Commande>> getCommandeFacturee(@RequestParam(value = "facturee") boolean facturee) {
+        log.debug("REST request to get Commande : {}", facturee);
+        List<Commande> commande = commandeRepository.findAllByFacturee(facturee);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(commande));
+        //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/commandes");
+        //return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
 
     /**
      * DELETE /commandes/:id : delete the "id" commande.

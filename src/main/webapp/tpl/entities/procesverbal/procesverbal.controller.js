@@ -5,9 +5,9 @@
         .module('app')
         .controller('ProcesverbalController', ProcesverbalController);
 
-    ProcesverbalController.$inject = ['$state', 'DataUtils', 'Procesverbal',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','Client','Fournisseur'];
+    ProcesverbalController.$inject = ['$state', '$filter','DataUtils', 'Procesverbal',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','Client','Fournisseur'];
 
-    function ProcesverbalController($state, DataUtils, Procesverbal,  ParseLinks, AlertService, paginationConstants, pagingParams,Client,Fournisseur) {
+    function ProcesverbalController($state,$filter, DataUtils, Procesverbal,  ParseLinks, AlertService, paginationConstants, pagingParams,Client,Fournisseur) {
 
         var vm = this;
 
@@ -24,6 +24,7 @@
         vm.fournisseurs = Fournisseur.query();
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
+        vm.search = search;
 
         loadAll();
 
@@ -50,6 +51,31 @@
             function onError(error) {
                 AlertService.error(error.data.message);
             }
+        }
+
+        function search(){
+            var dateFormat = 'yyyy-MM-dd';
+            var today = $filter('date')(new Date(), dateFormat);
+            var fromDate = $filter('date')(vm.fromDate, dateFormat) == null? today: $filter('date')(vm.fromDate, dateFormat);
+            var toDate = $filter('date')(vm.toDate, dateFormat)== null? today:$filter('date')(vm.toDate, dateFormat);
+            var selected_client = vm.client == null ? "viverra." : vm.client.nom;
+            var selected_fournisseur = vm.fournisseur == null ? "Duis" : vm.fournisseur.nom;
+
+            //alert ('client: '+ selected_client +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
+
+            Procesverbal.query({
+                page: vm.page - 1,
+                size: vm.itemsPerPage,
+                client: selected_client,
+                fournisseur: selected_fournisseur,
+                fromDate: fromDate, 
+                toDate: toDate
+            },  function (data, headers) {
+                vm.links = ParseLinks.parse(headers('link'));
+                vm.totalItems = headers('X-Total-Count');
+                vm.queryCount = vm.totalItems;
+                vm.procesverbals = data;
+            });
         }
 
         function loadPage(page) {

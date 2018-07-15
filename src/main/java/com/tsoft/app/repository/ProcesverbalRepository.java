@@ -6,6 +6,11 @@
 package com.tsoft.app.repository;
 
 import com.tsoft.app.domain.Procesverbal;
+
+import java.time.LocalDate;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -17,7 +22,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ProcesverbalRepository extends JpaRepository<Procesverbal, Long> {
 
-    
+	 public Page<Procesverbal> findAllByIdentiteResponsableAcheteurAndIdentiteResponsable1PrestataireAndDatePvBetween(String client, String fournisseur, LocalDate fromDate,
+	            LocalDate toDate, Pageable pageable);
 
 }
 

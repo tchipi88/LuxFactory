@@ -4,6 +4,6 @@
     angular
         .module('app')
         .constant('paginationConstants', {
-            'itemsPerPage': 30
+            'itemsPerPage': 20
         });
 })();
