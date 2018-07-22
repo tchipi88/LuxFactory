@@ -56,26 +56,31 @@
         function search(){
             var dateFormat = 'yyyy-MM-dd';
             var today = $filter('date')(new Date(), dateFormat);
-            var fromDate = $filter('date')(vm.fromDate, dateFormat) == null? today: $filter('date')(vm.fromDate, dateFormat);
-            var toDate = $filter('date')(vm.toDate, dateFormat)== null? today:$filter('date')(vm.toDate, dateFormat);
-            var selected_client = vm.client == null ? "viverra." : vm.client.nom;
-            var selected_fournisseur = vm.fournisseur == null ? "Duis" : vm.fournisseur.nom;
+            var fromDate = $filter('date')(vm.fromDate, dateFormat) == null? "": $filter('date')(vm.fromDate, dateFormat);
+            var toDate = $filter('date')(vm.toDate, dateFormat)== null? "":$filter('date')(vm.toDate, dateFormat);
+            var selected_client = vm.client == null ? "" : vm.client.nom;
+            var selected_fournisseur = vm.fournisseur == null ? "" : vm.fournisseur.nom;
 
-            //alert ('client: '+ selected_client +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
+            if(selected_fournisseur == "" || selected_client == "" || fromDate == "" || toDate == ""){
+                //alert ('client: '+ selected_client +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
+                loadAll();
+            }else{
+                    Procesverbal.query({
+                    page: vm.page - 1,
+                    size: vm.itemsPerPage,
+                    client: selected_client,
+                    fournisseur: selected_fournisseur,
+                    fromDate: fromDate, 
+                    toDate: toDate
+                },  function (data, headers) {
+                    vm.links = ParseLinks.parse(headers('link'));
+                    vm.totalItems = headers('X-Total-Count');
+                    vm.queryCount = vm.totalItems;
+                    vm.procesverbals = data;
+                });
+            }
 
-            Procesverbal.query({
-                page: vm.page - 1,
-                size: vm.itemsPerPage,
-                client: selected_client,
-                fournisseur: selected_fournisseur,
-                fromDate: fromDate, 
-                toDate: toDate
-            },  function (data, headers) {
-                vm.links = ParseLinks.parse(headers('link'));
-                vm.totalItems = headers('X-Total-Count');
-                vm.queryCount = vm.totalItems;
-                vm.procesverbals = data;
-            });
+            
         }
 
         function loadPage(page) {

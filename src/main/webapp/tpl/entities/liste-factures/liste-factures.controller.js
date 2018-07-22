@@ -57,14 +57,19 @@
         function search(){
             var dateFormat = 'yyyy-MM-dd';
             var today = $filter('date')(new Date(), dateFormat);
-            var fromDate = $filter('date')(vm.fromDate, dateFormat) == null? today: $filter('date')(vm.fromDate, dateFormat);
-            var toDate = $filter('date')(vm.toDate, dateFormat)== null? today:$filter('date')(vm.toDate, dateFormat);
-            var selected_client = vm.client == null ? "viverra." : vm.client.nom;
-            var selected_fournisseur = vm.fournisseur == null ? "Duis" : vm.fournisseur.nom;
+            var fromDate = $filter('date')(vm.fromDate, dateFormat) == null? "": $filter('date')(vm.fromDate, dateFormat);
+            var toDate = $filter('date')(vm.toDate, dateFormat)== null? "":$filter('date')(vm.toDate, dateFormat);
+            var selected_client = vm.client == null ? "" : vm.client.nom;
+            var selected_fournisseur = vm.fournisseur == null ? "" : vm.fournisseur.nom;
 
             //alert ('client: '+ selected_client +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
 
-            ListeFactures.query({
+            if(selected_client == "" || selected_fournisseur == "" || fromDate == "" || toDate == ""){
+
+                loadAll();
+                //alert(selected_client + selected_fournisseur + fromDate + today);
+            }else{
+                ListeFactures.query({
                 page: vm.page - 1,
                 size: vm.itemsPerPage,
                 client: selected_client,
@@ -77,6 +82,9 @@
                 vm.queryCount = vm.totalItems;
                 vm.listeFacturess = data;
             });
+            }
+
+            
         }
 
         function loadPage(page) {

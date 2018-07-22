@@ -70,8 +70,8 @@
                                 });
                         }]
                 })
-                .state('liste-articles.articles.edit', {
-                parent: 'liste-articles.articles',
+                .state('liste-articles.edit', {
+                parent: 'liste-articles',
                         url: '/{id}/edit',
                         data: {
                         authorities: ['ROLE_USER']
@@ -95,8 +95,8 @@
                         });
                         }]
                 })
-                .state('liste-articles.articles.delete', {
-                parent: 'liste-articles.articles',
+                .state('liste-articles.delete', {
+                parent: 'liste-articles',
                         url: '/{id}/delete',
                         data: {
                         authorities: ['ROLE_USER']

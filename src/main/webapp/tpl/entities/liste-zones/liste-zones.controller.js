@@ -62,16 +62,14 @@
              var selected_entrepot = vm.zone == null ? "" : vm.zone.libelle;
              var selected_responsable = vm.responsable == null ? "":vm.responsable.nom;
 
-             if(selected_activite == "" & selected_responsable == "" & selected_entrepot == "")
+             if(selected_activite == "" || selected_responsable == "" || selected_entrepot == "")
              {
-                //alert ('activite: '+ selected_activite + 'zone : ' + selected_entrepot+ 'responsable : '+ selected_responsable);
                 loadAll();
              }
              else{
                     ListeZones.query({
                     page: vm.page - 1,
                     size: vm.itemsPerPage,
-                    //activite: 'activite',
                     activite: selected_activite,
                     entrepot: selected_entrepot,
                     responsable: selected_responsable

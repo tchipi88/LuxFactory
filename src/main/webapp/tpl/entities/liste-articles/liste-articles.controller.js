@@ -77,25 +77,34 @@
             var dateFormat = 'yyyy-MM-dd';
             var fromDate = $filter('date')(vm.fromDate, dateFormat) == null?"": $filter('date')(vm.fromDate, dateFormat);
             var toDate = $filter('date')(vm.toDate, dateFormat)== null?"":$filter('date')(vm.toDate, dateFormat);
-            var selected_activite = vm.produit == null ? "viverra." : vm.produit.denomination;
-            var selected_entrepot = vm.entrepot == null ? "Duis" : vm.entrepot.libelle;
+            var selected_activite = vm.produit == null ? "" : vm.produit.denomination;
+            var selected_entrepot = vm.entrepot == null ? "" : vm.entrepot.libelle;
 
-            alert ('article: '+ selected_activite +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
+            if(selected_entrepot == "" || selected_activite == "" || fromDate == "" || toDate == "")
+            {
+               // loadAll();
+               //alert ('article: '+ selected_entrepot +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
+            }
+            else{
 
-            ListeArticles.query({
-                page: vm.page - 1,
-                size: 20,
-                //activite: 'activite',
-                activite: selected_activite,
-                entrepot: selected_entrepot,
-                fromDate: fromDate, 
-                toDate: toDate
-            },  function (data, headers) {
-                vm.links = ParseLinks.parse(headers('link'));
-                vm.totalItems = headers('X-Total-Count');
-                vm.queryCount = vm.totalItems;
-                vm.listeArticless = data;
-            });
+                    ListeArticles.query({
+                    page: vm.page - 1,
+                    size: 20,
+                    //activite: 'activite',
+                    activite: selected_activite,
+                    entrepot: selected_entrepot,
+                    fromDate: fromDate, 
+                    toDate: toDate
+                },  function (data, headers) {
+                    vm.links = ParseLinks.parse(headers('link'));
+                    vm.totalItems = headers('X-Total-Count');
+                    vm.queryCount = vm.totalItems;
+                    vm.listeArticless = data;
+                });
+            }
+            
+
+            
            
         }
 
