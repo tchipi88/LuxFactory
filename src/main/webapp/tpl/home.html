@@ -132,24 +132,24 @@
             </a>
             <!-- dropdown -->
             <ul class="dropdown-menu" uib-dropdown-menu>
-                <li ui-sref-active="active" >
+                <!-- <li ui-sref-active="active" >
                     <a ui-sref="settings" >
                         <span class="glyphicon glyphicon-wrench"></span>&nbsp;
                         <span data-translate="global.menu.account.settings">Settings</span>
                     </a>
-                </li>
+                </li> -->
                 <li ui-sref-active="active" >
                     <a ui-sref="password" >
                         <span class="glyphicon glyphicon-lock"></span>&nbsp;
                         <span data-translate="global.menu.account.password">Password</span>
                     </a>
                 </li>
-                <li ui-sref-active="active" >
+               <!--  <li ui-sref-active="active" >
                     <a ui-sref="site" >
                         <span class="glyphicon glyphicon-home"></span>&nbsp;
                         <span>Sites</span>
                     </a>
-                </li>
+                </li> -->
                 <li ui-sref-active="active" >
                     <a href="" ng-click="vm.logout()" id="logout"  >
                         <span class="glyphicon glyphicon-log-out"></span>&nbsp;
@@ -160,6 +160,46 @@
             </ul>
             <!-- / dropdown -->
         </li>
+
+        <li  uib-dropdown class="dropdown" has-authority="ROLE_ADMIN">
+            <a class="dropdown-toggle" uib-dropdown-toggle href="">
+                <span>
+                    <span class="glyphicon glyphicon-cog"></span>
+                    <span class="hidden-sm" > </span>
+                    <b class="caret"></b>
+                </span>
+            </a>
+            <!-- dropdown -->
+            <ul class="dropdown-menu" uib-dropdown-menu>
+                <li ui-sref-active="active" >
+                    <a ui-sref="settings" >
+                        <span class="glyphicon glyphicon-wrench"></span>&nbsp;
+                        <span data-translate="global.menu.account.settings">Settings</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active" >
+                    <a ui-sref="user-management" >
+                        <span class="glyphicon glyphicon-user"></span>&nbsp;
+                        <span>Utilisateurs</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active" >
+                    <a ui-sref="role" >
+                        <span class="glyphicon glyphicon-pencil "></span>&nbsp;
+                        <span>Roles</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active" >
+                    <a ui-sref="site" >
+                        <span class="glyphicon glyphicon-home"></span>&nbsp;
+                        <span>Sites</span>
+                    </a>
+                </li>
+              
+            </ul>
+            <!-- / dropdown -->
+        </li>
+        
     </ul>
     <!-- / navbar right -->
 
