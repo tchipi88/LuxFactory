@@ -6,6 +6,9 @@
 package com.tsoft.app.repository.search;
 
 import com.tsoft.app.domain.Fournisseur;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 /**
@@ -17,6 +20,7 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
  */
 public interface FournisseurSearchRepository extends ElasticsearchRepository<Fournisseur, Long> {
 
+	Page<Fournisseur> findByNom(String name, Pageable pageable);
     
 
 }

@@ -39,18 +39,14 @@
             var toDate = $filter('date')(vm.toDate, dateFormat);
             var selected_activite = vm.produit == null ? "aliquam" : vm.produit.denomination;
             var selected_entrepot = vm.entrepot == null ? "euismod" : vm.entrepot.libelle;
-
-             
-
-
-                ListeArticles.query({
-                    page: pagingParams.page - 1,
-                    size: vm.itemsPerPage,
-                    sort: sort(),
-                    activite: selected_activite,
-                    entrepot: selected_entrepot,
-                    fromDate: fromDate, toDate: toDate
-                }, onSuccess, onError);
+            ListeArticles.query({
+                page: pagingParams.page - 1,
+                size: vm.itemsPerPage,
+                sort: sort() //,
+                //activite: selected_activite,
+                //entrepot: selected_entrepot,
+                //fromDate: fromDate, toDate: toDate
+            }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
                 if (vm.predicate !== 'id') {
@@ -82,7 +78,7 @@
 
             if(selected_entrepot == "" || selected_activite == "" || fromDate == "" || toDate == "")
             {
-               // loadAll();
+                loadAll();
                //alert ('article: '+ selected_entrepot +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
             }
             else{

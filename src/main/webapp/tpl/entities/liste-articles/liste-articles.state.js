@@ -51,8 +51,8 @@
                         },
                         onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                         $uibModal.open({
-                        templateUrl: 'tpl/entities/produits/produits-dialog.html',
-                                controller: 'ProduitsDialogController',
+                        templateUrl: 'tpl/entities/produit/produit-dialog.html',
+                                controller: 'ProduitDialogController',
                                 controllerAs: 'vm',
                                 backdrop: 'static',
                                 size: 'lg',

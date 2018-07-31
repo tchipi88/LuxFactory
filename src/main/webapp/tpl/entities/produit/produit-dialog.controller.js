@@ -19,6 +19,7 @@
         vm.save = save;
         vm.categories = ProduitCategorie.query();
         vm.unites = Unite.query();
+        vm.parents = Produit.query();
 
       
 

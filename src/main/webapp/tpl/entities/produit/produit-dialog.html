@@ -83,6 +83,28 @@
                         </span>
                     </div> </div>
             </div>
+            <div class="col-sm-6">
+ <div class="form-group">
+ <label class="control-label"  for="field_parent">Article Parent</label>
+ <div class="input-group">
+                        <ui-select ng-model="vm.produit.parent"    ng-required="false">
+                            <ui-select-match placeholder="Select Produits">{{$select.selected.denomination}}</ui-select-match>
+                            <ui-select-choices repeat="parent in vm.parents | filter: $select.search">
+                                <div ng-bind-html="parent.denomination | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Produit','produit','parent', vm.produit.parent)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.produits.parent">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Produit', 'produit','parent', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.produit.parent">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> </div>
+ </div>
 
         </div>
 

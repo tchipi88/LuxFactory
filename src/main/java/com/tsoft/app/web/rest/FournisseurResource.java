@@ -10,6 +10,8 @@ import com.tsoft.app.web.rest.util.HeaderUtil;
 import com.tsoft.app.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
+
+import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -149,7 +151,8 @@ public class FournisseurResource {
     @Timed
     public ResponseEntity<List<Fournisseur>> searchFournisseurs(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Fournisseurs for query {}", query);
-        Page<Fournisseur> page = fournisseurSearchRepository.search(queryStringQuery(query), pageable);
+        Page<Fournisseur> page = fournisseurSearchRepository.search(QueryBuilders.boolQuery().must(queryStringQuery(query)), pageable);
+        //Page<Fournisseur> page = fournisseurSearchRepository.findByNom(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/fournisseurs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

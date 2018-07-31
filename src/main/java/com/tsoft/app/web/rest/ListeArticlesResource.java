@@ -103,6 +103,20 @@ public class ListeArticlesResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/liste-articless");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+    
+    /**
+     * GET /liste-articless : get all the listeArticless.
+  	 *
+     * @return the ResponseEntity with status 200 (OK) and the list of listeArticless in body
+     */
+    @GetMapping(path = "/liste-articless")
+    @Timed
+    public ResponseEntity<List<ListeArticles>> getAllListeArticles(@ApiParam Pageable pageable) {
+        log.debug("REST request to get all ListeArticless");
+        Page<ListeArticles> page = listeArticlesRepository.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/liste-articless");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
 
     /**
      * GET /liste-articless/:id : get the "id" listeArticles.

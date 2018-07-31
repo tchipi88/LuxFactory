@@ -52,8 +52,19 @@ public class Produit extends AbstractAuditingEntity {
 
     @ManyToOne
     private Unite unite;
+    
+    @ManyToOne
+    private Produit parent;  
 
-    public Long getId() {
+    public Produit getParent() {
+		return parent;
+	}
+
+	public void setParent(Produit parent) {
+		this.parent = parent;
+	}
+
+	public Long getId() {
         return id;
     }
 
