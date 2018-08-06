@@ -33,7 +33,6 @@
                 Activites.query({
                     page: pagingParams.page - 1,
                     size: vm.itemsPerPage,
-                    size: vm.itemsPerPage,
                     sort: sort()
                 }, onSuccess, onError);
             function sort() {
@@ -57,27 +56,28 @@
 
          function search()
         {
-            var dateFormat = 'yyyy-MM-dd';
-            var fromDate = $filter('date')(vm.fromDate, dateFormat);
-            var toDate = $filter('date')(vm.toDate, dateFormat);
+            // var dateFormat = 'yyyy-MM-dd';
+            // var fromDate = $filter('date')(vm.fromDate, dateFormat);
+            // var toDate = $filter('date')(vm.toDate, dateFormat);
             var selected_activite = vm.activite == null ? "" : vm.activite.libelle;
             var selected_resp = vm.responsable == null ? "" : vm.responsable.nom;
 
-            //alert ('article: '+ selected_activite +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
-
-            Activites.query({
-                page: vm.page - 1,
+            if(selected_activite == "" && selected_resp == "") loadAll();
+            else{
+                 Activites.query({
+                page: pagingParams.page - 1,
                 size: vm.itemsPerPage,
-                libelle: selected_activite,
-                responsable: selected_resp,
-                fromDate: fromDate, 
-                toDate: toDate
+                libelle: selected_activite 
+                ,responsable: selected_resp
             },  function (data, headers) {
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
                 vm.activitess = data;
+                page : pagingParams.page;
             });
+            }
+           
            
         }
 

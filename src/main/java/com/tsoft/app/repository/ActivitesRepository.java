@@ -6,6 +6,9 @@
 package com.tsoft.app.repository;
 
 import com.tsoft.app.domain.Activites;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -17,7 +20,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ActivitesRepository extends JpaRepository<Activites, Long> {
 
-    
+	public Page<Activites> findAllByLibelleAndResponsableNom(String libelle, String responsable, Pageable pageable);
+	
+	public Page<Activites> findAllByLibelle(String libelle,Pageable pageablbe);
 
 }
 

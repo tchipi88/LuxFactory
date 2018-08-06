@@ -22,7 +22,7 @@
                     <input  class="form-control"   type="text"  autocomplete="off"   id="field_denomination" ng-model="vm.produit.denomination"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
                 </div>
             </div>
-            <div class="col-sm-6">
+           <!--  <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_type">Type<span style="color:red" >*</span></label>
                     <select class="form-control" name="type"  ng-model="vm.produit.type"  id="field_type" required>
@@ -32,7 +32,7 @@
                         <option value="TRAVAIL">TRAVAIL</option>
                     </select>
                 </div>
-            </div>
+            </div> -->
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_categorie">Categorie <span style="color:red" >*</span></label>
@@ -58,7 +58,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_prix">Prix Vente<span style="color:red" >*</span></label>
-                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_prix" ng-model="vm.produit.prix"                     ng-readonly="false"  ng-required="true"                     />
+                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_prix" ng-model="vm.produit.prix"      ng-min="1"               ng-readonly="false"  ng-required="true"                     />
                 </div>
             </div>
             <div class="col-sm-6">

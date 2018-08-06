@@ -2,7 +2,7 @@ package com.tsoft.app.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.tsoft.app.domain.Activites;
-
+import com.tsoft.app.domain.ListeArticles;
 import com.tsoft.app.repository.ActivitesRepository;
 import com.tsoft.app.web.rest.util.HeaderUtil;
 import com.tsoft.app.web.rest.util.PaginationUtil;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -131,6 +132,22 @@ public class ActivitesResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+    
+    /**
+     * GET /activites : get selected activites.
+     *
+     * @param libelle
+     * @param responsable
+     * @return the ResponseEntity with status 200 (OK) and the list of activites in body
+     */
+    @GetMapping(path = "/activitess", params = {"libelle","responsable"})
+    @Timed
+    public ResponseEntity<List<Activites>> searchActivite(@ApiParam Pageable pageable, @RequestParam String libelle, @RequestParam String responsable) {
+        log.debug("REST request to get all ListeArticless");
+        Page<Activites> page = activitesRepository.findAllByLibelleAndResponsableNom(libelle,responsable, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/activitess");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
    
     
 
