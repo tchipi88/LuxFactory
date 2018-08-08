@@ -33,7 +33,7 @@
  <label class="control-label"  for="field_responsable">Responsable</label>
  <div class="input-group">
                         <ui-select ng-model="vm.entrepot.responsable"    ng-required="false">
-                            <ui-select-match placeholder="Select Employe">{{$select.selected.nom}}</ui-select-match>
+                            <ui-select-match allow-clear="true" placeholder="Select Employe">{{$select.selected.nom}}</ui-select-match>
                             <ui-select-choices repeat="responsable in vm.responsables | filter: $select.search">
                                 <div ng-bind-html="responsable.nom | highlight: $select.search"></div>
                             </ui-select-choices>
@@ -57,17 +57,17 @@
  <label class="control-label"  for="field_responsable">Activite</label>
  <div class="input-group">
                         <ui-select ng-model="vm.entrepot.activite"    ng-required="false">
-                            <ui-select-match placeholder="Select Activite">{{$select.selected.libelle}}</ui-select-match>
+                            <ui-select-match allow-clear="true" placeholder="Select Activite">{{$select.selected.libelle}}</ui-select-match>
                             <ui-select-choices repeat="activite in vm.activites | filter: $select.search">
                                 <div ng-bind-html="activite.libelle | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>  
                         <span class="input-group-btn" >
-                            <button   ng-click="vm.zoomColumn('Activite','activite','activite', vm.entrepot.activite)" 
+                            <button   ng-click="vm.zoomColumn('Activites','activites','activites', vm.entrepot.activite)" 
                                       class="btn btn-default" type="button"  ng-hide="!vm.entrepot.activite">
                                 <span class="fa fa-eye"></span>
                             </button>
-                            <button ng-click="vm.zoomColumn('Activite', 'activite','activite', {})"      
+                            <button ng-click="vm.zoomColumn('Activites', 'activites','activites', {})"      
                                     class="btn btn-default" type="button"  ng-hide="vm.entrepot.activite">
                                 <span class="fa fa-plus fw"></span>
                             </button>
