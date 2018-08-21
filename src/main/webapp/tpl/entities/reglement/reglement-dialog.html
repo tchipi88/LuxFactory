@@ -19,7 +19,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_montant">Montant <span style="color:red" >*</span></label>
-                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_montant" ng-model="vm.reglement.montant"                     ng-readonly="false"  ng-required="true"                     />
+                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_montant" ng-model="vm.reglement.montant"           min="0"          ng-readonly="false"  ng-required="true"                     />
                 </div>
             </div>
             <div class="col-sm-6">

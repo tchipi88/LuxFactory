@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.tsoft.app.domain.Facture;
 
 import com.tsoft.app.repository.FactureRepository;
+import com.tsoft.app.service.FactureService;
 import com.tsoft.app.web.rest.util.HeaderUtil;
 import com.tsoft.app.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -39,10 +40,13 @@ public class FactureResource {
     private static final String ENTITY_NAME = "facture";
         
     private final FactureRepository factureRepository;
+    
+    private final FactureService factureService;
 
 
-    public FactureResource(FactureRepository factureRepository) {
+    public FactureResource(FactureRepository factureRepository, FactureService factureService) {
         this.factureRepository = factureRepository;
+        this.factureService = factureService;
     }
 
     /**
@@ -59,7 +63,7 @@ public class FactureResource {
         if (facture.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new facture cannot already have an ID")).body(null);
         }
-        Facture result = factureRepository.save(facture);
+        Facture result = factureService.save(facture);
         return ResponseEntity.created(new URI("/api/factures/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);

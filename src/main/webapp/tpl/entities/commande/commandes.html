@@ -73,7 +73,6 @@
                         <td>{{commande.montantRestant| number }}</td>
                         <td >
 
-
                             <button type="submit"   ui-sref="commande.edit({id:commande.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
                                 <i class="fa fa-edit">
                                 </i>
@@ -89,5 +88,15 @@
                 </tbody>
             </table>
 
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6">
+                    <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+                </div>
+                <div class="col-sm-6 text-right text-center-xs">
+                    <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+                </div>
+            </div>
         </div>
 </div>

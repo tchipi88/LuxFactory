@@ -8,7 +8,7 @@ angular.module('app', [
     'ngMessages',
     'ngResource',
     'ngSanitize',
-     'ngCacheBuster',
+    'ngCacheBuster',
     'ngTouch',
     'ngStorage',
     'ui.router',
@@ -19,7 +19,8 @@ angular.module('app', [
     'ui.jq',
     'oc.lazyLoad',
     'ngFileUpload',
-    'datatables']).run(run);
+    'datatables',
+    'ngMask']).run(run);
 
  run.$inject = ['stateHandler'];
 

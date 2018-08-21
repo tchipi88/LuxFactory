@@ -8,7 +8,7 @@
         $stateProvider
                 .state('procesverbal', {
                 parent: 'entity',
-                        url: '/procesverbal?page&sort&search',
+                        url: '/procesverbal?page&sort&search&type',
                         data: {
                         authorities: ['ROLE_USER']
                         },
@@ -27,7 +27,11 @@
                                 value: 'id,asc',
                                         squash: true
                                 },
-                                search: null
+                                search: null,
+                        type: {
+                            value: 'ACHAT',
+                            squash: true
+                        }
                         },
                         resolve: {
                         pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {

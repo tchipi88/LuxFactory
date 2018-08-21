@@ -78,7 +78,13 @@
                     size: 'lg',
                     resolve: {
                         entity: function () {
-                            return entity;
+                            return { 
+                                type: 'ACHAT',
+                                etat: 'DEVIS',
+                                type: $stateParams.type,
+                                dateEmission: new Date(),
+                                entity
+                            };
                         }
                     }
                 }).result.then(function(item) {

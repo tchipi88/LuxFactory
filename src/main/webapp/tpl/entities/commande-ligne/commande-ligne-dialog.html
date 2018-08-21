@@ -21,7 +21,7 @@
                     <label class="control-label"  for="field_produit">Produit <span style="color:red" >*</span></label>
                     <div class="input-group">
                         <ui-select ng-model="vm.commandeLigne.produit"    ng-required="true"  ng-disabled="vm.commandeLigne.id">
-                            <ui-select-match placeholder="Select Produit">{{$select.selected.denomination}}</ui-select-match>
+                            <ui-select-match allow-clear="true" placeholder="Select Produit">{{$select.selected.denomination}}</ui-select-match>
                             <ui-select-choices repeat="produit in vm.produits | filter: $select.search">
                                 <div ng-bind-html="produit.denomination | highlight: $select.search"></div>
                             </ui-select-choices>
@@ -42,30 +42,42 @@
             <div  class="col-sm-6"  ng-show="$stateParams.type=='ACHAT'">
                 <div class="form-group">
                     <label class="control-label"  for="field_produit">Entrepot <span style="color:red" >*</span></label>
+                    <div class="input-group">
                     <ui-select ng-model="vm.commandeLigne.entrepot"    ng-required="$stateParams.type=='ACHAT'"  ng-disabled="vm.commandeLigne.id">
-                        <ui-select-match placeholder="Select Entrepot">{{$select.selected.libelle}}</ui-select-match>
+                        <ui-select-match allow-clear="true" placeholder="Select Entrepot">{{$select.selected.libelle}}</ui-select-match>
                         <ui-select-choices repeat="entrepot in vm.entrepots | filter: $select.search">
                             <div ng-bind-html="entrepot.libelle | highlight: $select.search"></div>
                         </ui-select-choices>
-                    </ui-select>  
+                    </ui-select>
+                    <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Entrepot', 'entrepot', 'entrepot', vm.commandeLigne.entrepot)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.commandeLigne.entrepot"   ng-disabled="vm.commandeLigne.id">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Entrepot', 'entrepot', 'entrepot', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.commandeLigne.entrepot"   ng-disabled="vm.commandeLigne.id">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span> 
+                    </div> 
                 </div>
             </div>
             <div  class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_quantite">Quantite <span style="color:red" >*</span></label>
-                    <input  class="form-control"   type="number"  min="1" autocomplete="off"  id="field_quantite" ng-model="vm.commandeLigne.quantite"                     ng-readonly="false"  ng-required="true"                     />
+                    <input  class="form-control"   type="number"  min="0" autocomplete="off"  id="field_quantite" ng-model="vm.commandeLigne.quantite"                     ng-readonly="false"  ng-required="true"                     />
                 </div>
             </div>
             <div  class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_quantiteLivree">Quantite Livree</label>
-                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_quantiteLivree" ng-model="vm.commandeLigne.quantiteLivree"                     ng-readonly="false"  ng-required="false"                     />
+                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_quantiteLivree" ng-model="vm.commandeLigne.quantiteLivree"        min="0"             ng-readonly="false"  ng-required="false"                     />
                 </div>
             </div>
             <div  class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_prixUnitaire">Prix Unitaire</label>
-                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_prixUnitaire" ng-model="vm.commandeLigne.prixUnitaire"                      ng-required="false"                     />
+                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_prixUnitaire" ng-model="vm.commandeLigne.prixUnitaire"      min="0"                ng-required="false"                     />
                 </div>
             </div>
             <div  class="col-sm-6">

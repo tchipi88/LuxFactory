@@ -5,7 +5,7 @@
         <button type="button" class="btn btn-link pull-right" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()"><i class="fa fa-remove"></i>  </button>
         <h3 class="modal-title" id="myFactureLabel" >Cr&eacuteer ou modifier  Facture</h3>
-         <small class="text-muted" >Les champs * sont obligatoires</small>
+         <small class="text-muted" style="color:red">Les champs * sont obligatoires</small>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
@@ -30,9 +30,9 @@
  </div>
  <div class="col-sm-6">
  <div class="form-group">
- <label class="control-label"  for="field_commande">Commande</label>
+ <label class="control-label"  for="field_commande">Commande <span style="color:red" >*</span></label>
  <div class="input-group">
-                        <ui-select ng-model="vm.facture.commande"    ng-required="false">
+                        <ui-select ng-model="vm.facture.commande"    ng-required="true">
                             <ui-select-match placeholder="Select Commande">{{$select.selected.id}}</ui-select-match>
                             <ui-select-choices repeat="commande in vm.commandes | filter: $select.search">
                                 <div ng-bind-html="commande.id | highlight: $select.search"></div>
