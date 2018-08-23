@@ -145,7 +145,7 @@ public class ClientResource {
     @GetMapping("/_search/clients")
     @Timed
     public ResponseEntity<List<Client>> searchClients(@RequestParam String query, @ApiParam Pageable pageable) {
-        log.debug("REST request to search Clients for query {}", query);
+        log.debug("REST request to search Clients for query {}", query); 
       Page<Client> page = clientSearchRepository.search(queryStringQuery(query), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/clients");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);

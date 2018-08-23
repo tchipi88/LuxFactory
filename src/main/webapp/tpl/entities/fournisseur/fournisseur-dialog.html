@@ -28,14 +28,14 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <uib-tabset class="uib-tab-container" justified="true"   vertical="false"  type="pills">
+                <!-- <uib-tabset class="uib-tab-container" justified="true"   vertical="false"  type="pills">
                     <uib-tab>
                         <uib-tab-heading  >
                              Fournisseur
                         </uib-tab-heading>
-                        <br>
+                        <br> -->
                         <div class="row">
-                            <div class="col-sm-12">
+                           <!--  <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="control-label"  for="field_logo">Logo</label>
                                     <div ngf-drop ngf-change="vm.setMimage($file, 'logo')" ngf-pattern="'image/*'"    ngf-capture="'camera'">
@@ -58,7 +58,7 @@
                                            ng-model="vm.fournisseur.logoContentType" />
 
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -95,7 +95,8 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="control-label"  for="field_email">Email</label>
-                                    <div class="input-group"> <input  class="form-control"   type="email"  autocomplete="off"  id="field_email"  ng-model="vm.fournisseur.email"                     ng-readonly="false"  ng-required="false"                     /><span class="input-group-addon" >  <span >
+                                    <div class="input-group"> <input  class="form-control"   type="email"  autocomplete="off"  id="field_email"  ng-model="vm.fournisseur.email"                     ng-readonly="false"  ng-required="false"   
+                                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"                  /><span class="input-group-addon" >  <span >
                                                 <i class="fa fa-envelope"></i>
                                             </span> 
                                         </span>
@@ -139,14 +140,14 @@
                                 </div>
                             </div>
                         </div>
-                    </uib-tab>
+                   <!--  </uib-tab> -->
                     <!-- <uib-tab  ng-if="vm.fournisseur.id">
                         <uib-tab-heading  >
                             Produits
                         </uib-tab-heading>
                         <ng-include  src="'tpl/entities/produit-fournisseur/produit-fournisseurs.html'"></ng-include> 
                     </uib-tab> -->
-                </uib-tabset>
+               <!--  </uib-tabset> -->
             </div>
         </div>
     </div>

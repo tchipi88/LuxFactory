@@ -16,18 +16,21 @@
                     <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.employe.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
                 </div>
             </div>
+
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_nom">Nom <span style="color:red" >*</span></label>
                     <input  class="form-control"   type="text"  autocomplete="off"   id="field_nom" ng-model="vm.employe.nom"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
                 </div>
             </div>
+
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_prenom">Prenom</label>
                     <input  class="form-control"   type="text"  autocomplete="off"   id="field_prenom" ng-model="vm.employe.prenom"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
                 </div>
             </div>
+
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_dateNaissance">Date Naissance</label>
@@ -40,42 +43,48 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_lieuNaissance">Lieu Naissance</label>
                     <input  class="form-control"   type="text"  autocomplete="off"   id="field_lieuNaissance" ng-model="vm.employe.lieuNaissance"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
                 </div>
             </div>
+
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_numeroCni">Numero Cni</label>
                     <input  class="form-control"   type="number"  autocomplete="off"  id="field_numeroCni" ng-model="vm.employe.numeroCni"                     ng-readonly="false"  ng-required="false"                     />
                 </div>
             </div>
+
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_telephone">Telephone</label>
-                    <div class="input-group"> <input  class="form-control"   type="text"  autocomplete="off"  id="field_telephone"  ng-model="vm.employe.telephone"                     ng-readonly="false"  ng-required="false"                     /><span class="input-group-addon" >  <span >
+                    <div class="input-group"> <input  class="form-control"   type="text"  autocomplete="off"  id="field_telephone"  ng-model="vm.employe.telephone"    mask="999 99 99 99"                 ng-readonly="false"  ng-required="false"                     /><span class="input-group-addon" >  <span >
                                 <i class="fa fa-phone"></i>
                             </span> </span>
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_email">Email</label>
-                    <div class="input-group"> <input  class="form-control"   type="email"  autocomplete="off"  id="field_email"  ng-model="vm.employe.email"                     ng-readonly="false"  ng-required="false"                     /><span class="input-group-addon" >  <span >
+                    <div class="input-group"> <input  class="form-control"   type="email"  autocomplete="off"  id="field_email"  ng-model="vm.employe.email"                     ng-readonly="false"  ng-required="false"   pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"                  /><span class="input-group-addon" >  <span >
                                 <i class="fa fa-envelope"></i>
                             </span> </span>
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_adresse">Adresse</label>
                     <input  class="form-control"   type="text"  autocomplete="off"   id="field_adresse" ng-model="vm.employe.adresse"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
                 </div>
             </div>
+
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_dateEntree">Date Entree</label>
@@ -88,12 +97,14 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_salaire">Salaire</label>
-                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_salaire" ng-model="vm.employe.salaire"                     ng-readonly="false"  ng-required="false"                     />
+                    <input  class="form-control"   type="number"  autocomplete="off"  id="field_salaire" ng-model="vm.employe.salaire"         min="0"            ng-readonly="false"  ng-required="false"                     />
                 </div>
             </div>
+
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_fonction">Fonction <span style="color:red" >*</span></label>
