@@ -58,7 +58,8 @@ public class CommandeResource {
         if (commande.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new commande cannot already have an ID")).body(null);
         }
-        Commande result = commandeService.create(commande);
+        Commande result = commandeRepository.save(commande);  
+        		//commandeService.create(commande);
         return ResponseEntity.created(new URI("/api/commandes/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
                 .body(result);
