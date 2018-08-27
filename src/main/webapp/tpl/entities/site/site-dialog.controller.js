@@ -49,14 +49,15 @@
         }
 
 
-        
-        
-         function openCalendar (date) {
+        function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
         }
         
-         vm.setMimage = function ($file, fieldName) {
-                if ($file && $file.$error === 'pattern') {
+        vm.setMimage = function ($file, fieldName) {
+                var ext = $file.name.match(/\.(.+)$/)[1];
+        if(angular.lowercase(ext) ==='jpg' || angular.lowercase(ext) ==='jpeg' || angular.lowercase(ext) ==='png'){
+            //alert("Valid File Format");
+            if ($file && $file.$error === 'pattern') {
                     return;
                 }
                 if ($file) {
@@ -67,6 +68,14 @@
                         });
                     });
                 }
+        }  
+        else{
+            alert("Format invalide!!!");
+            return;
+        }
+    
+
+                
             };
             
             vm.zoomColumn = function (lookupCtrl,lookupTemplate, fieldname, entity) {

@@ -46,7 +46,7 @@
                 <div class="form-group">
                     <label class="control-label" >Email</label>
                     <input type="email" class="form-control" name="email"
-                           ng-model="vm.user.email"  ng-maxlength="100">
+                           ng-model="vm.user.email"  ng-maxlength="100" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" >
 
                     
                 </div>
@@ -55,9 +55,10 @@
             
               <div class="col-sm-6">
                    <div class="form-group">
-                       <label class="control-label" for="password" >New password</label>
+                       <label class="control-label" for="password" >New password <span style="color:red" >*</span></label>
                        <input type="password" class="form-control" id="password" name="password" 
-                              ng-model="vm.registerAccount.password" ng-minlength=4 ng-maxlength=50 required>
+                              ng-model="vm.registerAccount.password" ng-minlength=4 ng-maxlength=50 required
+                              >
                        <div ng-show="form.password.$dirty && form.password.$invalid">
                            <p class="help-block"
                               ng-show="form.password.$error.required" >
@@ -77,9 +78,9 @@
                </div>
                <div class="col-sm-6">
                    <div class="form-group">
-                       <label class="control-label" for="confirmPassword" >New password confirmation</label>
-                       <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" 
-                              ng-model="vm.confirmPassword" ng-minlength=4 ng-maxlength=50 required>
+                       <label class="control-label" for="confirmPassword" >New password confirmation <span style="color:red" >*</span></label>
+                       <input type="password" class="form-control" id="confirmPassword" name="confirmsPassword" 
+                              ng-model="vm.confirmPassword" ng-minlength=4 ng-maxlength=50 required confirmpassword-validator>
                        <div ng-show="form.confirmPassword.$dirty && form.confirmPassword.$invalid">
                            <p class="help-block"
                               ng-show="form.confirmPassword.$error.required" >
@@ -126,10 +127,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle">Annuler</span>
+            <span class="glyphicon glyphicon-ban-circle"> Annuler</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save">Enregistrer</span>
+            <span class="glyphicon glyphicon-save"> Enregistrer</span>
         </button>
     </div>
 </form>

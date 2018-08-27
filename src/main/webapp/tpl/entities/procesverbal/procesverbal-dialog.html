@@ -50,7 +50,55 @@
   <input  class="form-control"   type="text"  autocomplete="off"   id="field_lieuPv" ng-model="vm.procesverbal.lieuPv"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
  </div>
  </div>
+
+
  <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_identiteResponsableAcheteur">Client</label>
+                    <div class="input-group">
+                        <ui-select ng-model="vm.procesverbal.identiteResponsableAcheteur">
+                            <ui-select-match placeholder="Select Client">{{$select.selected.nom}}</ui-select-match>
+                            <ui-select-choices repeat="client in vm.clients | filter: $select.search">
+                                <div ng-bind-html="client.nom | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Client', 'client', 'client', vm.commande.client)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.commande.client" >
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Client', 'client', 'client', {})"      
+                                    class="btn btn-default" type="button"  ng-hide="vm.commande.client" ng-disabled="vm.commande.type == 'VENTE' || vm.commande.id">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_identiteResponsable1Prestataire">Prestataire </label>
+                    <div class="input-group">
+                        <ui-select ng-model="vm.procesverbal.identiteResponsable1Prestataire">
+                            <ui-select-match placeholder="Select Fournisseur">{{$select.selected.nom}}</ui-select-match>
+                            <ui-select-choices repeat="fournisseur in vm.fournisseurs | filter: $select.search">
+                                <div ng-bind-html="fournisseur.nom | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>  
+                        <span class="input-group-btn" >
+                            <button   ng-click="vm.zoomColumn('Fournisseur', 'fournisseur', 'fournisseur', vm.commande.fournisseur)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.commande.fournisseur"  disabled="">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                            <button ng-click="vm.zoomColumn('Fournisseur', 'fournisseur', 'fournisseur', {})"      
+                                    class="btn btn-default" type="button">
+                                <span class="fa fa-plus fw"></span>
+                            </button>
+                        </span>
+                    </div> </div>
+            </div>
+
+ <!-- <div class="col-sm-6">
  <div class="form-group">
  <label class="control-label"  for="field_identiteResponsableAcheteur">Client</label>
   <input  class="form-control"   type="text"  autocomplete="off"   id="field_identiteResponsable1Prestataire" ng-model="vm.procesverbal.identiteResponsableAcheteur"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
@@ -60,12 +108,12 @@
  <div class="col-sm-6">
  <div class="form-group">
  <label class="control-label"  for="field_identiteResponsable1Prestataire">Prestataire</label>
-  <input  class="form-control"   type="text"  autocomplete="off"   id="field_identiteResponsable1Prestataire" ng-model="vm.procesverbal.identiteResponsable1Prestataire"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      />
+  <input  class="form-control"   type="text"  autocomplete="off"   id="field_identiteResponsable1Prestataire" ng-model="vm.procesverbal.identiteResponsable1Prestataire"                     ng-readonly="false"  ng-required="false"    ng-maxlength="255"                      /> 
 
 
 
  </div>
- </div>
+ </div>-->
  <div class="col-sm-6">
  <div class="form-group">
  <label class="control-label"  for="field_identiteResponsable2Prestataire">Commentaires</label>

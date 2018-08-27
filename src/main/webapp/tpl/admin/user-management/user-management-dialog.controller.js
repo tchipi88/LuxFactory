@@ -15,6 +15,7 @@
         vm.languages = null;
         vm.save = save;
         vm.user = entity;
+        
 
         
 
@@ -51,7 +52,7 @@
             if (vm.user.id !== null) {
                 User.update(vm.user, onSaveSuccess, onSaveError);
             } else {
-                User.save(vm.user, onSaveSuccess, onSaveError);
+                 User.save(vm.user, onSaveSuccess, onSaveError);
             }
         }
         ;
@@ -74,5 +75,6 @@
 
             });
         };
-    }
+    };
+
 })();
