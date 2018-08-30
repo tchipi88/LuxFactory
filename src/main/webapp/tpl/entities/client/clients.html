@@ -36,7 +36,7 @@
         </div>
         <div class="panel-body table-responsive">
 
-             <div class="form-group" style='float: right;'>
+             <div has-authority="ROLE_ADMIN" class="form-group" style='float: right;'>
                 <button class="btn btn-primary" ui-sref="client.new"  title="Créer Client">
                     <i class="fa fa-plus">
                     </i>
@@ -56,7 +56,7 @@
                          <th><span >Adresse</span></th> 
                          <th><span >Responsable</span></th> 
                          <th><span >Numero Commerce</span></th>
-                        <th>
+                        <th has-authority="ROLE_ADMIN">
                             
                         </th>
                     </tr>
@@ -73,7 +73,7 @@
                         <td>{{client.adresse}}</td>
                         <td>{{client.responsable.nom}}</td>
                         <td>{{client.numeroCommerce}}</td>
-                        <td >
+                        <td has-authority="ROLE_ADMIN">
                             <button type="submit"   ui-sref="client.edit({id:client.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
                                 <i class="fa fa-edit">
                                 </i>
@@ -89,7 +89,7 @@
             </table>
 
         </div>
-        <!-- <div class="panel-footer">
+        <div class="panel-footer">
             <div class="row">
                 <div class="col-sm-6">
                     <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
@@ -98,6 +98,6 @@
                     <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
 </div>

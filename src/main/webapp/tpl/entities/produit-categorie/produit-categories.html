@@ -16,7 +16,7 @@
         
         <div class="panel-body table-responsive">
              <div>
-              <div class="form-group" style='float: right;'>
+              <div has-authority="ROLE_ADMIN" class="form-group" style='float: right;'>
                  <button class="btn btn-primary" ui-sref="produit-categorie.new" title="Ajouter une Categorie"><i class="fa fa-plus"></i></button>
               </div>
 
@@ -26,7 +26,7 @@
                         <th><span >ID</span></th>
                          <th><span >Libelle</span></th>
                          <th><span>Nombre articles</span></th>
-                        <th >
+                        <th has-authority="ROLE_ADMIN">
                         </th>
                     </tr>
                 </thead>
@@ -35,7 +35,7 @@
                         <td>{{produitCategorie.id}}</td>
                          <td>{{produitCategorie.libelle}}</td>
                           <td>{{0}}</td>
-                        <td >
+                        <td has-authority="ROLE_ADMIN">
 
                            
                             <button type="submit"   ui-sref="produit-categorie.edit({id:produitCategorie.id})" class="btn btn-sm btn-default"  tooltip="Modifier">

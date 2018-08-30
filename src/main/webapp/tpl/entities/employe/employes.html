@@ -44,7 +44,7 @@
         </div>
         <div class="panel-body table-responsive">
 
-            <div class="form-group" style='float: right;'>
+            <div has-authority="ROLE_ADMIN" class="form-group" style='float: right;'>
                  <button class="btn btn-primary" ui-sref="employe.new"   tooltip="Nouveau Employe">
                                 <i class="fa fa-plus">
                                 </i>
@@ -56,7 +56,7 @@
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                         <th jh-sort-by="id" ng-show="false"><span >ID</span> <span class="fa fa-sort"></span></th>
                          <th><span >Nom</span><th><span >Date Naissance</span> </th> <th><span >Lieu Naissance</span></th> <th><span >Numero Cni</span></th> <th><span >Telephone</span></th> <th><span >Email</span></th> <th><span >Adresse</span> </th> <th><span >Date Entree</span> </span></th> <th><span >Salaire</span> </th> <th ><span >Fonction</span></th>
-                        <th>
+                        <th has-authority="ROLE_ADMIN">
                            Actions
                         </th>
                     </tr>
@@ -74,7 +74,7 @@
                          <td>{{employe.dateEntree | date:'mediumDate'}}</td>
                          <td>{{employe.salaire | number }}</td>
                          <td>{{employe.fonction.libelle}}</td>
-                        <td >
+                        <td has-authority="ROLE_ADMIN">
 
                             <button type="submit"   ui-sref="employe.edit({id:employe.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
                                 <i class="fa fa-edit">

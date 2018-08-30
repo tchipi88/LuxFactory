@@ -65,7 +65,7 @@
 
             <div>
 
-            <div class="form-group" style='float: right;'>
+            <div has-authority="ROLE_ADMIN" class="form-group" style='float: right;'>
                  <button class="btn btn-primary" ui-sref="liste-zones.new" tooltip="Ajouter un entrepot"><i class="fa fa-plus"></i></button>
               </div>
 
@@ -79,7 +79,7 @@
                          <th><span >Produit Manque</span></th>
                          <th><span >Produit Exces</span></th>
 
-                        <th >
+                        <th has-authority="ROLE_ADMIN">
                             Actions
                         </th>
                     </tr>
@@ -93,7 +93,7 @@
                          <td>{{listeZones.produit_manque}}</td>
                          <td>{{listeZones.produit_exces}}</td>
 
-                        <td >
+                        <td has-authority="ROLE_ADMIN">
 
                            
                             <button type="submit"   ui-sref="liste-zones.edit({id:listeZones.id})" class="btn btn-sm btn-default"  tooltip="Modifier">

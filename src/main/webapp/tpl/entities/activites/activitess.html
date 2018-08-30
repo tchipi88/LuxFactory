@@ -94,7 +94,7 @@
 
             <div>
               <div class="form-group" style='float: right;'>
-                 <button class="btn btn-primary" ui-sref="activites.new" tooltip="Ajouter un article"><i class="fa fa-plus"></i></button>
+                 <button has-authority="ROLE_ADMIN" class="btn btn-primary" ui-sref="activites.new" tooltip="Ajouter un article"><i class="fa fa-plus"></i></button>
               </div>
 
 
@@ -107,7 +107,7 @@
                          <th><span >Date Debut</span></th>
                          <th><span >Date Fin</span></th>
 
-                        <th >
+                        <th has-authority="ROLE_ADMIN">
                            
                         </th>
                     </tr>
@@ -118,7 +118,7 @@
                          <td>{{activites.responsable.nom}} {{activites.responsable.prenom}}</td>
                          <td>{{activites.dateDebut | date:'mediumDate'}}</td>
                          <td>{{activites.dateFin | date:'mediumDate'}}</td>
-                        <td >
+                        <td has-authority="ROLE_ADMIN">
                             <button type="submit"   ui-sref="activites.edit({id:activites.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
                                 <i class="fa fa-edit">
                                 </i>

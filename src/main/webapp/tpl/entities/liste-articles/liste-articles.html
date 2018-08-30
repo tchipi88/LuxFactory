@@ -75,7 +75,7 @@
 
             <div>
               <div class="form-group" style='float: right;'>
-                 <button class="btn btn-primary" ui-sref="liste-articles.new" tooltip="Ajouter un article"><i class="fa fa-plus"></i></button>
+                 <button has-authority="ROLE_ADMIN" class="btn btn-primary" ui-sref="liste-articles.new" tooltip="Ajouter un article"><i class="fa fa-plus"></i></button>
               </div>
 
 
@@ -92,7 +92,7 @@
                                      <th class="column-title">Date Der. sortie</th>
                                      <th class="column-title sortable-column">Cumul entrée </th>
                                      <th class="column-title sortable-column">Cumul sortie </th>
-                                     <th class="column-title no-link last"><span class="nobr">Action</span></th>
+                                     <th has-authority="ROLE_ADMIN" class="column-title no-link last"><span class="nobr">Action</span></th>
                                 </tr>
                             </thead>
 
@@ -107,7 +107,7 @@
                                      <td>{{listeArticles.lastOut | date:'mediumDate'}}</td>
                                      <td>{{listeArticles.cumulEntree}}</td>
                                      <td>{{listeArticles.cumulSortie}}</td>
-                                    <td >
+                                    <td has-authority="ROLE_ADMIN">
                                         <button type="submit"   ui-sref="liste-articles.edit({id:listeArticles.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
                                             <i class="fa fa-edit">
                                             </i>
