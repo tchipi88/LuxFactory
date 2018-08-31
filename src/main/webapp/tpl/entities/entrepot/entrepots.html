@@ -15,7 +15,7 @@
     <div class="panel panel-default">
         
         <div class="panel-body table-responsive">
-            <div class="form-group" style='float: right;'>
+            <div has-authority="ROLE_ADMIN" class="form-group" style='float: right;'>
                  <button class="btn btn-primary" ui-sref="entrepot.new" tooltip="Ajouter un entrepot"><i class="fa fa-plus"></i></button>
               </div>
 
@@ -28,7 +28,7 @@
                          <th><span >Capactite</span> </th>
                          <th><span >Responsable</span></th>
                          <th><span >Activite</span></th>
-                        <th >
+                        <th has-authority="ROLE_ADMIN">
                            
                         </th>
                     </tr>
@@ -40,7 +40,7 @@
  <td>{{entrepot.capactite}}</td>
  <td>{{entrepot.responsable.nom}}</td>
  <td>{{entrepot.activite.libelle}}</td>
-                        <td >
+                        <td has-authority="ROLE_ADMIN">
 
                           
                             <button type="submit"   ui-sref="entrepot.edit({id:entrepot.id})" class="btn btn-sm btn-default"  tooltip="Modifier">

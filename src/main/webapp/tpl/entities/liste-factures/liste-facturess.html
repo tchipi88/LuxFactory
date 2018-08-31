@@ -75,7 +75,7 @@
 
         <div class="panel-body table-responsive">
 
-             <div class="form-group" style='float: right;'>
+             <div has-authority="ROLE_ADMIN" class="form-group" style='float: right;'>
                  <button class="btn btn-primary" ui-sref="liste-factures.new" tooltip="Creer une Facture"><i class="fa fa-plus"></i></button>
               </div>
 
@@ -93,7 +93,7 @@
                          <th><span >Quantite</span> </th>
                          <th><span >Produit</span> </th>
 
-                        <th >
+                        <th has-authority="ROLE_ADMIN">
                            
                         </th>
                     </tr>
@@ -110,7 +110,7 @@
                          <td>{{listeFactures.quantite}}</td>
                          <td>{{listeFactures.produit}}</td>
 
-                        <td >
+                        <td has-authority="ROLE_ADMIN">
 
                            
                             <button type="submit"   ui-sref="facture.edit({id:listeFactures.numeroFacture})" class="btn btn-sm btn-default"  tooltip="Modifier">

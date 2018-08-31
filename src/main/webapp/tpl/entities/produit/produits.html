@@ -45,7 +45,7 @@
                          <th><span >Categorie</span></th> 
                          <th><span >Prix</span></th> 
                          <th><span >Unite</span></th>
-                        <th >
+                        <th has-authority="ROLE_ADMIN">
                             <button class="btn btn-primary" ui-sref="produit.new"   tooltip="Créer Produit">
                                 <i class="fa fa-plus">
                                 </i>
@@ -62,7 +62,7 @@
                          <td>{{produit.prix | number }}</td>
                          <td>{{produit.unite.libelle}}</td>
 
-                        <td >
+                        <td has-authority="ROLE_ADMIN">
 
                            
                             <button type="submit"   ui-sref="produit.edit({id:produit.id})" class="btn btn-sm btn-default"  tooltip="Modifier">

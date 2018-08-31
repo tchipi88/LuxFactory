@@ -75,7 +75,7 @@
 
         <div class="panel-body table-responsive">
 
-             <div class="form-group" style='float: right;'>
+             <div has-authority="ROLE_ADMIN" class="form-group" style='float: right;'>
                 <button class="btn btn-primary" ui-sref="procesverbal.new"   tooltip="Créer Procesverbal">
                                 <i class="fa fa-plus">
                                 </i>
@@ -93,7 +93,7 @@
                         <th><span >Commentaires</span></th>
                         <th><span >Reserves</span></th>
 
-                        <th >
+                        <th has-authority="ROLE_ADMIN">
                             Actions
                         </th>
                     </tr>
@@ -108,7 +108,7 @@
                          <td>{{procesverbal.identiteResponsable2Prestataire}}</td>
                          <td>{{procesverbal.identiteResponsable3Prestataire}}</td>
 
-                        <td >
+                        <td has-authority="ROLE_ADMIN">
 
                            
                             <button type="submit"   ui-sref="procesverbal.edit({id:procesverbal.id})" class="btn btn-sm btn-default"  tooltip="Modifier">

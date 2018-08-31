@@ -30,7 +30,7 @@
         <div class="panel-body table-responsive">
 
              <div>
-              <div class="form-group" style='float: right;'>
+              <div has-authority="ROLE_ADMIN" class="form-group" style='float: right;'>
                  <button class="btn btn-primary" ui-sref="commande.new" tooltip="Creer une commande"><i class="fa fa-plus"></i></button>
               </div>
 
@@ -53,7 +53,7 @@
                         <th ><span >Restant à payer</span> </th> 
 
 
-                        <th>
+                        <th has-authority="ROLE_ADMIN">
                             Actions
                         </th>
                     </tr>
@@ -71,7 +71,7 @@
                         <td>{{commande.prixTTC| number }}</td>
                         <td>{{commande.montantPaye| number }}</td>
                         <td>{{commande.montantRestant| number }}</td>
-                        <td >
+                        <td has-authority="ROLE_ADMIN">
 
                             <button type="submit"   ui-sref="commande.edit({id:commande.id})" class="btn btn-sm btn-default"  tooltip="Modifier">
                                 <i class="fa fa-edit">
