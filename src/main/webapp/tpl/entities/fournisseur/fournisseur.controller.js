@@ -28,6 +28,9 @@
 
         function loadAll () {
             if (pagingParams.search) {
+
+                //alert('mot de recherche : '+ pagingParams.search  + ' un autre : '+ vm.currentSearch);
+
                 FournisseurSearch.query({
                     query: pagingParams.search,
                     page: pagingParams.page - 1,

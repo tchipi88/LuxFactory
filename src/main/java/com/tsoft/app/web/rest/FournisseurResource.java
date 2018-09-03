@@ -11,7 +11,6 @@ import com.tsoft.app.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
 
-import org.elasticsearch.index.query.QueryBuilders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +23,13 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
@@ -139,6 +143,8 @@ public class FournisseurResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+   
+    
    /**
      * SEARCH  /_search/fournisseurs?query=:query : search for the fournisseur corresponding
      * to the query.
@@ -147,15 +153,15 @@ public class FournisseurResource {
      * @param pageable the pagination information
      * @return the result of the search
      */
-    @GetMapping(path = "/_search/fournisseurs", params = {"query"})
+    @GetMapping(path = "/_search/fournisseurs")
     @Timed
     public ResponseEntity<List<Fournisseur>> searchFournisseurs(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Fournisseurs for query {}", query);
-        //Page<Fournisseur> page = fournisseurSearchRepository.search(QueryBuilders.boolQuery().must(queryStringQuery(query)), pageable);
-        //Page<Fournisseur> page = fournisseurSearchRepository.findByNom(query, pageable);
+        
         Page<Fournisseur> page = fournisseurSearchRepository.search(queryStringQuery(query), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/fournisseurs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        //return new ResponseEntity<>(fournisseurs, headers, HttpStatus.OK);
     }
 
 
