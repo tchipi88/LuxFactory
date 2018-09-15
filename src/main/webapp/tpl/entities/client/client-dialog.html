@@ -35,16 +35,23 @@
 
                 </div> -->
             </div>
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_id">Id</label>
                     <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.client.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
                 </div>
-            </div>
+            </div> -->
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_nom">Nom <span style="color:red" >*</span></label>
                     <input  class="form-control"   type="text"  autocomplete="off"   id="field_nom" ng-model="vm.client.nom"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label"  for="field_adresse">Adresse <span style="color:red" >*</span></label>
+                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_adresse" ng-model="vm.client.adresse"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
                 </div>
             </div>
            
@@ -66,12 +73,7 @@
                     </div>
                 </div>
             </div>
-             <div class="col-sm-6">
-                <div class="form-group">
-                    <label class="control-label"  for="field_adresse">Adresse <span style="color:red" >*</span></label>
-                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_adresse" ng-model="vm.client.adresse"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
-                </div>
-            </div>
+             
              <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_boitePostale">Boite Postale</label>

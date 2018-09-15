@@ -10,18 +10,19 @@
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="row">
-              <div class="col-sm-6">
+             <!--  <div class="col-sm-6">
  <div class="form-group">
  <label class="control-label"  for="field_id">Id</label>
   <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.activites.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
  </div>
- </div>
+ </div> -->
  <div class="col-sm-6">
  <div class="form-group">
  <label class="control-label"  for="field_libelle">Libelle <span style="color:red" >*</span></label>
   <input  class="form-control"   type="text"  autocomplete="off"   id="field_libelle" ng-model="vm.activites.libelle"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
  </div>
  </div>
+
  <div class="col-sm-6">
  <div class="form-group">
  <label class="control-label"  for="field_dateDebut">Date Debut <span style="color:red" >*</span></label>
@@ -34,10 +35,11 @@
                 </div>
  </div>
  </div>
+
  <div class="col-sm-6">
  <div class="form-group">
  <label class="control-label"  for="field_dateFin">Date Fin <span style="color:red" >*</span></label>
-  <div class="input-group">
+    <div class="input-group">
                     <input  id="field_dateFin" type="text" class="form-control" name="dateFin"    ng-required="true"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.activites.dateFin"  is-open="vm.datePickerOpenStatus.dateFin" activites-date-fin-validator
                     />
                     <span class="input-group-btn">
@@ -46,6 +48,7 @@
                 </div>
  </div>
  </div>
+
  <div class="col-sm-6">
  <div class="form-group">
  <label class="control-label"  for="field_responsable">Responsable <span style="color:red" >*</span></label>
@@ -68,7 +71,8 @@
                         </span>
                     </div> </div>
  </div>
- <div class="col-sm-6">
+
+ <div class="col-sm-12">
  <div class="form-group">
  <label class="control-label"  for="field_description">Description</label>
    <textarea class="form-control" rows="3"  cols="30"   id="field_description" ng-model="vm.activites.description"                     ng-readonly="false"  ng-required="false"                     > </textarea>

@@ -10,12 +10,12 @@
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="row">
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_id">Id</label>
                     <input  class="form-control"   type="text"  autocomplete="off"   id="field_id" ng-model="vm.fournisseur.id"                     ng-readonly="true"  ng-required="false"    ng-maxlength="255"                      />
                 </div>
-            </div>
+            </div> -->
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_nom">Nom <span style="color:red" >*</span></label>
@@ -24,17 +24,23 @@
             </div>
 
 
+             <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label"  for="field_adresse">Adresse <span style="color:red" >*</span></label>
+                                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_adresse" ng-model="vm.fournisseur.adresse"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
+                                </div>
+                            </div>
 
-        </div>
+        <!-- </div>
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12"> -->
                 <!-- <uib-tabset class="uib-tab-container" justified="true"   vertical="false"  type="pills">
                     <uib-tab>
                         <uib-tab-heading  >
                              Fournisseur
                         </uib-tab-heading>
                         <br> -->
-                        <div class="row">
+                       <!--  <div class="row"> -->
                            <!--  <div class="col-sm-12">
                                 <div class="form-group">
                                     <label class="control-label"  for="field_logo">Logo</label>
@@ -80,12 +86,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="control-label"  for="field_adresse">Adresse <span style="color:red" >*</span></label>
-                                    <input  class="form-control"   type="text"  autocomplete="off"   id="field_adresse" ng-model="vm.fournisseur.adresse"                     ng-readonly="false"  ng-required="true"    ng-maxlength="255"                      />
-                                </div>
-                            </div>
+                           
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="control-label"  for="field_boitePostale">Boite Postale</label>
@@ -149,8 +150,8 @@
                     </uib-tab> -->
                <!--  </uib-tabset> -->
             </div>
-        </div>
-    </div>
+        <!-- </div> -->
+   <!--  </div> -->
     <div class="modal-footer">
 
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

@@ -5226,6 +5226,11 @@ a.text-#000000:hover {
 }
 
 /* custom css */
+
+.input-group{
+  display: inline-table;
+}
+
 .thumbnail .image {
     height: 120px;
     overflow: hidden
