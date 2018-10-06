@@ -96,9 +96,12 @@ public class ProduitCategorieResource {
     @Timed
     public ResponseEntity<List<ProduitCategorie>> getAllProduitCategories(@ApiParam Pageable pageable) {
         log.debug("REST request to get all ProduitCategories");
-        Page<ProduitCategorie> page = produitCategorieRepository.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/produit-categories");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        List<ProduitCategorie> page = produitCategorieRepository.findAll();
+        
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(page));
+        
+        //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/produit-categories");
+        //return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
  
