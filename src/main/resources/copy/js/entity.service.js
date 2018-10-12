@@ -2,12 +2,12 @@
     'use strict';
     angular
         .module('app')
-        .factory('ListeZones', ListeZones);
+        .factory('[(${entity})]', [(${entity})]);
 
-    ListeZones.$inject = ['$resource','DateUtils'];
+    [(${entity})].$inject = ['$resource','DateUtils'];
 
-    function ListeZones ($resource,DateUtils) {
-        var resourceUrl =  'api/liste-zoness/:id';
+    function [(${entity})] ($resource,DateUtils) {
+        var resourceUrl =  'api/[(${entity_url})]s/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
@@ -15,7 +15,7 @@
                 method: 'GET',
                 transformResponse: function (data) {
                     if (data) {
-                        data = JSON.fromJson(data);
+                        data = angular.fromJson(data);
                     }
                     return data;
                 }

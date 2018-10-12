@@ -22,7 +22,6 @@
         vm.parents = Produit.query();
 
       
-
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });

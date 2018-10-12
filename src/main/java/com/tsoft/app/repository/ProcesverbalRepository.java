@@ -22,10 +22,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ProcesverbalRepository extends JpaRepository<Procesverbal, Long> {
 
-	 public Page<Procesverbal> findAllByIdentiteResponsableAcheteurAndIdentiteResponsable1PrestataireAndDatePvBetween(String client, String fournisseur, LocalDate fromDate,
+	 public Page<Procesverbal> findAllByIdentiteResponsableAcheteurNomAndIdentiteResponsable1PrestataireNomAndDatePvBetween(String client, String fournisseur, LocalDate fromDate,
 	            LocalDate toDate, Pageable pageable);
 
 }
+
+
+
+
+
+
 
 
 

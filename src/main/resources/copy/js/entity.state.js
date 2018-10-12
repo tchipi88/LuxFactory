@@ -6,16 +6,16 @@
         stateConfig.$inject = ['$stateProvider'];
         function stateConfig($stateProvider) {
         $stateProvider
-                .state('procesverbal', {
+                .state('[(${entity_url})]', {
                 parent: 'entity',
-                        url: '/procesverbal?page&sort&search',
+                        url: '/[(${entity_url})]?page&sort&search',
                         data: {
                         authorities: ['ROLE_USER']
                         },
                         views: {
                         'content@app': {
-                        templateUrl: 'tpl/entities/procesverbal/procesverbals.html',
-                                controller: 'ProcesverbalController',
+                        templateUrl: 'tpl/entities/[(${entity_url})]/[(${entity_url})]s.html',
+                                controller: '[(${entity})]Controller',
                                 controllerAs: 'vm'  }
                         },
                         params: {
@@ -43,16 +43,16 @@
                 })
                
                
-                .state('procesverbal.new', {
-                parent: 'procesverbal',
+                .state('[(${entity_url})].new', {
+                parent: '[(${entity_url})]',
                         url: '/new',
                         data: {
                         authorities: ['ROLE_USER']
                         },
                         onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                         $uibModal.open({
-                        templateUrl: 'tpl/entities/procesverbal/procesverbal-dialog.html',
-                                controller: 'ProcesverbalDialogController',
+                        templateUrl: 'tpl/entities/[(${entity_url})]/[(${entity_url})]-dialog.html',
+                                controller: '[(${entity})]DialogController',
                                 controllerAs: 'vm',
                                 backdrop: 'static',
                                 size: 'lg',
@@ -64,56 +64,56 @@
                                 }
                                 }
                         }).result.then(function () {
-                        $state.go('procesverbal', null, {reload: 'procesverbal'});
+                        $state.go('[(${entity_url})]', null, {reload: '[(${entity_url})]'});
                         }, function () {
-                        $state.go('procesverbal');
+                        $state.go('[(${entity_url})]');
                         });
                         }]
                 })
-                .state('procesverbal.edit', {
-                parent: 'procesverbal',
+                .state('[(${entity_url})].edit', {
+                parent: '[(${entity_url})]',
                         url: '/{id}/edit',
                         data: {
                         authorities: ['ROLE_USER']
                         },
                         onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                         $uibModal.open({
-                        templateUrl: 'tpl/entities/procesverbal/procesverbal-dialog.html',
-                                controller: 'ProcesverbalDialogController',
+                        templateUrl: 'tpl/entities/[(${entity_url})]/[(${entity_url})]-dialog.html',
+                                controller: '[(${entity})]DialogController',
                                 controllerAs: 'vm',
                                 backdrop: 'static',
                                 size: 'lg',
                                 resolve: {
-                                entity: ['Procesverbal', function (Procesverbal) {
-                                return Procesverbal.get({id: $stateParams.id}).$promise;
+                                entity: ['[(${entity})]', function ([(${entity})]) {
+                                return [(${entity})].get({id: $stateParams.id}).$promise;
                                 }]
                                 }
                         }).result.then(function () {
-                        $state.go('procesverbal', null, {reload: 'procesverbal'});
+                        $state.go('[(${entity_url})]', null, {reload: '[(${entity_url})]'});
                         }, function () {
                         $state.go('^');
                         });
                         }]
                 })
-                .state('procesverbal.delete', {
-                parent: 'procesverbal',
+                .state('[(${entity_url})].delete', {
+                parent: '[(${entity_url})]',
                         url: '/{id}/delete',
                         data: {
                         authorities: ['ROLE_USER']
                         },
                         onEnter: ['$stateParams', '$state', '$uibModal', function ($stateParams, $state, $uibModal) {
                         $uibModal.open({
-                        templateUrl: 'tpl/entities/procesverbal/procesverbal-delete-dialog.html',
-                                controller: 'ProcesverbalDeleteController',
+                        templateUrl: 'tpl/entities/[(${entity_url})]/[(${entity_url})]-delete-dialog.html',
+                                controller: '[(${entity})]DeleteController',
                                 controllerAs: 'vm',
                                 size: 'md',
                                 resolve: {
-                                entity: ['Procesverbal', function (Procesverbal) {
-                                return Procesverbal.get({id: $stateParams.id}).$promise;
+                                entity: ['[(${entity})]', function ([(${entity})]) {
+                                return [(${entity})].get({id: $stateParams.id}).$promise;
                                 }]
                                 }
                         }).result.then(function () {
-                        $state.go('procesverbal', null, {reload: 'procesverbal'});
+                        $state.go('[(${entity_url})]', null, {reload: '[(${entity_url})]'});
                         }, function () {
                         $state.go('^');
                         });

@@ -3,24 +3,21 @@
 
     angular
         .module('app')
-        .controller('ProcesverbalDialogController', ProcesverbalDialogController);
+        .controller('[(${entity})]DialogController', [(${entity})]DialogController);
 
-    ProcesverbalDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'Procesverbal','Fournisseur','Commande','Client'];
+    [(${entity})]DialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', '[(${entity})]'[(${entity_selects_header})]];
 
-    function ProcesverbalDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, Procesverbal ,Fournisseur,Commande,Client) {
+    function [(${entity})]DialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, [(${entity})] [(${entity_selects_header1})]) {
         var vm = this;
 
-        vm.procesverbal = entity;
+        vm.[(${entity_var})] = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.commandes = Commande.query();
-        vm.identiteresponsableacheteurs = Client.query();
-        vm.identiteresponsable1prestataires = Fournisseur.query();
-
+        [(${entity_selects})]
       
 
         $timeout(function (){
@@ -33,15 +30,15 @@
 
         function save () {
             vm.isSaving = true;
-            if (vm.procesverbal.id !== null) {
-                Procesverbal.update(vm.procesverbal, onSaveSuccess, onSaveError);
+            if (vm.[(${entity_var})].id !== null) {
+                [(${entity})].update(vm.[(${entity_var})], onSaveSuccess, onSaveError);
             } else {
-                Procesverbal.save(vm.procesverbal, onSaveSuccess, onSaveError);
+                [(${entity})].save(vm.[(${entity_var})], onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('tkbrApp:procesverbalUpdate', result);
+            $scope.$emit('tkbrApp:[(${entity_var})]Update', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }
@@ -51,8 +48,7 @@
         }
 
 
-         vm.datePickerOpenStatus.datePv = false;
-
+        [(${entity_dates})]
         
          function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
@@ -65,8 +61,8 @@
                 if ($file) {
                     DataUtils.toBase64($file, function (base64Data) {
                         $scope.$apply(function () {
-                            vm.procesverbal[fieldName] = base64Data;
-                            vm.procesverbal[fieldName + 'ContentType'] = $file.type;
+                            vm.[(${entity_var})][fieldName] = base64Data;
+                            vm.[(${entity_var})][fieldName + 'ContentType'] = $file.type;
                         });
                     });
                 }
@@ -85,7 +81,7 @@
                         }
                     }
                 }).result.then(function(item) {
-                        vm.procesverbal[fieldname] = item;
+                        vm.[(${entity_var})][fieldname] = item;
                 }, function() {
                     
                 });

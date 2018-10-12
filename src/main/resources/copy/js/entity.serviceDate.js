@@ -2,12 +2,12 @@
     'use strict';
     angular
         .module('app')
-        .factory('Procesverbal', Procesverbal);
+        .factory('[(${entity})]', [(${entity})]);
 
-    Procesverbal.$inject = ['$resource','DateUtils'];
+    [(${entity})].$inject = ['$resource','DateUtils'];
 
-    function Procesverbal ($resource,DateUtils) {
-        var resourceUrl =  'api/procesverbals/:id';
+    function [(${entity})] ($resource,DateUtils) {
+        var resourceUrl =  'api/[(${entity_url})]s/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
@@ -16,8 +16,7 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
-                          data.datePv =DateUtils.convertLocalDateFromServer(data.datePv);
-
+                         [(${entity_convertDateFromServer})]
                     }
                     return data;
                 }
@@ -26,8 +25,7 @@
                 method: 'PUT',
                 transformRequest: function (data) {
                     var copy = angular.copy(data);
-                     copy.datePv =DateUtils.convertLocalDateToServer(copy.datePv);
-
+                    [(${entity_conertDateToServer})]
                     return angular.toJson(copy);
                 }
             },
@@ -35,8 +33,7 @@
                 method: 'POST',
                 transformRequest: function (data) {
                     var copy = angular.copy(data);
-                     copy.datePv =DateUtils.convertLocalDateToServer(copy.datePv);
-
+                    [(${entity_conertDateToServer})]
                     return angular.toJson(copy);
                 }
             }

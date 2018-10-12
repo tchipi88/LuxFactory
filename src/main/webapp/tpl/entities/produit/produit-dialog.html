@@ -37,8 +37,8 @@
                 <div class="form-group">
                     <label class="control-label"  for="field_categorie">Categorie <span style="color:red" >*</span></label>
                     <div class="input-group">
-                        <ui-select ng-model="vm.produit.categorie"    ng-required="true">
-                            <ui-select-match placeholder="Select ProduitCategorie">{{$select.selected.libelle}}</ui-select-match>
+                        <ui-select  ng-model="vm.produit.categorie"    ng-required="true">
+                            <ui-select-match allow-clear="true" placeholder="Select Categorie">{{$select.selected.libelle}}</ui-select-match>
                             <ui-select-choices repeat="categorie in vm.categories | filter: $select.search">
                                 <div ng-bind-html="categorie.libelle | highlight: $select.search"></div>
                             </ui-select-choices>
@@ -62,17 +62,17 @@
  <label class="control-label"  for="field_parent">Article Parent</label>
  <div class="input-group">
                         <ui-select ng-model="vm.produit.parent"    ng-required="false">
-                            <ui-select-match placeholder="Select Produits">{{$select.selected.denomination}}</ui-select-match>
+                            <ui-select-match  allow-clear="true" placeholder="Select Produits">{{$select.selected.denomination}}</ui-select-match>
                             <ui-select-choices repeat="parent in vm.parents | filter: $select.search">
                                 <div ng-bind-html="parent.denomination | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>  
                         <span class="input-group-btn" >
-                            <button   ng-click="vm.zoomColumn('Produit','produit','parent', vm.produit.parent)" 
-                                      class="btn btn-default" type="button"  ng-hide="!vm.produits.parent">
+                            <button   ng-click="vm.zoomColumn('Produit','produit','produit', vm.produit.parent)" 
+                                      class="btn btn-default" type="button"  ng-hide="!vm.produit.parent">
                                 <span class="fa fa-eye"></span>
                             </button>
-                            <button ng-click="vm.zoomColumn('Produit', 'produit','parent', {})"      
+                            <button ng-click="vm.zoomColumn('Produit', 'produit','produit', {})"      
                                     class="btn btn-default" type="button"  ng-hide="vm.produit.parent">
                                 <span class="fa fa-plus fw"></span>
                             </button>
@@ -86,6 +86,7 @@
                     <input  class="form-control"   type="number"  autocomplete="off"  id="field_prix" ng-model="vm.produit.prix"      ng-min="1"               ng-readonly="false"  ng-required="true"                     />
                 </div>
             </div>
+
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="control-label"  for="field_unite">Unite</label>

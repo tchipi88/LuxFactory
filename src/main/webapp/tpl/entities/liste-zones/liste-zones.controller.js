@@ -5,9 +5,9 @@
         .module('app')
         .controller('ListeZonesController', ListeZonesController);
 
-    ListeZonesController.$inject = ['$state', 'DataUtils', 'ListeZones',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','Entrepot','Activites','Employe'];
+    ListeZonesController.$inject = ['Employe','$state', 'DataUtils', 'ListeZones',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','Entrepot','Activites','EmployeList'];
 
-    function ListeZonesController($state, DataUtils, ListeZones,  ParseLinks, AlertService, paginationConstants, pagingParams,Entrepot,Activites,Employe) {
+    function ListeZonesController(Employe,$state, DataUtils, ListeZones,  ParseLinks, AlertService, paginationConstants, pagingParams,Entrepot,Activites,EmployeList) {
 
         var vm = this;
 
@@ -22,8 +22,31 @@
         vm.byteSize = DataUtils.byteSize;
         vm.entrepots = Entrepot.query();
         vm.activitess = Activites.query();
-        vm.employes = Employe.query();
+        vm.employes = EmployeList.query();
 
+        function loadEmployes(){
+
+            var employesCount;
+
+            Employe.get({},onSuccess,onError);
+            function onSuccess(data, headers){
+                vm.links = ParseLinks.parse(headers('link'));
+                vm.totalItems = headers('X-Total-Count');
+                employesCount = vm.totalItems;
+                vm.employes = data;
+                
+                //vm.employes = EmployeList.query({size: employesCount});
+            }
+            function onError(error){
+                AlertService.error(error.data.message);
+            }
+
+            //alert("emplo: " + vm.employesCount);
+        };
+
+        //loadEmployes();
+        
+      
         vm.search = search;
 
         loadAll();

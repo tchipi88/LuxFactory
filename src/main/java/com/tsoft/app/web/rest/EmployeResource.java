@@ -103,6 +103,23 @@ public class EmployeResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/employes");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+    
+    /**
+     * GET  /list/employes : get all the employes.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of employes in body
+     */
+    @GetMapping("/list/employes")
+    @Timed
+    public ResponseEntity<List<Employe>> getListEmployes(@ApiParam Pageable pageable) {
+        log.debug("REST request to get all Employes");
+        List<Employe> employes = employeRepository.findAll();
+        
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(employes));
+        
+        //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/employes");
+        //return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
 
     /**
      * GET  /employes/:id : get the "id" employe.

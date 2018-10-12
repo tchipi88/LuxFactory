@@ -62,7 +62,7 @@
             var selected_fournisseur = vm.fournisseur == null ? "" : vm.fournisseur.nom;
 
             if(selected_fournisseur == "" || selected_client == "" || fromDate == "" || toDate == ""){
-                //alert ('client: '+ selected_client +' dateDebut: ' +fromDate + ' datefin: '+ toDate);
+                //alert ('client: '+ selected_client +' fournisseur: ' + selected_fournisseur + ' datefin: '+ toDate);
                 loadAll();
             }else{
                     Procesverbal.query({

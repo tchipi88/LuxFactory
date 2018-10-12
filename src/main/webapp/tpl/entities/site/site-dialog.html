@@ -75,7 +75,7 @@
  <label class="control-label"  for="field_responsable">Responsable <span style="color:red" >*</span></label>
  <div class="input-group">
                         <ui-select ng-model="vm.site.responsable"    ng-required="true">
-                            <ui-select-match placeholder="Select Employe">{{$select.selected.nom}}</ui-select-match>
+                            <ui-select-match allow-clear="true" placeholder="Select Employe">{{$select.selected.nom}}</ui-select-match>
                             <ui-select-choices repeat="responsable in vm.responsables | filter: $select.search">
                                 <div ng-bind-html="responsable.nom | highlight: $select.search"></div>
                             </ui-select-choices>

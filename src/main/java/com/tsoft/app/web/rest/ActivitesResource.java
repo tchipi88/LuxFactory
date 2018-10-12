@@ -148,6 +148,8 @@ public class ActivitesResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/activitess");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+    
+    
    
     
 

@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 //import org.joda.time.LocalDate;
@@ -38,8 +39,12 @@ public class Procesverbal extends AbstractAuditingEntity {
     
     private String lieuPv;
     
-    private String identiteResponsableAcheteur;
-    private String identiteResponsable1Prestataire;
+    @ManyToOne
+    private Client identiteResponsableAcheteur;
+    
+    @ManyToOne
+    private Fournisseur identiteResponsable1Prestataire;
+    
     private String identiteResponsable2Prestataire;
     private String identiteResponsable3Prestataire;
 
@@ -75,23 +80,24 @@ public class Procesverbal extends AbstractAuditingEntity {
         this.lieuPv = lieuPv;
     }
 
-    public String getIdentiteResponsableAcheteur() {
-        return identiteResponsableAcheteur;
-    }
+        
+    public Client getIdentiteResponsableAcheteur() {
+		return identiteResponsableAcheteur;
+	}
 
-    public void setIdentiteResponsableAcheteur(String identiteResponsableAcheteur) {
-        this.identiteResponsableAcheteur = identiteResponsableAcheteur;
-    }
+	public void setIdentiteResponsableAcheteur(Client identiteResponsableAcheteur) {
+		this.identiteResponsableAcheteur = identiteResponsableAcheteur;
+	}
 
-    public String getIdentiteResponsable1Prestataire() {
-        return identiteResponsable1Prestataire;
-    }
+	public Fournisseur getIdentiteResponsable1Prestataire() {
+		return identiteResponsable1Prestataire;
+	}
 
-    public void setIdentiteResponsable1Prestataire(String identiteResponsable1Prestataire) {
-        this.identiteResponsable1Prestataire = identiteResponsable1Prestataire;
-    }
+	public void setIdentiteResponsable1Prestataire(Fournisseur identiteResponsable1Prestataire) {
+		this.identiteResponsable1Prestataire = identiteResponsable1Prestataire;
+	}
 
-    public String getIdentiteResponsable2Prestataire() {
+	public String getIdentiteResponsable2Prestataire() {
         return identiteResponsable2Prestataire;
     }
 

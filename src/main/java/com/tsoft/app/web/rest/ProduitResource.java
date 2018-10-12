@@ -105,6 +105,22 @@ public class ProduitResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/produits");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+    
+    /**
+     * GET  /produits : get all the produits.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of produits in body
+     */
+    @GetMapping("/list/produits")
+    @Timed
+    public ResponseEntity<List<Produit>> getListProduits(@ApiParam Pageable pageable) {
+        log.debug("REST request to get all Produits");
+        List<Produit> page = produitRepository.findAll();
+        
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(page));
+        //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/produits");
+        //return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
 
     /**
      * GET  /produits/:id : get the "id" produit.
