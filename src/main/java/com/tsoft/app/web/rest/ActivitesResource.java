@@ -3,6 +3,7 @@ package com.tsoft.app.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.tsoft.app.domain.Activites;
 import com.tsoft.app.domain.ListeArticles;
+import com.tsoft.app.domain.Produit;
 import com.tsoft.app.repository.ActivitesRepository;
 import com.tsoft.app.web.rest.util.HeaderUtil;
 import com.tsoft.app.web.rest.util.PaginationUtil;
@@ -149,7 +150,21 @@ public class ActivitesResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
     
-    
+    /**
+     * GET  /activites : get all the activites.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of activites in body
+     */
+    @GetMapping("/list/activites")
+    @Timed
+    public ResponseEntity<List<Activites>> getListActivites(@ApiParam Pageable pageable) {
+        log.debug("REST request to get all Activites");
+        List<Activites> page = activitesRepository.findAll();
+        
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(page));
+        //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/produits");
+        //return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
    
     
 

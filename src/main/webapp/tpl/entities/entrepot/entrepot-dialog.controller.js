@@ -5,9 +5,9 @@
         .module('app')
         .controller('EntrepotDialogController', EntrepotDialogController);
 
-    EntrepotDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'Entrepot','Employe','Activites'];
+    EntrepotDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'Entrepot','EmployeList','ActiviteList'];
 
-    function EntrepotDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, Entrepot ,Employe,Activites) {
+    function EntrepotDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, Entrepot ,EmployeList,ActiviteList) {
         var vm = this;
 
         vm.entrepot = entity;
@@ -17,8 +17,8 @@
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.responsables = Employe.query();
-        vm.activites = Activites.query();
+        vm.responsables = EmployeList.query();
+        vm.activites = ActiviteList.query();
 
       
 

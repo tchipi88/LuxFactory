@@ -1,6 +1,7 @@
 package com.tsoft.app.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.tsoft.app.domain.Employe;
 import com.tsoft.app.domain.Produit;
 
 import com.tsoft.app.repository.ProduitRepository;
@@ -166,7 +167,6 @@ public class ProduitResource {
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/produits");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
-
 
 
 

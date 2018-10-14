@@ -2,7 +2,7 @@ package com.tsoft.app.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.tsoft.app.domain.Entrepot;
-
+import com.tsoft.app.domain.Produit;
 import com.tsoft.app.repository.EntrepotRepository;
 import com.tsoft.app.web.rest.util.HeaderUtil;
 import com.tsoft.app.web.rest.util.PaginationUtil;
@@ -131,6 +131,22 @@ public class EntrepotResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+    /**
+     * GET  /list/entrepots : get all the entrepots.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of entrepots in body
+     */
+    @GetMapping("/list/entrepots")
+    @Timed
+    public ResponseEntity<List<Entrepot>> getListEntrepot(@ApiParam Pageable pageable) {
+        log.debug("REST request to get all Employes");
+        List<Entrepot> entrepots = entrepotRepository.findAll();
+        
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(entrepots));
+        
+        //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/employes");
+        //return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
    
 
 

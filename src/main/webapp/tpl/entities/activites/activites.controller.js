@@ -5,9 +5,9 @@
         .module('app')
         .controller('ActivitesController', ActivitesController);
 
-    ActivitesController.$inject = ['$state', 'DataUtils', 'Activites',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','Employe','$filter'];
+    ActivitesController.$inject = ['$state', 'DataUtils', 'Activites',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','EmployeList','$filter','ActiviteList'];
 
-    function ActivitesController($state, DataUtils, Activites,  ParseLinks, AlertService, paginationConstants, pagingParams,Employe,$filter) {
+    function ActivitesController($state, DataUtils, Activites,  ParseLinks, AlertService, paginationConstants, pagingParams,EmployeList,$filter,ActiviteList) {
 
         var vm = this;
 
@@ -23,7 +23,8 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.searchActivite = {};
-        vm.responsables = Employe.query();
+        vm.responsables = EmployeList.query();
+        vm.activites = ActiviteList.query();
 
         loadAll();
 

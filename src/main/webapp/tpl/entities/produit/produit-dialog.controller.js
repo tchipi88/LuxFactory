@@ -5,9 +5,9 @@
         .module('app')
         .controller('ProduitDialogController', ProduitDialogController);
 
-    ProduitDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'Produit','Unite','ProduitCategorie'];
+    ProduitDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'ProduitList','Unite','ProduitCategorie'];
 
-    function ProduitDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, Produit ,Unite,ProduitCategorie) {
+    function ProduitDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, ProduitList ,Unite,ProduitCategorie) {
         var vm = this;
 
         vm.produit = entity;
@@ -19,7 +19,7 @@
         vm.save = save;
         vm.categories = ProduitCategorie.query();
         vm.unites = Unite.query();
-        vm.parents = Produit.query();
+        vm.parents = ProduitList.query();
 
       
         $timeout(function (){

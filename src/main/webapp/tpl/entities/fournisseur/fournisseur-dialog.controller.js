@@ -5,9 +5,9 @@
             .module('app')
             .controller('FournisseurDialogController', FournisseurDialogController);
 
-    FournisseurDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal', 'DataUtils', 'entity', 'Fournisseur', 'Employe'];
+    FournisseurDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal', 'DataUtils', 'entity', 'Fournisseur', 'EmployeList'];
 
-    function FournisseurDialogController($timeout, $scope, $stateParams, $uibModalInstance, $uibModal, DataUtils, entity, Fournisseur, Employe) {
+    function FournisseurDialogController($timeout, $scope, $stateParams, $uibModalInstance, $uibModal, DataUtils, entity, Fournisseur, EmployeList) {
         var vm = this;
 
         vm.fournisseur = entity;
@@ -17,7 +17,7 @@
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.responsables = Employe.query();
+        vm.responsables = EmployeList.query();
         //vm.produitFournisseurs = produitFournisseurs;
 
 

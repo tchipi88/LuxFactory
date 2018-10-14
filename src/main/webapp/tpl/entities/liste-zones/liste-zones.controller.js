@@ -5,9 +5,9 @@
         .module('app')
         .controller('ListeZonesController', ListeZonesController);
 
-    ListeZonesController.$inject = ['Employe','$state', 'DataUtils', 'ListeZones',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','Entrepot','Activites','EmployeList'];
+    ListeZonesController.$inject = ['Employe','$state', 'DataUtils', 'ListeZones',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','EntrepotList','ActiviteList','EmployeList'];
 
-    function ListeZonesController(Employe,$state, DataUtils, ListeZones,  ParseLinks, AlertService, paginationConstants, pagingParams,Entrepot,Activites,EmployeList) {
+    function ListeZonesController(Employe,$state, DataUtils, ListeZones,  ParseLinks, AlertService, paginationConstants, pagingParams,EntrepotList,ActiviteList,EmployeList) {
 
         var vm = this;
 
@@ -20,8 +20,8 @@
         vm.loadAll = loadAll;
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
-        vm.entrepots = Entrepot.query();
-        vm.activitess = Activites.query();
+        vm.entrepots = EntrepotList.query();
+        vm.activitess = ActiviteList.query();
         vm.employes = EmployeList.query();
 
         function loadEmployes(){

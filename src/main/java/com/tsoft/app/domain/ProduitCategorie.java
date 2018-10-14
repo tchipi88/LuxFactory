@@ -26,6 +26,8 @@ public class ProduitCategorie implements Serializable {
     @Column(name = "libelle", nullable = false)
     private String libelle;
 
+    private int nbProduit;
+    
     public ProduitCategorie() {
     }
 
@@ -33,8 +35,21 @@ public class ProduitCategorie implements Serializable {
     public ProduitCategorie(String libelle) {
        this.libelle=libelle;
     }
+    
+    public ProduitCategorie(String libelle, int nbProduit) {
+    	this.libelle = libelle;
+    	this.nbProduit = nbProduit;
+    }
 
-    public Long getId() {
+    
+    public ProduitCategorie(Long id, String libelle, int nbProduit) {
+		this.id = id;
+		this.libelle = libelle;
+		this.nbProduit = nbProduit;
+	}
+
+
+	public Long getId() {
         return id;
     }
 
@@ -54,8 +69,20 @@ public class ProduitCategorie implements Serializable {
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
+    
+    
 
-    @Override
+    public int getNbProduit() {
+		return nbProduit;
+	}
+
+
+	public void setNbProduit(int nbProduit) {
+		this.nbProduit = nbProduit;
+	}
+
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

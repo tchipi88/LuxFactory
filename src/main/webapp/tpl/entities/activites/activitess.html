@@ -27,12 +27,12 @@
                     </div>
                   </div> -->
 
-                  <div class="form-group col-sm-3">
+                  <div class="form-group col-sm-5">
                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="article">Activite </label>
                            <div class="input-group col-md-7 col-sm-7 col-xs-12">
                             <ui-select ng-model="vm.activite"    ng-required="false" ng-change="vm.search()">
                                 <ui-select-match allow-clear="true" placeholder="Select Activite">{{$select.selected.libelle}}</ui-select-match>
-                                <ui-select-choices repeat="activite in vm.activitess | filter: $select.search">
+                                <ui-select-choices repeat="activite in vm.activites | filter: $select.search">
                                     <div ng-bind-html="activite.libelle | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select> 
@@ -50,7 +50,7 @@
                     </div>
                   </div> -->
 
-                   <div class="form-group col-sm-3">
+                   <div class="form-group col-sm-5">
                            <label class="control-label col-md-4 col-sm-3 col-xs-12" for="responsable">Responsable </label>
                            <div class="input-group col-md-7 col-sm-7 col-xs-12">
                                 <ui-select ng-model="vm.responsable"    ng-required="false" ng-change="vm.search()">

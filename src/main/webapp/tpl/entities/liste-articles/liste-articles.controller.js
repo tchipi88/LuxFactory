@@ -5,9 +5,9 @@
         .module('app')
         .controller('ListeArticlesController', ListeArticlesController);
 
-    ListeArticlesController.$inject = ['$state', 'DataUtils', 'ListeArticles','Activites','Employe',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','$filter', 'Entrepot', 'Produit'];
+    ListeArticlesController.$inject = ['$state', 'DataUtils', 'ListeArticles','Activites','Employe',  'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams','$filter', 'EntrepotList', 'ProduitList'];
 
-    function ListeArticlesController($state, DataUtils, ListeArticles,Activites, Employe, ParseLinks, AlertService, paginationConstants, pagingParams,$filter, Entrepot, Produit) {
+    function ListeArticlesController($state, DataUtils, ListeArticles,Activites, Employe, ParseLinks, AlertService, paginationConstants, pagingParams,$filter, EntrepotList, ProduitList) {
 
         var vm = this;
 
@@ -22,10 +22,10 @@
         vm.byteSize = DataUtils.byteSize;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
-        vm.entrepots = Entrepot.query();
+        vm.entrepots = EntrepotList.query();
         vm.activitess = Activites.query();
         vm.employes = Employe.query();
-        vm.produits = Produit.query();
+        vm.produits = ProduitList.query();
         vm.fromDate = new Date();
         vm.toDate = new Date();
 

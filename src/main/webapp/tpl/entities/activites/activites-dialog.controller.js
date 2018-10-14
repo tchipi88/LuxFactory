@@ -5,9 +5,9 @@
         .module('app')
         .controller('ActivitesDialogController', ActivitesDialogController);
 
-    ActivitesDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'Activites','Employe'];
+    ActivitesDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'Activites','EmployeList'];
 
-    function ActivitesDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, Activites ,Employe) {
+    function ActivitesDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, Activites ,EmployeList) {
         var vm = this;
 
         vm.activites = entity;
@@ -17,7 +17,7 @@
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.responsables = Employe.query();
+        vm.responsables = EmployeList.query();
 
       
 
