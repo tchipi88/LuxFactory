@@ -20,9 +20,9 @@
 
                      
                         
-                    <div class="form-group col-sm-4">
-                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="article">Client </label>
-                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                    <div class="form-group col-sm-6 col-md-4 col-lg-3">
+                           <label class="control-label col-md-5 col-sm-6 col-xs-12" for="article">Client </label>
+                           <div class="input-group col-md-7 col-sm-6 col-xs-12">
                             <ui-select ng-model="vm.client"    ng-required="false" ng-change="vm.search()">
                                 <ui-select-match allow-clear="true" placeholder="Select Client">{{$select.selected.nom}}</ui-select-match>
                                 <ui-select-choices repeat="client in vm.clients | filter: $select.search">
@@ -32,9 +32,9 @@
                           </div> 
                     </div>
 
-                    <div class="form-group col-sm-4">
-                           <label class="control-label col-md-4 col-sm-4 col-xs-12" for="article">Fournisseur </label>
-                           <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                    <div class="form-group col-sm-6 col-md-4 col-lg-3">
+                           <label class="control-label col-md-5 col-sm-6 col-xs-12" for="article">Fournisseur </label>
+                           <div class="input-group col-md-7 col-sm-6 col-xs-12">
                             <ui-select ng-model="vm.fournisseur"    ng-required="false" ng-change="vm.search()">
                                 <ui-select-match allow-clear="true" placeholder="Select fournisseur">{{$select.selected.nom}}</ui-select-match>
                                 <ui-select-choices repeat="fournisseur in vm.fournisseurs | filter: $select.search">
@@ -44,9 +44,9 @@
                           </div> 
                     </div>
                       
-                        <div class="form-group col-sm-4">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="debut">Date Debut </label>
-                          <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3">
+                          <label class="control-label col-md-5 col-sm-6 col-xs-12" for="debut">Date Debut </label>
+                          <div class="input-group col-md-7 col-sm-6 col-xs-12">
                               <input  id="debut" type="text" class="form-control" name="debut"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.fromDate"  is-open="vm.datePickerOpenStatus.dateDebut" ng-change="vm.search()"
                                 />
                                 <span class="input-group-btn">
@@ -57,9 +57,9 @@
                      
 
                       
-                        <div class="form-group col-sm-4">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fin">Date Fin </label>
-                          <div class="input-group col-md-7 col-sm-7 col-xs-12">
+                        <div class="form-group col-sm-6 col-md-4 col-lg-3">
+                          <label class="control-label col-md-5 col-sm-6 col-xs-12" for="fin">Date Fin </label>
+                          <div class="input-group col-md-7 col-sm-6 col-xs-12">
                               <input  id="debut" type="text" class="form-control" name="fin"    ng-required="false"  uib-datepicker-popup="{{dateformat}}"  ng-model="vm.toDate"  is-open="vm.datePickerOpenStatus.dateFin" ng-change="vm.search()"
                                 />
                                 <span class="input-group-btn">

@@ -18,8 +18,8 @@
           <div class="row">
              <form class="form-horizontal form-label-left input_mask">
 
-                   <div class="form-group col-sm-3 col-md-4">
-                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="article">Activite </label>
+                   <div class="form-group col-sm-6 col-md-4">
+                           <label class="control-label col-md-4 col-sm-5 col-xs-12" for="article">Activite </label>
                            <div class="input-group col-md-7 col-sm-7 col-xs-12">
                             <ui-select ng-model="vm.activite"    ng-required="false" ng-change="vm.search()">
                                 <ui-select-match allow-clear="true" placeholder="Select Activite">{{$select.selected.libelle}}</ui-select-match>
@@ -31,8 +31,8 @@
                     </div>
                       
                         
-                        <div class="form-group col-sm-3 col-md-4">
-                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zone">Zone </label>
+                        <div class="form-group col-sm-6 col-md-4">
+                           <label class="control-label col-md-4 col-sm-5 col-xs-12" for="zone">Zone </label>
                             <div class="input-group col-md-7 col-sm-7 col-xs-12">
                                 <ui-select ng-model="vm.zone"    ng-required="false" ng-change="vm.search()">
                                     <ui-select-match allow-clear="true" placeholder="Select Zone">{{$select.selected.libelle}}</ui-select-match>
@@ -43,8 +43,8 @@
                             </div> 
                         </div>
 
-                        <div class="form-group col-sm-3 col-md-4">
-                           <label class="control-label col-md-4 col-sm-3 col-xs-12" for="responsable">Responsable </label>
+                        <div class="form-group col-sm-6 col-md-4">
+                           <label class="control-label col-md-5 col-sm-5 col-xs-12" for="responsable">Responsable </label>
                            <div class="input-group col-md-7 col-sm-7 col-xs-12">
                                 <ui-select ng-model="vm.responsable"    ng-required="false" ng-change="vm.search()">
                                     <ui-select-match allow-clear="true" placeholder="Select Responsable">{{$select.selected.nom}}</ui-select-match>
