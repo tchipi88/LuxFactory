@@ -5,9 +5,9 @@
         .module('app')
         .controller('ProduitDialogController', ProduitDialogController);
 
-    ProduitDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'ProduitList','UniteList','ProduitCategorieList'];
+    ProduitDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$uibModal','DataUtils', 'entity', 'ProduitList','UniteList','ProduitCategorieList','Produit'];
 
-    function ProduitDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, ProduitList ,UniteList,ProduitCategorieList) {
+    function ProduitDialogController ($timeout, $scope, $stateParams, $uibModalInstance,$uibModal, DataUtils, entity, ProduitList ,UniteList,ProduitCategorieList,Produit) {
         var vm = this;
 
         vm.produit = entity;

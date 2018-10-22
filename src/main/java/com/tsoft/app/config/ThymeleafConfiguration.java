@@ -66,7 +66,7 @@ public class ThymeleafConfiguration {
     public ClassLoaderTemplateResolver javaTemplateResolver() {
         ClassLoaderTemplateResolver javaTemplateResolver = new ClassLoaderTemplateResolver();
         javaTemplateResolver.setPrefix("templates/");
-        //javaTemplateResolver.setSuffix(".html");
+        //javaTemplateResolver.setSuffix(".txt");
         				
         javaTemplateResolver.setTemplateMode(TemplateMode.TEXT);
         javaTemplateResolver.setCharacterEncoding(org.apache.commons.lang.CharEncoding.UTF_8);
@@ -77,14 +77,46 @@ public class ThymeleafConfiguration {
         return javaTemplateResolver;
     }
     
+    @Bean
+    @Description("Thymeleaf template resolver serving Java Templates")
+    public ClassLoaderTemplateResolver jsTemplateResolver() {
+        ClassLoaderTemplateResolver jsTemplateResolver = new ClassLoaderTemplateResolver();
+        jsTemplateResolver.setPrefix("templates/");
+        //jsTemplateResolver.setSuffix(".js");
+        				
+        jsTemplateResolver.setTemplateMode(TemplateMode.JAVASCRIPT);
+        jsTemplateResolver.setCharacterEncoding(org.apache.commons.lang.CharEncoding.UTF_8);
+        jsTemplateResolver.setOrder(2);
+        Set<String> patterns = new HashSet();
+        //patterns.add("Template*");
+        jsTemplateResolver.setResolvablePatterns(patterns);
+        return jsTemplateResolver;
+    }
+    
+    @Bean
+    @Description("Thymeleaf template resolver serving Java Templates")
+    public ClassLoaderTemplateResolver htmlTemplateResolver() {
+        ClassLoaderTemplateResolver htmlTemplateResolver = new ClassLoaderTemplateResolver();
+        htmlTemplateResolver.setPrefix("templates/");
+        //htmlTemplateResolver.setSuffix(".html");
+        				
+        htmlTemplateResolver.setTemplateMode(TemplateMode.HTML);
+        htmlTemplateResolver.setCharacterEncoding(org.apache.commons.lang.CharEncoding.UTF_8);
+        htmlTemplateResolver.setOrder(2);
+        Set<String> patterns = new HashSet();
+        //patterns.add("Template*");
+        htmlTemplateResolver.setResolvablePatterns(patterns);
+        return htmlTemplateResolver;
+    }
+    
    
    
 
     @Bean
     public TemplateEngine myTemplateEngine() {
         TemplateEngine te = new SpringTemplateEngine();
-        //te.addTemplateResolver(emailTemplateResolver());
-        
+        te.addTemplateResolver(htmlTemplateResolver());
+        te.addTemplateResolver(jsTemplateResolver());
         te.addTemplateResolver(javaTemplateResolver());
         return te;
 

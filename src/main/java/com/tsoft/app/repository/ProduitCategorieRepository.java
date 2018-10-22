@@ -23,7 +23,7 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface ProduitCategorieRepository extends JpaRepository<ProduitCategorie, Long> {
 
-	@Query("SELECT new map(pc.id as id,pc.libelle as libelle, count(p.denomination) as nbProduit) FROM ProduitCategorie pc JOIN Produit p ON pc.id = p.categorie GROUP BY pc.id, pc.libelle")
+	@Query("SELECT new map(pc.id as id,pc.libelle as libelle, count(p.denomination) as nbProduit) FROM ProduitCategorie pc LEFT JOIN Produit p ON pc.id = p.categorie GROUP BY pc.id, pc.libelle")
     public Page<ProduitCategorie> findProduitCount(Pageable pageable);
     
 
