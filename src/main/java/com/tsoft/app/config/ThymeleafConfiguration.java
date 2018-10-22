@@ -66,7 +66,7 @@ public class ThymeleafConfiguration {
     public ClassLoaderTemplateResolver javaTemplateResolver() {
         ClassLoaderTemplateResolver javaTemplateResolver = new ClassLoaderTemplateResolver();
         javaTemplateResolver.setPrefix("templates/");
-        //javaTemplateResolver.setSuffix(".txt");
+        //javaTemplateResolver.setSuffix(".html");
         				
         javaTemplateResolver.setTemplateMode(TemplateMode.TEXT);
         javaTemplateResolver.setCharacterEncoding(org.apache.commons.lang.CharEncoding.UTF_8);

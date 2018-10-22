@@ -1,6 +1,7 @@
 package com.tsoft.app.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.tsoft.app.domain.ProduitCategorie;
 import com.tsoft.app.domain.Unite;
 
 import com.tsoft.app.repository.UniteRepository;
@@ -131,6 +132,19 @@ public class UniteResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
+    /**
+     * GET  /list/unites : get all the unite.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of unite in body
+     */
+    @GetMapping("/list/unites")
+    @Timed
+    public ResponseEntity<List<Unite>> getListUnite(@ApiParam Pageable pageable) {
+        log.debug("REST request to get all Unite");
+        List<Unite> page = uniteRepository.findAll();
+        
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(page));
+    }
    
 
 

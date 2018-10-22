@@ -44,7 +44,7 @@ spring:
         favicon:
             enabled: false
     thymeleaf:
-        mode: XHTML
+        mode: HTML
 
 security:
     basic:

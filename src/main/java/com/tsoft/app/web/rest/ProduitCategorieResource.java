@@ -18,10 +18,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -135,6 +132,18 @@ public class ProduitCategorieResource {
     }
 
    
-
+    /**
+     * GET  /list/produitcategories : get all the produitcategorie.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of produitcategorie in body
+     */
+    @GetMapping("/list/produitcategories")
+    @Timed
+    public ResponseEntity<List<ProduitCategorie>> getListProduitCategorie(@ApiParam Pageable pageable) {
+        log.debug("REST request to get all ProduitCategorie");
+        List<ProduitCategorie> page = produitCategorieRepository.findAll();
+        
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(page));
+    }
 
 }
