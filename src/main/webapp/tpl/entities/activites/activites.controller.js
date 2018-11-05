@@ -63,21 +63,20 @@
             var selected_activite = vm.activite == null ? "" : vm.activite.libelle;
             var selected_resp = vm.responsable == null ? "" : vm.responsable.nom;
 
-            if(selected_activite == "" && selected_resp == "") loadAll();
-            else{
-                 Activites.query({
+            
+            Activites.query({
                 page: pagingParams.page - 1,
                 size: vm.itemsPerPage,
                 libelle: selected_activite 
                 ,responsable: selected_resp
-            },  function (data, headers) {
+                },  function (data, headers) {
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
                 vm.activitess = data;
                 page : pagingParams.page;
             });
-            }
+            
            
            
         }

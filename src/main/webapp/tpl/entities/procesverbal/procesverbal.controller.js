@@ -56,15 +56,12 @@
         function search(){
             var dateFormat = 'yyyy-MM-dd';
             var today = $filter('date')(new Date(), dateFormat);
-            var fromDate = $filter('date')(vm.fromDate, dateFormat) == null? "": $filter('date')(vm.fromDate, dateFormat);
-            var toDate = $filter('date')(vm.toDate, dateFormat)== null? "":$filter('date')(vm.toDate, dateFormat);
+            var fromDate = $filter('date')(vm.fromDate, dateFormat) == null? "1900-01-01": $filter('date')(vm.fromDate, dateFormat);
+            var toDate = $filter('date')(vm.toDate, dateFormat)== null? "2100-12-31":$filter('date')(vm.toDate, dateFormat);
             var selected_client = vm.client == null ? "" : vm.client.nom;
             var selected_fournisseur = vm.fournisseur == null ? "" : vm.fournisseur.nom;
 
-            if(selected_fournisseur == "" || selected_client == "" || fromDate == "" || toDate == ""){
-                //alert ('client: '+ selected_client +' fournisseur: ' + selected_fournisseur + ' datefin: '+ toDate);
-                loadAll();
-            }else{
+           
                     Procesverbal.query({
                     page: vm.page - 1,
                     size: vm.itemsPerPage,
@@ -78,7 +75,7 @@
                     vm.queryCount = vm.totalItems;
                     vm.procesverbals = data;
                 });
-            }
+            
 
             
         }

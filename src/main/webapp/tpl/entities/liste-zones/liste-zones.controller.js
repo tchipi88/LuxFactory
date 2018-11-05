@@ -85,24 +85,18 @@
              var selected_entrepot = vm.zone == null ? "" : vm.zone.libelle;
              var selected_responsable = vm.responsable == null ? "":vm.responsable.nom;
 
-             if(selected_activite == "" || selected_responsable == "" || selected_entrepot == "")
-             {
-                loadAll();
-             }
-             else{
-                    ListeZones.query({
-                    page: vm.page - 1,
-                    size: vm.itemsPerPage,
-                    activite: selected_activite,
-                    entrepot: selected_entrepot,
-                    responsable: selected_responsable
-                },  function (data, headers) {
-                    vm.links = ParseLinks.parse(headers('link'));
-                    vm.totalItems = headers('X-Total-Count');
-                    vm.queryCount = vm.totalItems;
-                    vm.listeZoness = data;
-                })
-             }
+            ListeZones.query({
+            page: vm.page - 1,
+            size: vm.itemsPerPage,
+            activite: selected_activite,
+            entrepot: selected_entrepot,
+            responsable: selected_responsable
+        },  function (data, headers) {
+            vm.links = ParseLinks.parse(headers('link'));
+            vm.totalItems = headers('X-Total-Count');
+            vm.queryCount = vm.totalItems;
+            vm.listeZoness = data;
+        });
             
             
            

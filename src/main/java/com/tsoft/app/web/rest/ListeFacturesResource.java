@@ -154,7 +154,7 @@ public class ListeFacturesResource {
 	        @RequestParam(value = "toDate") LocalDate toDate,
 	        @ApiParam Pageable pageable, @ApiParam TypeCommande type) {
 	    log.debug("REST request to search for a page of Factures for  {}  and {} between {} and {}", client, fournisseur,fromDate,toDate);
-	    Page<ListeFactures> page = listeFacturesRepository.findAllByClientAndFournisseurAndDateEmissionBetween(client, fournisseur, fromDate, toDate, pageable);
+	    Page<ListeFactures> page = listeFacturesRepository.searchFactures(client, fournisseur, fromDate, toDate, pageable);
 	    HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/liste-facturess");
 	    return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
 	}

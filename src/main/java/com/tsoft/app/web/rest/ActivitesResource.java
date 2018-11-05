@@ -145,7 +145,7 @@ public class ActivitesResource {
     @Timed
     public ResponseEntity<List<Activites>> searchActivite(@ApiParam Pageable pageable, @RequestParam String libelle, @RequestParam String responsable) {
         log.debug("REST request to get all ListeArticless");
-        Page<Activites> page = activitesRepository.findAllByLibelleAndResponsableNom(libelle,responsable, pageable);
+        Page<Activites> page = activitesRepository.searchActivites(libelle,responsable, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/activitess");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

@@ -94,11 +94,11 @@ public class ListeArticlesResource {
      */
     @GetMapping(path = "/liste-articless", params = {"fromDate", "toDate"})
     @Timed
-    public ResponseEntity<List<ListeArticles>> getAllListeArticless(@RequestParam(value = "fromDate") LocalDate fromDate,
+    public ResponseEntity<List<ListeArticles>> searchArticles(@RequestParam(value = "fromDate") LocalDate fromDate,
             @RequestParam(value = "toDate") LocalDate toDate, @ApiParam Pageable pageable, @RequestParam String activite,
             @RequestParam String entrepot) {
         log.debug("REST request to get all ListeArticless");
-        Page<ListeArticles> page = listeArticlesRepository.findAllByActiviteAndEntrepotAndDateTransactionBetween(activite, entrepot,
+        Page<ListeArticles> page = listeArticlesRepository.searchListesArticles(activite, entrepot,
                 fromDate, toDate, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/liste-articless");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);

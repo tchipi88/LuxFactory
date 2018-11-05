@@ -147,7 +147,10 @@ public class ListeZonesResource {
 	        @RequestParam(value = "responsable") String responsable, 
 	        @ApiParam Pageable pageable, @ApiParam TypeCommande type) {
 	    log.debug("REST request to search for a page of ListeZones for  {}  and {} and {}", activite, entrepot,responsable);
-	    Page<ListeZones> page = listeZonesRepository.findAllByActiviteAndEntrepotAndResponsableContaining(activite, entrepot, responsable, pageable);
+	    Page<ListeZones> page = listeZonesRepository.searchListesZones(activite, entrepot, responsable, pageable);
+	    
+//	    return ResponseUtil.wrapOrNotFound(Optional.ofNullable(listeZones));
+	    
 	    HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/liste-zoness");
 	    return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
 	}

@@ -150,8 +150,8 @@ public class ProcesverbalResource {
    	        @RequestParam(value = "toDate") LocalDate toDate,
    	        @ApiParam Pageable pageable, @ApiParam TypeCommande type) {
    	    log.debug("REST request to search for a page of ProcesVerbal for  {}  and {} between {} and {}", client, fournisseur,fromDate,toDate);
-   	    Page<Procesverbal> page = procesverbalRepository.findAllByIdentiteResponsableAcheteurNomAndIdentiteResponsable1PrestataireNomAndDatePvBetween(client, fournisseur, fromDate, toDate, pageable);
-   	    HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/procesverbal");
+   	    Page<Procesverbal> page = procesverbalRepository.searchProcesVerbal(client, fournisseur, fromDate, toDate, pageable);
+   	    HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/procesverbals");
    	    return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
    	}
 
