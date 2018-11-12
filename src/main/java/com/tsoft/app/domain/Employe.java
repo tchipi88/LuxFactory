@@ -16,7 +16,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "employe")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "employe")
+@Document(indexName = "luxfactory", type = "employe", shards = 1, replicas = 0, refreshInterval = "-1")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Employe extends AbstractAuditingEntity{
 

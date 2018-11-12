@@ -153,12 +153,13 @@ public class FournisseurResource {
      * @param pageable the pagination information
      * @return the result of the search
      */
-    @GetMapping(path = "/_search/fournisseurs")
+    @GetMapping(path = "/_search/fournisseurs", params = {"query"})
     @Timed
     public ResponseEntity<List<Fournisseur>> searchFournisseurs(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Fournisseurs for query {}", query);
         
-        Page<Fournisseur> page = fournisseurSearchRepository.search(queryStringQuery(query), pageable);
+        Page<Fournisseur> page = fournisseurSearchRepository.findByNom(query, pageable);
+        		//.search(queryStringQuery(query), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/fournisseurs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
         //return new ResponseEntity<>(fournisseurs, headers, HttpStatus.OK);

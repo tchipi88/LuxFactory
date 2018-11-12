@@ -49,7 +49,7 @@ spring:
     data:
         elasticsearch:
             cluster-name:
-            cluster-nodes:
+            cluster-nodes: 
             properties:
                 path:
                   logs: target/elasticsearch/log

@@ -74,7 +74,7 @@
             var selected_activite = vm.produit == null ? "" : vm.produit.denomination;
             var selected_entrepot = vm.entrepot == null ? "" : vm.entrepot.libelle;
 
-            alert("date: "+ fromDate);
+            
 
                 ListeArticles.query({
                 page: vm.page - 1,

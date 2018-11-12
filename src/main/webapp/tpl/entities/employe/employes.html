@@ -54,7 +54,7 @@
             <table id="dtEmploye" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                        <th jh-sort-by="id" ng-show="false"><span >ID</span> <span class="fa fa-sort"></span></th>
+                        <th jh-sort-by="id" ng-show="true"><span >ID</span> <span class="fa fa-sort"></span></th>
                          <th><span >Nom</span><th><span >Date Naissance</span> </th> <th><span >Lieu Naissance</span></th> <th><span >Numero Cni</span></th> <th><span >Telephone</span></th> <th><span >Email</span></th> <th><span >Adresse</span> </th> <th><span >Date Entree</span> </span></th> <th><span >Salaire</span> </th> <th ><span >Fonction</span></th>
                         <th has-authority="ROLE_ADMIN">
                            Actions
@@ -63,7 +63,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="employe in vm.employes track by employe.id">
-                        <td ng-show="false"><a ui-sref="employe-detail({id:employe.id})">{{employe.id}}</a></td>
+                        <td ng-show="true"><a ui-sref="employe-detail({id:employe.id})">{{employe.id}}</a></td>
                          <td>{{employe.nom}} {{employe.prenom}}</td>
                          <td>{{employe.dateNaissance | date:'mediumDate'}}</td>
                          <td>{{employe.lieuNaissance}}</td>

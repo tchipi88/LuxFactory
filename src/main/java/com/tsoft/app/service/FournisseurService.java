@@ -29,7 +29,7 @@ public class FournisseurService {
 
     @Transactional
     public Fournisseur create(Fournisseur fournisseur) throws Exception {
-        entrepotService.findByLibelle(fournisseur.getNom());
+        //entrepotService.findByLibelle(fournisseur.getNom());
         return fournisseurRepository.save(fournisseur);
 
     }
